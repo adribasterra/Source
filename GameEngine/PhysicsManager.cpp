@@ -30,16 +30,16 @@ bool PhysicsManager::CheckCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 {
     //Calculate the sides of rect A
-    int leftA   = obj1->GetX();
-    int rightA  = obj1->GetX() + obj1->GetCollider()->w;
-    int topA    = obj1->GetY();
-    int bottomA = obj1->GetY() + obj1->GetCollider()->h;
+    float leftA   = obj1->GetX();
+    float rightA  = obj1->GetX() + obj1->GetCollider()->w;
+    float topA    = obj1->GetY();
+    float bottomA = obj1->GetY() + obj1->GetCollider()->h;
 
     //Calculate the sides of rect B
-    int leftB   = obj2->GetX();
-    int rightB  = obj2->GetX() + obj2->GetCollider()->w;
-    int topB    = obj2->GetY();
-    int bottomB = obj2->GetY() + obj2->GetCollider()->h;
+    float leftB   = obj2->GetX();
+    float rightB  = obj2->GetX() + obj2->GetCollider()->w;
+    float topB    = obj2->GetY();
+    float bottomB = obj2->GetY() + obj2->GetCollider()->h;
 
     //If any of the sides from A are outside of B
     if (bottomA <= topB ||
@@ -59,7 +59,7 @@ bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::CircleCollisions(Object* obj1, Object* obj2)
 {
     //Calculate total radius squared
-    int totalRadiusSquared = obj1->GetRadius() + obj2->GetRadius();
+    float totalRadiusSquared = obj1->GetRadius() + obj2->GetRadius();
     totalRadiusSquared = totalRadiusSquared * totalRadiusSquared;
 
     //If the distance between the centers of the circles is less than the sum of their radii
@@ -76,7 +76,7 @@ bool PhysicsManager::CircleCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
 {
     //Closest point on collision box
-    int pointX, pointY;
+    float pointX, pointY;
 
     //Find closest X offset
     if (obj1->GetX() < obj2->GetX())
