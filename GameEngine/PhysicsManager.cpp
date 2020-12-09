@@ -30,16 +30,16 @@ bool PhysicsManager::CheckCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 {
     //Calculate the sides of rect A
-    int leftA   = obj1->GetCollider()->x;
-    int rightA  = obj1->GetCollider()->x + obj1->GetCollider()->w;
-    int topA    = obj1->GetCollider()->y;
-    int bottomA = obj1->GetCollider()->y + obj1->GetCollider()->h;
+    int leftA   = obj1->GetX();
+    int rightA  = obj1->GetX() + obj1->GetCollider()->w;
+    int topA    = obj1->GetY();
+    int bottomA = obj1->GetY() + obj1->GetCollider()->h;
 
     //Calculate the sides of rect B
-    int leftB   = obj2->GetCollider()->x;
-    int rightB  = obj2->GetCollider()->x + obj2->GetCollider()->w;
-    int topB    = obj2->GetCollider()->y;
-    int bottomB = obj2->GetCollider()->y + obj2->GetCollider()->h;
+    int leftB   = obj2->GetX();
+    int rightB  = obj2->GetX() + obj2->GetCollider()->w;
+    int topB    = obj2->GetY();
+    int bottomB = obj2->GetY() + obj2->GetCollider()->h;
 
     //If any of the sides from A are outside of B
     if (bottomA <= topB ||
@@ -79,13 +79,13 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
     int pointX, pointY;
 
     //Find closest X offset
-    if (obj1->GetX() < obj2->GetCollider()->x)
+    if (obj1->GetX() < obj2->GetX())
     {
         pointX = obj2->GetCollider()->x;
     }
-    else if (obj1->GetX() > obj2->GetCollider()->x + obj2->GetCollider()->w)
+    else if (obj1->GetX() > obj2->GetX() + obj2->GetCollider()->w)
     {
-        pointX = obj2->GetCollider()->x + obj2->GetCollider()->w;
+        pointX = obj2->GetX() + obj2->GetCollider()->w;
     }
     else
     {
@@ -93,13 +93,13 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
     }
 
     //Find closest Y offset
-    if (obj1->GetY() < obj2->GetCollider()->y)
+    if (obj1->GetY() < obj2->GetY())
     {
-        pointY = obj2->GetCollider()->y;
+        pointY = obj2->GetY();
     }
-    else if (obj1->GetY() > obj2->GetCollider()->y + obj2->GetCollider()->h)
+    else if (obj1->GetY() > obj2->GetY() + obj2->GetCollider()->h)
     {
-        pointY = obj2->GetCollider()->y + obj2->GetCollider()->h;
+        pointY = obj2->GetY() + obj2->GetCollider()->h;
     }
     else
     {
