@@ -11,7 +11,6 @@ Scene::Scene()
 	objects[numObjects];
 }
 
-
 Scene::~Scene()
 {
 	//Deallocate
