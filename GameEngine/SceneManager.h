@@ -18,6 +18,7 @@ private:
 	// Scenes
 	Scene* scenes;
 	Scene* currentScene;
+	Object* CreatedObject;
 
 	// Private constructor to avoid more than one instance
 	SceneManager() {};
@@ -34,6 +35,10 @@ public:
 	void Add(Scene*);		//Don't know if there's need of pointer or it just adds it
 
 	void Delete(Scene*);		//Don't know if necessary or not 
+
+	void CreateObject(float, float, float, float, float, LTexture);
+
+	Object* ReturnObject(void);
 
 	/*****************************************************************************/
 
