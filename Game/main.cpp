@@ -8,6 +8,8 @@ and may not be redistributed without written permission.*/
 #include <string>
 
 #include "Texture.h"
+#include "Scene.h"
+#include "Object.h"
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
@@ -167,6 +169,24 @@ int main( int argc, char* args[] )
 {
 	InputManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
+	SceneManager::CreateSingleton();
+	PhysicsManager::CreateSingleton();
+	TimeManager::CreateSingleton();
+
+	//Create a new scene and set it as current
+	Scene* scene = SceneManager::GetInstance().Create();
+	SceneManager::GetInstance().SetCurrentScene(scene);
+
+	//Create stuff (objects) in that scene
+
+	//...
+
+	//Add stuff (objects) to that scene
+
+	//...
+
+	//Delete scene
+	SceneManager::GetInstance().Delete(scene);
 
 	//Start up SDL and create window
 	if( !GraphicsManager::GetInstance().Init() )
