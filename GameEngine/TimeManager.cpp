@@ -3,6 +3,7 @@
 
 //								Main function
 /*****************************************************************************/
+
 void TimeManager::Update(void)
 {
 	//Set deltaTime depending on the last time rendered.
@@ -17,7 +18,7 @@ void TimeManager::Update(void)
 		avgFPS = 0;
 	}
 
-	++numFrames;
+	numFrames++;
 	lastTimeRendered = currentTime;
 }
 
