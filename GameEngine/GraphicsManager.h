@@ -18,6 +18,7 @@ public:
 	static const int SCREEN_WIDTH  = 640;
 	static const int SCREEN_HEIGHT = 480;
 
+	/*****************************************************************************/
 private:
 	//The window we'll be rendering to
 	SDL_Window *mWindow = NULL;
@@ -31,7 +32,6 @@ private:
 	~GraphicsManager();
 
 	/*****************************************************************************/
-
 public:
 
 	bool Init(void);
@@ -41,7 +41,5 @@ public:
 	SDL_Window *GetWindow(void) { return mWindow; }
 
 	SDL_Renderer *GetRenderer(void) { return mRenderer; }
-
-	/*****************************************************************************/
 
 };

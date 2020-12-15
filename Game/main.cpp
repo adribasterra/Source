@@ -60,6 +60,7 @@ void close();
 //Scene textures
 LTexture gDotTexture;
 
+#pragma region Dot functions
 
 Dot::Dot()
 {
@@ -144,6 +145,8 @@ void Dot::render()
 	gDotTexture.render( mPosX, mPosY );
 }
 
+#pragma endregion
+
 bool loadMedia()
 {
 	//Loading success flag
@@ -165,13 +168,20 @@ void close()
 	gDotTexture.free();
 }
 
-int main( int argc, char* args[] )
-{
+//									MAIN
+/*****************************************************************************/
+
+void Start() {
+	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
-	GraphicsManager::CreateSingleton();
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
-	TimeManager::CreateSingleton();
+	GraphicsManager::CreateSingleton();
+}
+
+int main( int argc, char* args[] )
+{
+	Start();	//Start phase
 
 	//Create a new scene and set it as current
 	Scene* scene = SceneManager::GetInstance().Create();
@@ -187,6 +197,8 @@ int main( int argc, char* args[] )
 
 	//Delete scene
 	SceneManager::GetInstance().Delete(scene);
+
+#pragma region Dot game
 
 	//Start up SDL and create window
 	if( !GraphicsManager::GetInstance().Init() )
@@ -247,12 +259,21 @@ int main( int argc, char* args[] )
 		}
 	}
 
+#pragma endregion
+
 	//Free resources and close SDL
 	close();
 
-	GraphicsManager::DestroySingleton();
-
-	InputManager::DestroySingleton();
+	
+	Destroy();		//Destroy phase
 
 	return 0;
+}
+
+void Destroy() {
+	GraphicsManager::DestroySingleton();
+	PhysicsManager::DestroySingleton();
+	SceneManager::DestroySingleton();
+	InputManager::DestroySingleton();
+	TimeManager::DestroySingleton();
 }

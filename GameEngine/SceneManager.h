@@ -26,19 +26,15 @@ private:
 	~SceneManager() {};
 
 	/*****************************************************************************/
-
 public:
 
 	void ChangeScene(int);		//Pointer to next scene
-
+	
+	//Getters & setters
 	Scene* GetCurrentScene(void);
 	void SetCurrentScene(Scene*);
 
 	Scene* Create();
 	void Delete(Scene*);		//Don't know if necessary or not
-
-	Object* ReturnObject(void);
-
-	/*****************************************************************************/
 
 };

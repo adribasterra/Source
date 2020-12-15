@@ -12,6 +12,7 @@ private:
 	int numObjects;
 	Object objects[];		//Necesita ser un vector de la clase vector
 
+	/*****************************************************************************/
 public:
 
 	//Constructor

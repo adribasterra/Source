@@ -18,7 +18,9 @@ private:
 	float radius;
 	int colliderType;
 
+	/*****************************************************************************/
 public:
+
 	//Constructors
 	Object();
 	Object(float, float);
@@ -51,6 +53,8 @@ public:
 
 
 };
+
+/*****************************************************************************/
 
 enum colliderTypes : int {	//Unscoped enum
 	none = 0,

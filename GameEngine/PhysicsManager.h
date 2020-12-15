@@ -26,11 +26,8 @@ private:
 	double distanceSquared(int x1, int y1, int x2, int y2);
 
 	/*****************************************************************************/
-
 public:
 
 	bool CheckCollisions(Object* obj1, Object* obj2);
-
-	/*****************************************************************************/
 
 };
