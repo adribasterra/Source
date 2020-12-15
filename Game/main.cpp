@@ -171,28 +171,23 @@ void close()
 //									MAIN
 /*****************************************************************************/
 
-void Start() {
+int main( int argc, char* args[] )
+{
+	//Start phase
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
-}
 
-int main( int argc, char* args[] )
-{
-	Start();	//Start phase
-
-	//Create a new scene and set it as current
+	//Create scene and set it as current
 	Scene* scene = SceneManager::GetInstance().Create();
 	SceneManager::GetInstance().SetCurrentScene(scene);
 
 	//Create stuff (objects) in that scene
-
 	//...
 
 	//Add stuff (objects) to that scene
-
 	//...
 
 	//Delete scene
@@ -265,15 +260,12 @@ int main( int argc, char* args[] )
 	close();
 
 	
-	Destroy();		//Destroy phase
-
-	return 0;
-}
-
-void Destroy() {
+	//Destroy phase
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
 	InputManager::DestroySingleton();
 	TimeManager::DestroySingleton();
+
+	return 0;
 }
