@@ -14,7 +14,7 @@ Scene::Scene()
 Scene::~Scene()
 {
 	//Deallocate
-	clearScene();
+	Clear();
 }
 
 //								Main function
@@ -55,7 +55,7 @@ void Scene::AddObject(Object objToAdd)
 
 /*****************************************************************************/
 
-void Scene::clearScene()
+void Scene::Clear()
 {
 	for (int i = 0; i < numObjects; i++)
 	{

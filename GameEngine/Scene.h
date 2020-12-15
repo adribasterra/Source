@@ -10,7 +10,7 @@ class Scene {
 private:
 
 	int numObjects;
-	Object objects[];
+	Object objects[];		//Necesita ser un vector de la clase vector
 
 public:
 
@@ -24,7 +24,7 @@ public:
 
 	void AddObject(Object objToAdd);
 
-	void clearScene();
+	void Clear();
 
 	//Getters & setters
 	Object GetObject(Object* searchingObj);

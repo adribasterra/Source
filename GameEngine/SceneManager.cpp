@@ -21,11 +21,23 @@ Scene* SceneManager::GetCurrentScene(void)
 	return currentScene;
 }
 
+//								Setters
 /*****************************************************************************/
 
-void SceneManager::Add(Scene* scene)
+void SceneManager::SetCurrentScene(Scene* scene)
 {
+	currentScene = scene;
+}
 
+
+/*****************************************************************************/
+
+Scene* SceneManager::Create() {
+	Scene* scene = new Scene();
+
+	//Add it to the scenes vector
+
+	return scene;
 }
 
 
@@ -36,22 +48,6 @@ void SceneManager::Delete(Scene* scene)
 			//Hay que eliminar la instancia a esa clase Scene (nada de destructores Adriana por favor sé coherente)
 		}
 	}
-}
-
-/*****************************************************************************/
-void SceneManager::CreateObject(float posX, float posY, float width, float height, float rotation, LTexture texture)
-{
-
-	CreatedObject->SetPosition(posX, posX);
-	CreatedObject->SetSize(width, height);
-	CreatedObject->SetRotation(rotation);
-	CreatedObject->SetSprite(texture);
-
-}
-
-Object* SceneManager::ReturnObject(void)
-{
-	return CreatedObject;
 }
 
 /*****************************************************************************/

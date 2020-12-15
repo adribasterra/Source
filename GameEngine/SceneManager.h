@@ -16,9 +16,10 @@ class SceneManager : public Singleton<SceneManager>
 private:
 
 	// Scenes
-	Scene* scenes;
+	Scene* scenes;				//Needs to be a vector
 	Scene* currentScene;
-	Object* CreatedObject;
+	
+	//Object* CreatedObject;
 
 	// Private constructor to avoid more than one instance
 	SceneManager() {};
@@ -28,15 +29,13 @@ private:
 
 public:
 
-	void ChangeScene(int);	//Pointer to next scene
+	void ChangeScene(int);		//Pointer to next scene
 
 	Scene* GetCurrentScene(void);
+	void SetCurrentScene(Scene*);
 
-	void Add(Scene*);		//Don't know if there's need of pointer or it just adds it
-
-	void Delete(Scene*);		//Don't know if necessary or not 
-
-	void CreateObject(float, float, float, float, float, LTexture);
+	Scene* Create();
+	void Delete(Scene*);		//Don't know if necessary or not
 
 	Object* ReturnObject(void);
 
