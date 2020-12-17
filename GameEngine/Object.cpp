@@ -15,7 +15,7 @@ Object::Object(float x, float y)
 	this->y = y;
 	colliderType = colliderTypes::none;
 }
-Object::Object(float xAux, float yAux, float widthAux, float heightAux,float rotationAux ,LTexture* texture)
+Object::Object(float xAux, float yAux, float widthAux, float heightAux, float rotationAux ,LTexture* texture)
 {
 	this->x = xAux;
 	this->y = yAux;
@@ -51,6 +51,13 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 Object::~Object()
 {
 
+}
+
+//								Main func
+/*****************************************************************************/
+
+void Object::Update() {
+	printf("I'm updating\n");
 }
 
 //								Getters

@@ -23,6 +23,10 @@ Scene::~Scene()
 void Scene::Update()
 {
 	//The “Update” function inside the Object Manager will probably be calling the “Update” function inside every Object.
+	for (int i = 0; i < numObjects; i++)
+	{
+		objects[i].Update();
+	}
 }
 
 //								Getters

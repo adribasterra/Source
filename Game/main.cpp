@@ -180,18 +180,33 @@ int main( int argc, char* args[] )
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 
-	//Create scene and set it as current
-	Scene* scene = SceneManager::GetInstance().Create();
-	SceneManager::GetInstance().SetCurrentScene(scene);
 
-	//Create stuff (objects) in that scene
-	//...
+	//Initialize Managers
+	if (!GraphicsManager::GetInstance().Init())
+	{
+		printf("Failed to initialize!\n");
+	}
+	else {
 
-	//Add stuff (objects) to that scene
-	//...
+		//Create scene and set it as current
+		Scene* scene = SceneManager::GetInstance().Create();
+		SceneManager::GetInstance().SetCurrentScene(scene);
 
-	//Delete scene
-	SceneManager::GetInstance().Delete(scene);
+		//Create stuff (objects) in that scene
+		//...
+		LTexture marioTexture;
+		marioTexture.loadFromFile("../../Media/dot.bmp");
+		Object* mario = new Object(0, 0, 20, 20, 0, &marioTexture, 10);
+
+		//Add stuff (objects) to that scene
+		//...
+		scene->AddObject(*mario);
+
+		//Delete scene
+		SceneManager::GetInstance().Delete(scene);
+
+	}
+
 
 #pragma region Dot game
 
