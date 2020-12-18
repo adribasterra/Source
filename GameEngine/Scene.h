@@ -23,7 +23,7 @@ public:
 	void Update();
 
 	void AddObject(Object objToAdd);
-
+	void deleteObject(int id);
 	void Clear();
 
 	//Getters & setters

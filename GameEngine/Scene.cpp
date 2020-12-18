@@ -58,6 +58,13 @@ void Scene::AddObject(Object objToAdd)
 	//objects[0] = &objToAdd;
 	objects.push_back(objToAdd);
 }
+void Scene::deleteObject(int index)
+{
+	if (index < objects.size())
+	{
+		objects.erase(objects.begin() + index);
+	}
+}
 
 /*****************************************************************************/
 
