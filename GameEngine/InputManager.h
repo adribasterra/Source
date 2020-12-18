@@ -15,7 +15,7 @@ class InputManager : public Singleton<InputManager>
 private:
   
 	// Keyboard state
-	const Uint8 *mCurrentKeyStates;
+	const Uint8 *mCurrentKeyStates; // must to be a vector of inputs?
 
 	// Private constructor to avoid more than one instance
 	InputManager() {};

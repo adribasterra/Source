@@ -8,7 +8,7 @@ Scene::Scene()
 {
 	//Initialize
 	numObjects = 10;
-	objects[numObjects];
+	objects = std::vector<Object>(numObjects);
 }
 
 Scene::~Scene()
@@ -27,30 +27,32 @@ void Scene::Update()
 
 //								Getters
 /*****************************************************************************/
-Object Scene::GetObject(Object* searchingObj)
+Object* Scene::GetObject(int index)
 {
-	for (int i = 0; i < numObjects; i++)
+	/*for (int i = 0; i < numObjects; i++)
 	{
-		if (&objects[i] == searchingObj)
+		if (objects[i] == searchingObj)
 		{
 			return objects[i];
 		}
-	}
+	}*/
+	return &objects[index];
 }
 
 //								Setters
 /*****************************************************************************/
 
-void Scene::SetArraySize(int numObjects)
+/*void Scene::SetArraySize(int numObjects)
 {
 	this->numObjects = numObjects;
-}
+}*/
 
 
 void Scene::AddObject(Object objToAdd)
 {
-	SetArraySize(numObjects++);
-	objects[numObjects - 1] = objToAdd;
+	//SetArraySize(numObjects++);
+	//objects[0] = &objToAdd;
+	objects.push_back(objToAdd);
 }
 
 /*****************************************************************************/

@@ -3,7 +3,7 @@
 #include "Singleton.h"
 #include "SDL.h"
 #include "Scene.h"
-
+#include <vector>
 /*
  * Scene Manager class
  */
@@ -16,7 +16,7 @@ class SceneManager : public Singleton<SceneManager>
 private:
 
 	// Scenes
-	Scene* scenes;				//Needs to be a vector
+	std::vector<Scene> scenes;
 	Scene* currentScene;
 	
 	//Object* CreatedObject;
@@ -36,5 +36,6 @@ public:
 
 	Scene* Create();
 	void Delete(Scene*);		//Don't know if necessary or not
+	void Delete(int);
 
 };

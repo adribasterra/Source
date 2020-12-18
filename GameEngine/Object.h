@@ -1,6 +1,5 @@
 #pragma once
 #include <Texture.h>
-
 /*
  * Game Object class
  */

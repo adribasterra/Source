@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Object.h"
-
+#include <vector>
 /*
  * Scene class
  */
@@ -10,8 +10,7 @@ class Scene {
 private:
 
 	int numObjects;
-	Object objects[];		//Necesita ser un vector de la clase vector
-
+	std::vector<Object> objects;
 	/*****************************************************************************/
 public:
 
@@ -28,8 +27,8 @@ public:
 	void Clear();
 
 	//Getters & setters
-	Object GetObject(Object* searchingObj);
+	Object* GetObject(int index);
 
-	void SetArraySize(int sizeObj);
+	//void SetArraySize(int sizeObj);
 
 };

@@ -123,6 +123,16 @@ double PhysicsManager::distanceSquared(int x1, int y1, int x2, int y2)
     double distance = deltaX * deltaX + deltaY * deltaY;
     return distance;
 }
-
+void PhysicsManager::addCollider(SDL_Rect col)
+{
+    colliders.push_back(col);
+}
+void PhysicsManager::addCollider(float width, float height)
+{
+    SDL_Rect col;
+    col.w = width;
+    col.h = height;
+    colliders.push_back(col);
+}
 /*****************************************************************************/
 

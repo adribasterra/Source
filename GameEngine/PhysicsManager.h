@@ -3,7 +3,7 @@
 #include "Singleton.h"
 #include "SDL.h"
 #include "Object.h"
-
+#include <vector>
 /*
  * Physics Manager class
  */
@@ -15,7 +15,7 @@ class PhysicsManager: public Singleton<PhysicsManager>
 
 private:
 
-	SDL_Rect* colliders;	//Supuesto vector de colliders que no sé qué son
+	std::vector<SDL_Rect> colliders;
 	// Private constructor to avoid more than one instance
 	PhysicsManager() {};
 	~PhysicsManager() {};
@@ -29,5 +29,7 @@ private:
 public:
 
 	bool CheckCollisions(Object* obj1, Object* obj2);
+	void addCollider(SDL_Rect);
+	void addCollider(float,float);
 
 };
