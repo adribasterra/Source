@@ -6,6 +6,11 @@
 
 GraphicsManager::~GraphicsManager(void)
 {
+    /**
+    * Free whole vector &
+    * free textures with texture.free();
+    */
+
     //Destroy window	
     SDL_DestroyRenderer(mRenderer);
     SDL_DestroyWindow(mWindow);
@@ -77,6 +82,22 @@ bool GraphicsManager::Init(void)
 void GraphicsManager::Update(void)
 {
 
+}
+
+LTexture* GraphicsManager::LoadTexture(std::string filePath) {
+
+    LTexture texture;
+    if (!texture.loadFromFile(filePath)) {
+        return NULL;
+    }
+
+    /**
+    * RECORRER EL VECTOR PARA COMPARAR SI EXISTE con ese filepath
+    * Si existe devolver la referencia y HACER UN FREE DE LA QUE SE HA CREADO
+    * Si no existe, returnearla y añadirla al vector
+    */
+
+    return &texture;
 }
 
 /*****************************************************************************/

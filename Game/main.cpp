@@ -147,6 +147,9 @@ void Dot::render()
 
 #pragma endregion
 
+/**
+* Esto está ahora en el GraphicsManager
+*/
 bool loadMedia()
 {
 	//Loading success flag
@@ -173,21 +176,32 @@ void close()
 
 int main( int argc, char* args[] )
 {
-	//Start phase
+	/**
+	* Init();
+	* Return -1 if any manager fails loading on Init();
+	* Includes init phase & the else que hay justo debajo.
+	*/
+	//Init phase
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 
-
+	
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
 	{
 		printf("Failed to initialize!\n");
 	}
+	/*Hasta aquí*/
 	else {
-
+		/**
+		* Función de loadTextures() antes de hacer nah
+		* 
+		* OTRA función de loadColliders() antes de crear objetos
+		* 
+		*/
 		//Create scene and set it as current
 		Scene* scene = SceneManager::GetInstance().Create();
 		SceneManager::GetInstance().SetCurrentScene(scene);

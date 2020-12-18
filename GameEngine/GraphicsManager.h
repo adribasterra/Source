@@ -3,6 +3,7 @@
 #include "Singleton.h"
 #include "SDL.h"
 #include "SDL_image.h"
+#include <Texture.h>
 
 /*
  * Graphics Manager class
@@ -14,6 +15,11 @@ class GraphicsManager :public Singleton<GraphicsManager>
 	/*****************************************************************************/
 
 public:
+
+	/**
+	* FALTA EL VECTOR DE TEXTURAS
+	*/
+
 	//Screen dimension constants
 	static const int SCREEN_WIDTH  = 640;
 	static const int SCREEN_HEIGHT = 480;
@@ -35,6 +41,8 @@ private:
 public:
 
 	bool Init(void);
+
+	LTexture* LoadTexture(std::string);
   
 	void Update(void);
 
