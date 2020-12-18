@@ -16,6 +16,7 @@ class PhysicsManager: public Singleton<PhysicsManager>
 private:
 
 	std::vector<SDL_Rect> colliders;
+	// vECTOR DE RADIOS
 	// Private constructor to avoid more than one instance
 	PhysicsManager() {};
 	~PhysicsManager() {};

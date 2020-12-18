@@ -40,7 +40,11 @@ Object* Scene::GetObject(int index)
 			return objects[i];
 		}
 	}*/
-	return &objects[index];
+	if (index < objects.size())
+	{
+		return &objects[index];
+	}
+	return NULL;
 }
 
 //								Setters
@@ -58,7 +62,7 @@ void Scene::AddObject(Object objToAdd)
 	//objects[0] = &objToAdd;
 	objects.push_back(objToAdd);
 }
-void Scene::deleteObject(int index)
+void Scene::DeleteObject(int index)
 {
 	if (index < objects.size())
 	{
