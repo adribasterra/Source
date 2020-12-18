@@ -171,16 +171,20 @@ void close()
 	gDotTexture.free();
 }
 
-//									MAIN
-/*****************************************************************************/
-
-int main( int argc, char* args[] )
+bool LoadTextures()
 {
-	/**
-	* Init();
-	* Return -1 if any manager fails loading on Init();
-	* Includes init phase & the else que hay justo debajo.
-	*/
+	LTexture marioTexture;
+	marioTexture.loadFromFile("../../Media/dot.bmp");
+	return true;
+}
+
+bool LoadColliders()
+{
+	return true;
+}
+
+bool Init()
+{
 	//Init phase
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
@@ -188,39 +192,51 @@ int main( int argc, char* args[] )
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 
-	
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
 	{
-		printf("Failed to initialize!\n");
+		return false;
 	}
-	/*Hasta aquí*/
-	else {
-		/**
-		* Función de loadTextures() antes de hacer nah
-		* 
-		* OTRA función de loadColliders() antes de crear objetos
-		* 
-		*/
-		//Create scene and set it as current
-		Scene* scene = SceneManager::GetInstance().Create();
-		SceneManager::GetInstance().SetCurrentScene(scene);
+	return true;
+}
 
-		//Create stuff (objects) in that scene
-		//...
-		LTexture marioTexture;
-		marioTexture.loadFromFile("../../Media/dot.bmp");
-		Object* mario = new Object(0, 0, 20, 20, 0, &marioTexture, 10);
+//									MAIN
+/*****************************************************************************/
 
-		//Add stuff (objects) to that scene
-		//...
-		scene->AddObject(*mario);
+int main( int argc, char* args[] )
+{
+	if (Init()) {
+		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
 
-		//Delete scene
-		SceneManager::GetInstance().Delete(scene);
+			//Create scene and set it as current
+			Scene* scene = SceneManager::GetInstance().Create();
+			SceneManager::GetInstance().SetCurrentScene(scene);
 
+			//Create stuff (objects) in that scene
+			//...
+
+			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO
+			
+				LTexture* texture = GraphicsManager::GetInstance().LoadTexture("../../Media/dot.bmp");
+				float* collider = PhysicsManager::GetInstance().LoadCollider(10);
+				scene.CreateObject(0, 0, 20, 20, 0, texture, collider);
+			
+			*/
+
+			//Delete scene
+			SceneManager::GetInstance().Delete(scene);
+		}
+		
+		//Destroy phase
+		Destroy();
 	}
 
+	/**
+	* Función de loadTextures() antes de hacer nah
+	* 
+	* OTRA función de loadColliders() antes de crear objetos
+	* 
+	*/
 
 #pragma region Dot game
 
@@ -288,13 +304,17 @@ int main( int argc, char* args[] )
 	//Free resources and close SDL
 	close();
 
-	
+
+	return 0;
+}
+
+
+bool Destroy()
+{
 	//Destroy phase
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
 	InputManager::DestroySingleton();
 	TimeManager::DestroySingleton();
-
-	return 0;
 }
