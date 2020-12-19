@@ -200,6 +200,17 @@ bool Init()
 	return true;
 }
 
+bool Destroy()
+{
+	//Destroy phase
+	GraphicsManager::DestroySingleton();
+	PhysicsManager::DestroySingleton();
+	SceneManager::DestroySingleton();
+	InputManager::DestroySingleton();
+	TimeManager::DestroySingleton();
+}
+
+
 //									MAIN
 /*****************************************************************************/
 
@@ -306,15 +317,4 @@ int main( int argc, char* args[] )
 
 
 	return 0;
-}
-
-
-bool Destroy()
-{
-	//Destroy phase
-	GraphicsManager::DestroySingleton();
-	PhysicsManager::DestroySingleton();
-	SceneManager::DestroySingleton();
-	InputManager::DestroySingleton();
-	TimeManager::DestroySingleton();
 }
