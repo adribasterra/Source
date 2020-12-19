@@ -1,7 +1,11 @@
 #include "SceneManager.h"
 #include "Object.h"
 
-
+SceneManager::SceneManager()
+{
+	numberOfScenes = 10;
+	scenes = std::vector<Scene>(numberOfScenes);
+}
 //								Main function
 /*****************************************************************************/
 
@@ -44,16 +48,18 @@ Scene* SceneManager::Create() {
 
 void SceneManager::Delete(Scene* scene)
 {
-	for (int i = 0; i < scenes.size(); i++) {
-		if (&(scenes[i]) == scene) {
-			//Hay que eliminar la instancia a esa clase Scene (nada de destructores Adriana por favor sé coherente)
+	for (int i = 0; i < scenes.size(); i++)
+	{
+		if (&scenes[i] == scene)
+		{
+			std::swap(scenes[i], scenes[scenes.size() - 1]);
+			Scene* sceneToDelete = &scenes[scenes.size() - 1];
+			scenes.pop_back();
+			delete(sceneToDelete);
+			sceneToDelete = NULL;
 		}
 	}
-}
-void SceneManager::Delete(int index)
-{
-	if(index < scenes.size())
-		scenes.erase(scenes.begin()+index);
+	
 }
 
 /*****************************************************************************/

@@ -14,7 +14,7 @@ private:
 	float rotation;
 	LTexture* sprite;
 	SDL_Rect* collider;
-	float radius;
+	float* circleCollider;
 	int colliderType;
 
 	/*****************************************************************************/
@@ -25,7 +25,7 @@ public:
 	Object(float, float);
 	Object(float, float, float, float, float, LTexture*);
 	Object(float, float, float, float, float, LTexture*, SDL_Rect*);
-	Object(float, float, float, float, float, LTexture*, float);
+	Object(float, float, float, float, float, LTexture*, float*);
 
 	//Deallocate memory
 	~Object();
@@ -47,9 +47,8 @@ public:
 	float GetRotation();
 	LTexture* GetSprite();
 	SDL_Rect* GetCollider();
-	float GetRadius();
+	float* GetRadius();
 	int GetTypeCollision();
-
 
 };
 

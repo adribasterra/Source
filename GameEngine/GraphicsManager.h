@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include <Texture.h>
-
+#include <vector>
 /*
  * Graphics Manager class
  */
@@ -32,6 +32,7 @@ private:
 	//The window renderer
 	SDL_Renderer *mRenderer = NULL;
 
+	std::vector<LTexture> textures;
 
 	// Private constructor to avoid more than one instance
 	GraphicsManager() {};

@@ -96,7 +96,13 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath) {
     * Si existe devolver la referencia y HACER UN FREE DE LA QUE SE HA CREADO
     * Si no existe, returnearla y añadirla al vector
     */
+    /*for (int i = 0; i < textures.size(); i++)
+    {
+        if (textures[i] == texture) // operador == no definido
+        {
 
+        }
+    }*/
     return &texture;
 }
 

@@ -123,16 +123,20 @@ double PhysicsManager::distanceSquared(int x1, int y1, int x2, int y2)
     double distance = deltaX * deltaX + deltaY * deltaY;
     return distance;
 }
-void PhysicsManager::addCollider(SDL_Rect col)
+void PhysicsManager::addRectCollider(SDL_Rect col)
 {
-    colliders.push_back(col);
+    rectColliders.push_back(col);
 }
-void PhysicsManager::addCollider(float width, float height)
+void PhysicsManager::addRectCollider(float width, float height)
 {
-    SDL_Rect col;
-    col.w = width;
-    col.h = height;
-    colliders.push_back(col);
+    SDL_Rect* col = new SDL_Rect();
+    col->w = width;
+    col->h = height;
+    rectColliders.push_back(*col);
+}
+void PhysicsManager::addCircleCollider(float radius)
+{
+    circleColliders.push_back(radius);
 }
 /*****************************************************************************/
 

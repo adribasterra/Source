@@ -15,14 +15,14 @@ Object::Object(float x, float y)
 	this->y = y;
 	colliderType = colliderTypes::none;
 }
-Object::Object(float xAux, float yAux, float widthAux, float heightAux, float rotationAux ,LTexture* texture)
+Object::Object(float x, float y, float width, float height, float rotation,LTexture* texture)
 {
-	this->x = xAux;
-	this->y = yAux;
-	this->width = widthAux;
-	this->height = heightAux;
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
 	this->sprite = texture;
-	this->rotation = rotationAux;
+	this->rotation = rotation;
 	this->sprite = texture;
 	colliderType = colliderTypes::none;
 }
@@ -37,7 +37,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->collider = rectangle;
 	colliderType = colliderTypes::rect;
 }
-Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float radius)
+Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
 {
 	this->x = x;
 	this->y = y;
@@ -45,7 +45,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->height = height;
 	this->rotation = rotation;
 	this->sprite = texture;
-	this->radius = radius;
+	this->circleCollider = radius;
 	colliderType = colliderTypes::circle;
 }
 Object::~Object()
@@ -95,9 +95,9 @@ int Object::GetTypeCollision()
 {
 	return colliderType;
 }
-float Object::GetRadius()
+float* Object::GetRadius()
 {
-	return radius;
+	return circleCollider;
 }
 
 //								Setters

@@ -18,7 +18,7 @@ private:
 	// Scenes
 	std::vector<Scene> scenes;
 	Scene* currentScene;
-	
+	int numberOfScenes;
 	//Object* CreatedObject;
 
 	// Private constructor to avoid more than one instance
@@ -36,6 +36,5 @@ public:
 
 	Scene* Create();
 	void Delete(Scene*);		//Don't know if necessary or not
-	void Delete(int);
 
 };
