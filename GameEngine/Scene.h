@@ -23,7 +23,7 @@ public:
 	void Update();
 
 	void CreateObject();
-	void CreateObject(float,float);
+	void CreateObject(float, float);
 	void CreateObject(float, float, float, float, float, LTexture*);
 	void CreateObject(float, float, float, float, float, LTexture*, SDL_Rect*);
 	void CreateObject(float, float, float, float, float, LTexture*, float*);

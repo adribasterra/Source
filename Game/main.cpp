@@ -145,8 +145,6 @@ void Dot::render()
 	gDotTexture.render( mPosX, mPosY );
 }
 
-#pragma endregion
-
 /**
 * Esto está ahora en el GraphicsManager
 */
@@ -171,6 +169,25 @@ void close()
 	gDotTexture.free();
 }
 
+#pragma endregion
+
+bool Init(){
+	//Init phase
+	TimeManager::CreateSingleton();
+	InputManager::CreateSingleton();
+	SceneManager::CreateSingleton();
+	PhysicsManager::CreateSingleton();
+	GraphicsManager::CreateSingleton();
+
+	//Initialize Managers
+	if (!GraphicsManager::GetInstance().Init())
+	{
+		printf("Failed to initialize!\n");
+		return false;
+	}
+	return true;
+}
+
 bool LoadTextures()
 {
 	LTexture marioTexture;
@@ -183,25 +200,8 @@ bool LoadColliders()
 	return true;
 }
 
-bool Init()
-{
-	//Init phase
-	TimeManager::CreateSingleton();
-	InputManager::CreateSingleton();
-	SceneManager::CreateSingleton();
-	PhysicsManager::CreateSingleton();
-	GraphicsManager::CreateSingleton();
+void Destroy() {
 
-	//Initialize Managers
-	if (!GraphicsManager::GetInstance().Init())
-	{
-		return false;
-	}
-	return true;
-}
-
-bool Destroy()
-{
 	//Destroy phase
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
@@ -209,7 +209,6 @@ bool Destroy()
 	InputManager::DestroySingleton();
 	TimeManager::DestroySingleton();
 }
-
 
 //									MAIN
 /*****************************************************************************/
@@ -227,27 +226,17 @@ int main( int argc, char* args[] )
 			//...
 
 			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO
-			
+
 				LTexture* texture = GraphicsManager::GetInstance().LoadTexture("../../Media/dot.bmp");
 				float* collider = PhysicsManager::GetInstance().LoadCollider(10);
 				scene.CreateObject(0, 0, 20, 20, 0, texture, collider);
-			
+
 			*/
 
 			//Delete scene
 			SceneManager::GetInstance().Delete(scene);
 		}
-		
-		//Destroy phase
-		Destroy();
 	}
-
-	/**
-	* Función de loadTextures() antes de hacer nah
-	* 
-	* OTRA función de loadColliders() antes de crear objetos
-	* 
-	*/
 
 #pragma region Dot game
 
@@ -315,6 +304,7 @@ int main( int argc, char* args[] )
 	//Free resources and close SDL
 	close();
 
+	Destroy();
 
 	return 0;
 }

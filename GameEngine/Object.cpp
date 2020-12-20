@@ -15,7 +15,7 @@ Object::Object(float x, float y)
 	this->y = y;
 	colliderType = colliderTypes::none;
 }
-Object::Object(float x, float y, float width, float height, float rotation,LTexture* texture)
+Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture)
 {
 	this->x = x;
 	this->y = y;
@@ -107,7 +107,7 @@ void Object::SetPosition(float xAux, float yAux)
 {
 	x = xAux;
 	y = yAux;
-}	
+}
 void Object::SetSize(float widthAux, float heightAux)
 {
 	width = widthAux;
@@ -116,7 +116,7 @@ void Object::SetSize(float widthAux, float heightAux)
 void Object::SetRotation(float rotationAux)
 {
 	rotation = rotationAux;
-}	
+}
 void Object::SetSprite(LTexture textureAux)
 {
 	sprite = &textureAux;

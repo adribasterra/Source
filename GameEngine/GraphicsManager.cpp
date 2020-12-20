@@ -67,7 +67,7 @@ bool GraphicsManager::Init(void)
                 int imgFlags = IMG_INIT_PNG;
                 if (!(IMG_Init(imgFlags) & imgFlags))
                 {
-                    const char *error = IMG_GetError();
+                    const char* error = IMG_GetError();
                     printf("SDL_image could not initialize! SDL_image Error: %s\n", error);
                     success = false;
                 }
@@ -96,13 +96,7 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath) {
     * Si existe devolver la referencia y HACER UN FREE DE LA QUE SE HA CREADO
     * Si no existe, returnearla y añadirla al vector
     */
-    /*for (int i = 0; i < textures.size(); i++)
-    {
-        if (textures[i] == texture) // operador == no definido
-        {
 
-        }
-    }*/
     return &texture;
 }
 

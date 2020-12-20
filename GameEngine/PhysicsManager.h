@@ -7,7 +7,7 @@
 /*
  * Physics Manager class
  */
-class PhysicsManager: public Singleton<PhysicsManager>
+class PhysicsManager : public Singleton<PhysicsManager>
 {
 	/*****************************************************************************/
 	friend class Singleton<PhysicsManager>;
