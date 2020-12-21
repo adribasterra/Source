@@ -189,7 +189,10 @@ int main( int argc, char* args[] )
 	GraphicsManager::CreateSingleton();
 
 	
-	//Initialize Managers
+	//Initialize Managers in the flowchart order: Time, Graphic, Input
+
+
+
 	if (!GraphicsManager::GetInstance().Init())
 	{
 		printf("Failed to initialize!\n");
@@ -217,7 +220,8 @@ int main( int argc, char* args[] )
 		scene->AddObject(*mario);
 
 		//Delete scene
-		SceneManager::GetInstance().Delete(scene);
+		//SceneManager::GetInstance().Delete(scene);
+		//Not needed rn, it is crashing the code if you createand right away destroy a scene
 
 	}
 
@@ -250,6 +254,9 @@ int main( int argc, char* args[] )
 			//While application is running
 			while( !quit )
 			{
+				TimeManager::GetInstance().Update(); //deltatime can now be requested TimeManager::GetInstance().GetDetaTime() (returns time in miliseconds)
+				printf("\ndeltaTime: %d", TimeManager::GetInstance().GetDeltaTime()); //testing out to see if it works
+
 				//Handle events on queue
 				while( SDL_PollEvent( &e ) != 0 )
 				{
@@ -263,10 +270,13 @@ int main( int argc, char* args[] )
 					dot.handleEvent( e );
 				}
 
+
 				InputManager::GetInstance().Update();
 				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP) ) {
 					
 				}
+
+				
 				//Move the dot
 				dot.move();
 
@@ -278,7 +288,7 @@ int main( int argc, char* args[] )
 				dot.render();
 
 				//Update screen
-				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());
+				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());  
 			}
 		}
 	}

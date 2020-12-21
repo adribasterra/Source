@@ -32,4 +32,6 @@ public:
 
 	void Update(void);
 
+	int GetDeltaTime();
+
 };
