@@ -67,7 +67,7 @@ bool GraphicsManager::Init(void)
                 int imgFlags = IMG_INIT_PNG;
                 if (!(IMG_Init(imgFlags) & imgFlags))
                 {
-                    const char *error = IMG_GetError();
+                    const char* error = IMG_GetError();
                     printf("SDL_image could not initialize! SDL_image Error: %s\n", error);
                     success = false;
                 }

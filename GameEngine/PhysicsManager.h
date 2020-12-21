@@ -7,7 +7,7 @@
 /*
  * Physics Manager class
  */
-class PhysicsManager: public Singleton<PhysicsManager>
+class PhysicsManager : public Singleton<PhysicsManager>
 {
 	/*****************************************************************************/
 	friend class Singleton<PhysicsManager>;
@@ -15,7 +15,8 @@ class PhysicsManager: public Singleton<PhysicsManager>
 
 private:
 
-	std::vector<SDL_Rect> colliders;
+	std::vector<SDL_Rect> rectColliders;
+	std::vector<float> circleColliders;
 	// vECTOR DE RADIOS
 	// Private constructor to avoid more than one instance
 	PhysicsManager() {};
@@ -30,7 +31,8 @@ private:
 public:
 
 	bool CheckCollisions(Object* obj1, Object* obj2);
-	void addCollider(SDL_Rect);
-	void addCollider(float,float);
+	void addRectCollider(SDL_Rect);
+	void addRectCollider(float, float);
+	void addCircleCollider(float);
 
 };

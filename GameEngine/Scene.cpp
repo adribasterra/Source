@@ -13,8 +13,13 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-	//Deallocate
-	Clear();
+	free(&numObjects);
+	for (int i = 0; i < objects.size(); i++)
+	{
+		delete(&objects[i]);
+	}
+	objects.clear();
+
 }
 
 //								Main function
@@ -56,17 +61,44 @@ Object* Scene::GetObject(int index)
 }*/
 
 
-void Scene::AddObject(Object objToAdd)
+void Scene::CreateObject()
 {
-	//SetArraySize(numObjects++);
-	//objects[0] = &objToAdd;
-	objects.push_back(objToAdd);
+	Object* obj = new Object();
+	objects.push_back(*obj);
 }
-void Scene::DeleteObject(int index)
+void Scene::CreateObject(float x, float y)
 {
-	if (index < objects.size())
+	Object* obj = new Object(x, y);
+	objects.push_back(*obj);
+}
+void Scene::CreateObject(float x, float y, float width, float height, float rotation, LTexture* texture)
+{
+	Object* obj = new Object(x, y, width, height, rotation, texture);
+	objects.push_back(*obj);
+}
+void Scene::CreateObject(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle)
+{
+	Object* obj = new Object(x, y, width, height, rotation, texture, rectangle);
+	objects.push_back(*obj);
+}
+void Scene::CreateObject(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
+{
+	Object* obj = new Object(x, y, width, height, rotation, texture, radius);
+	objects.push_back(*obj);
+}
+
+void Scene::DeleteObject(Object* obj)
+{
+	for (int i = 0; i < objects.size(); i++)
 	{
-		objects.erase(objects.begin() + index);
+		if (&objects[i] == obj)
+		{
+			std::swap(objects[i], objects[objects.size() - 1]);
+			Object* objectToDelete = &objects[objects.size() - 1];
+			objects.pop_back();
+			delete(objectToDelete);
+			objectToDelete = NULL;
+		}
 	}
 }
 

@@ -145,8 +145,6 @@ void Dot::render()
 	gDotTexture.render( mPosX, mPosY );
 }
 
-#pragma endregion
-
 /**
 * Esto está ahora en el GraphicsManager
 */
@@ -171,16 +169,9 @@ void close()
 	gDotTexture.free();
 }
 
-//									MAIN
-/*****************************************************************************/
+#pragma endregion
 
-int main( int argc, char* args[] )
-{
-	/**
-	* Init();
-	* Return -1 if any manager fails loading on Init();
-	* Includes init phase & the else que hay justo debajo.
-	*/
+bool Init(){
 	//Init phase
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
@@ -188,43 +179,64 @@ int main( int argc, char* args[] )
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 
-	
-	//Initialize Managers in the flowchart order: Time, Graphic, Input
-
-
-
+	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
 	{
 		printf("Failed to initialize!\n");
+		return false;
 	}
-	/*Hasta aquí*/
-	else {
-		/**
-		* Función de loadTextures() antes de hacer nah
-		* 
-		* OTRA función de loadColliders() antes de crear objetos
-		* 
-		*/
-		//Create scene and set it as current
-		Scene* scene = SceneManager::GetInstance().Create();
-		SceneManager::GetInstance().SetCurrentScene(scene);
+	return true;
+}
 
-		//Create stuff (objects) in that scene
-		//...
-		LTexture marioTexture;
-		marioTexture.loadFromFile("../../Media/dot.bmp");
-		Object* mario = new Object(0, 0, 20, 20, 0, &marioTexture, 10);
+bool LoadTextures()
+{
+	LTexture marioTexture;
+	marioTexture.loadFromFile("../../Media/dot.bmp");
+	return true;
+}
 
-		//Add stuff (objects) to that scene
-		//...
-		scene->AddObject(*mario);
+bool LoadColliders()
+{
+	return true;
+}
 
-		//Delete scene
-		//SceneManager::GetInstance().Delete(scene);
-		//Not needed rn, it is crashing the code if you createand right away destroy a scene
+void Destroy() {
 
+	//Destroy phase
+	GraphicsManager::DestroySingleton();
+	PhysicsManager::DestroySingleton();
+	SceneManager::DestroySingleton();
+	InputManager::DestroySingleton();
+	TimeManager::DestroySingleton();
+}
+
+//									MAIN
+/*****************************************************************************/
+
+int main( int argc, char* args[] )
+{
+	if (Init()) {
+		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
+
+			//Create scene and set it as current
+			Scene* scene = SceneManager::GetInstance().Create();
+			SceneManager::GetInstance().SetCurrentScene(scene);
+
+			//Create stuff (objects) in that scene
+			//...
+
+			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO
+
+				LTexture* texture = GraphicsManager::GetInstance().LoadTexture("../../Media/dot.bmp");
+				float* collider = PhysicsManager::GetInstance().LoadCollider(10);
+				scene.CreateObject(0, 0, 20, 20, 0, texture, collider);
+
+			*/
+
+			//Delete scene
+			SceneManager::GetInstance().Delete(scene);
+		}
 	}
-
 
 #pragma region Dot game
 
@@ -254,9 +266,6 @@ int main( int argc, char* args[] )
 			//While application is running
 			while( !quit )
 			{
-				TimeManager::GetInstance().Update(); //deltatime can now be requested TimeManager::GetInstance().GetDetaTime() (returns time in miliseconds)
-				printf("\ndeltaTime: %d", TimeManager::GetInstance().GetDeltaTime()); //testing out to see if it works
-
 				//Handle events on queue
 				while( SDL_PollEvent( &e ) != 0 )
 				{
@@ -270,13 +279,10 @@ int main( int argc, char* args[] )
 					dot.handleEvent( e );
 				}
 
-
 				InputManager::GetInstance().Update();
 				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP) ) {
 					
 				}
-
-				
 				//Move the dot
 				dot.move();
 
@@ -288,7 +294,7 @@ int main( int argc, char* args[] )
 				dot.render();
 
 				//Update screen
-				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());  
+				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());
 			}
 		}
 	}
@@ -298,13 +304,7 @@ int main( int argc, char* args[] )
 	//Free resources and close SDL
 	close();
 
-	
-	//Destroy phase
-	GraphicsManager::DestroySingleton();
-	PhysicsManager::DestroySingleton();
-	SceneManager::DestroySingleton();
-	InputManager::DestroySingleton();
-	TimeManager::DestroySingleton();
+	Destroy();
 
 	return 0;
 }

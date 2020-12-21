@@ -30,15 +30,15 @@ bool PhysicsManager::CheckCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 {
     //Calculate the sides of rect A
-    float leftA   = obj1->GetX();
-    float rightA  = obj1->GetX() + obj1->GetCollider()->w;
-    float topA    = obj1->GetY();
+    float leftA = obj1->GetX();
+    float rightA = obj1->GetX() + obj1->GetCollider()->w;
+    float topA = obj1->GetY();
     float bottomA = obj1->GetY() + obj1->GetCollider()->h;
 
     //Calculate the sides of rect B
-    float leftB   = obj2->GetX();
-    float rightB  = obj2->GetX() + obj2->GetCollider()->w;
-    float topB    = obj2->GetY();
+    float leftB = obj2->GetX();
+    float rightB = obj2->GetX() + obj2->GetCollider()->w;
+    float topB = obj2->GetY();
     float bottomB = obj2->GetY() + obj2->GetCollider()->h;
 
     //If any of the sides from A are outside of B
@@ -59,7 +59,7 @@ bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 bool PhysicsManager::CircleCollisions(Object* obj1, Object* obj2)
 {
     //Calculate total radius squared
-    float totalRadiusSquared = obj1->GetRadius() + obj2->GetRadius();
+    float totalRadiusSquared = *obj1->GetRadius() + *obj2->GetRadius();
     totalRadiusSquared = totalRadiusSquared * totalRadiusSquared;
 
     //If the distance between the centers of the circles is less than the sum of their radii
@@ -107,7 +107,7 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
     }
 
     //If the closest point is inside the circle
-    double radius = (double) obj1->GetRadius() * obj1->GetRadius();
+    double radius = (double)*(obj1->GetRadius()) * *(obj1->GetRadius());
     if (distanceSquared(obj1->GetX(), obj1->GetY(), pointX, pointY) < radius)
     {
         return true;    //This box and the circle have collided
@@ -118,21 +118,25 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
 
 double PhysicsManager::distanceSquared(int x1, int y1, int x2, int y2)
 {
-    double deltaX = (double) x2 - x1;
-    double deltaY = (double) y2 - y1;
+    double deltaX = (double)x2 - x1;
+    double deltaY = (double)y2 - y1;
     double distance = deltaX * deltaX + deltaY * deltaY;
     return distance;
 }
-void PhysicsManager::addCollider(SDL_Rect col)
+void PhysicsManager::addRectCollider(SDL_Rect col)
 {
-    colliders.push_back(col);
+    rectColliders.push_back(col);
 }
-void PhysicsManager::addCollider(float width, float height)
+void PhysicsManager::addRectCollider(float width, float height)
 {
-    SDL_Rect col;
-    col.w = width;
-    col.h = height;
-    colliders.push_back(col);
+    SDL_Rect* col = new SDL_Rect();
+    col->w = width;
+    col->h = height;
+    rectColliders.push_back(*col);
+}
+void PhysicsManager::addCircleCollider(float radius)
+{
+    circleColliders.push_back(radius);
 }
 /*****************************************************************************/
 

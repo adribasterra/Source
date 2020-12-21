@@ -22,13 +22,18 @@ public:
 
 	void Update();
 
-	void AddObject(Object objToAdd);
-	void DeleteObject(int id);
+	void CreateObject();
+	void CreateObject(float, float);
+	void CreateObject(float, float, float, float, float, LTexture*);
+	void CreateObject(float, float, float, float, float, LTexture*, SDL_Rect*);
+	void CreateObject(float, float, float, float, float, LTexture*, float*);
+
+	void DeleteObject(Object*);
 	void Clear();
 
 	//Getters & setters
+	// es necesaria?
 	Object* GetObject(int index);
-
 	//void SetArraySize(int sizeObj);
 
 };

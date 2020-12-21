@@ -18,24 +18,23 @@ private:
 	// Scenes
 	std::vector<Scene> scenes;
 	Scene* currentScene;
-	
+	int numberOfScenes;
 	//Object* CreatedObject;
 
 	// Private constructor to avoid more than one instance
-	SceneManager() {};
+	SceneManager();
 	~SceneManager() {};
 
 	/*****************************************************************************/
 public:
 
 	void ChangeScene(int);		//Pointer to next scene
-	
+
 	//Getters & setters
 	Scene* GetCurrentScene(void);
 	void SetCurrentScene(Scene*);
 
 	Scene* Create();
 	void Delete(Scene*);		//Don't know if necessary or not
-	void Delete(int);
 
 };
