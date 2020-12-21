@@ -315,5 +315,7 @@ int main( int argc, char* args[] )
 
 	Destroy();
 
+	//Let's do some real shit
+
 	return 0;
 }
