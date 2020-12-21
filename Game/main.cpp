@@ -195,7 +195,7 @@ bool Init(){
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
 	{
-		printf("Failed to initialize!\n");
+		printf("Failed to initialize Graphics Manager\n");
 		return false;
 	}
 	return true;
@@ -240,14 +240,6 @@ void Destroy() {
 int main( int argc, char* args[] )
 {
 	if (Init()) {
-		bool quit = false;
-
-		while (!quit)
-		{
-			TimeManager::GetInstance().Update();
-			printf("\n DT: %d", TimeManager::GetInstance().GetDeltaTime());
-		}
-
 		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
 
 			//Create scene and set it as current
@@ -259,11 +251,23 @@ int main( int argc, char* args[] )
 
 			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO
 
-				LTexture* texture = GraphicsManager::GetInstance().LoadTexture("../../Media/dot.bmp");
-				float* collider = PhysicsManager::GetInstance().LoadCollider(10);
-				scene.CreateObject(0, 0, 20, 20, 0, texture, collider);
+				LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
+				float* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleCollider);
+				scene->CreateObject(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
+				scene->CreateObject(10, 10, 20, 20, 0, paddleTexture, paddleCollider);		//Rigth paddle
+
+				LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
+				float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballCollider);
+				scene->CreateObject(0, 0, 20, 20, 0, ballTexture, ballCollider);			//Ball
 
 			*/
+
+			bool quit = false;
+			while (!quit)
+			{
+				TimeManager::GetInstance().Update();
+				printf("\n DT: %d", TimeManager::GetInstance().GetDeltaTime());
+			}
 
 			//Delete scene
 			SceneManager::GetInstance().Delete(scene);
