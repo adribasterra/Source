@@ -17,6 +17,11 @@ Ball::Ball(float x, float y, float width, float height, float rotation, LTexture
 	//colliderType = colliderTypes::circle;
 }
 
+Ball::~Ball()
+{
+	Object::~Object();
+}
+
 //								Main func
 /*****************************************************************************/
 

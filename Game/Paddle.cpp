@@ -17,6 +17,11 @@ Paddle::Paddle(float x, float y, float width, float height, float rotation, LTex
 	//colliderType = colliderTypes::rect;
 }
 
+Paddle::~Paddle()
+{
+	Object::~Object();
+}
+
 //								Main func
 /*****************************************************************************/
 

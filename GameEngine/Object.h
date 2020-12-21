@@ -30,7 +30,6 @@ public:
 	//Deallocate memory
 	~Object();
 
-
 	virtual void Update();
 
 	//Getters & setters (encapsulation)

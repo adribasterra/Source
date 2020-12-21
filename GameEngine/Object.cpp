@@ -1,5 +1,7 @@
 #include "Object.h"
 
+#pragma region Constructors
+
 //							Constructors
 /*****************************************************************************/
 
@@ -9,12 +11,14 @@ Object::Object()
 	y = 0;
 	colliderType = colliderTypes::none;
 }
+
 Object::Object(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 	colliderType = colliderTypes::none;
 }
+
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture)
 {
 	this->x = x;
@@ -26,6 +30,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->sprite = texture;
 	colliderType = colliderTypes::none;
 }
+
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle)
 {
 	this->x = x;
@@ -37,6 +42,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->collider = rectangle;
 	colliderType = colliderTypes::rect;
 }
+
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
 {
 	this->x = x;
@@ -53,12 +59,20 @@ Object::~Object()
 
 }
 
+#pragma endregion
+
+#pragma region Main function
+
 //								Main func
 /*****************************************************************************/
 
 void Object::Update() {
 	printf("I'm updating\n");
 }
+
+#pragma endregion
+
+#pragma region Getters
 
 //								Getters
 /*****************************************************************************/
@@ -100,6 +114,10 @@ float* Object::GetRadius()
 	return circleCollider;
 }
 
+#pragma endregion
+
+#pragma region Setters
+
 //								Setters
 /*****************************************************************************/
 
@@ -126,3 +144,5 @@ void Object::SetCollider(SDL_Rect colliderAux) {
 }
 
 /*****************************************************************************/
+
+#pragma endregion
