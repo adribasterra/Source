@@ -31,7 +31,7 @@ public:
 	~Object();
 
 
-	void Update();
+	virtual void Update();
 
 	//Getters & setters (encapsulation)
 	void SetPosition(float, float);
