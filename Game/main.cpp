@@ -17,6 +17,16 @@ and may not be redistributed without written permission.*/
 #include "SceneManager.h"
 #include "TimeManager.h"
 
+//Global texture names
+std::string paddleTexturePath = "../../Media/paddle.bmp";
+std::string ballTexturePath = "../../Media/ball.bmp";
+
+//Global colliders
+float ballCollider = 10;
+SDL_Rect paddleCollider = { 0, 0, 20, 60 };
+
+#pragma region Dot declarations
+
 //The dot that will move around on the screen
 class Dot
 {
@@ -59,6 +69,9 @@ void close();
 
 //Scene textures
 LTexture gDotTexture;
+
+#pragma endregion
+
 
 #pragma region Dot functions
 
@@ -190,13 +203,24 @@ bool Init(){
 
 bool LoadTextures()
 {
-	LTexture marioTexture;
-	marioTexture.loadFromFile("../../Media/dot.bmp");
-	return true;
+	//PADDLES
+	bool success = true;
+	LTexture paddleTexture;
+	if (!paddleTexture.loadFromFile(paddleTexturePath)) success = false;
+	//Add it to the graphicsManager
+
+	//BALL
+	LTexture ballTexture;
+	if (!ballTexture.loadFromFile(ballTexturePath)) success = false;
+	//Add it to the graphicsManager
+
+	return success;
 }
 
 bool LoadColliders()
 {
+	//Add them to physicsManager
+
 	return true;
 }
 
@@ -314,8 +338,6 @@ int main( int argc, char* args[] )
 	close();
 
 	Destroy();
-
-	//Let's do some real shit
 
 	return 0;
 }
