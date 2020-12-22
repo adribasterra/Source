@@ -25,6 +25,6 @@ Paddle::~Paddle()
 //								Main func
 /*****************************************************************************/
 
-void Object::Update() {
+void Paddle::Update() {
 	printf("Virtual override of Object update in Paddle");
 }

@@ -6,20 +6,24 @@
  */
 class Ball : Object {
 
-	float Object::x;
-	float Object::y;
-	float Object::width;
-	float Object::height;
-	float Object::rotation;
-	LTexture* Object::sprite;
-	float* Object::circleCollider;
-	int Object::colliderType;
+private:
 
+	//float Object::x;
+	//float Object::y;
+	//float Object::width;
+	//float Object::height;
+	//float Object::rotation;
+	//LTexture* Object::sprite;
+	//float* Object::circleCollider;
+	//int Object::colliderType;
+
+public:
 	//Constructors
-	Ball();
+	Ball() {};
 	Ball(float, float, float, float, float, LTexture*, float*);
 
 	//Deallocate memory
-	~Ball() {};
+	~Ball();
 
+	void Update();
 };

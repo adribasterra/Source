@@ -10,6 +10,8 @@ and may not be redistributed without written permission.*/
 #include "Texture.h"
 #include "Scene.h"
 #include "Object.h"
+#include "Paddle.h"
+#include "Ball.h"
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
@@ -249,16 +251,19 @@ int main( int argc, char* args[] )
 			//Create stuff (objects) in that scene
 			//...
 
-			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO
+			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO 
 
 				LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
-				float* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleCollider);
-				scene->CreateObject(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
-				scene->CreateObject(10, 10, 20, 20, 0, paddleTexture, paddleCollider);		//Rigth paddle
+				SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleCollider);
+				Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
+				Paddle* rightPaddle = new Paddle(10, 10, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
+				scene->AddObject(leftPaddle);
+				scene->AddObject(rightPaddle);
 
 				LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
 				float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballCollider);
-				scene->CreateObject(0, 0, 20, 20, 0, ballTexture, ballCollider);			//Ball
+				Ball* ball = new Ball(0, 0, 20, 20, 0, ballTexture, ballCollider);						//Ball
+				scene->AddObject(ball);
 
 			*/
 

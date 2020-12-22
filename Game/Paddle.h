@@ -6,20 +6,25 @@
  */
 class Paddle : Object {
 
-	float Object::x;
-	float Object::y;
-	float Object::width;
-	float Object::height;
-	float Object::rotation;
-	LTexture* Object::sprite;
-	SDL_Rect* Object::collider;
-	int Object::colliderType;
+private:
+
+	//float Object::x;
+	//float Object::y;
+	//float Object::width;
+	//float Object::height;
+	//float Object::rotation;
+	//LTexture* Object::sprite;
+	//SDL_Rect* Object::collider;
+	//int Object::colliderType;
+
+public:
 
 	//Constructors
-	Paddle();
+	Paddle() {};
 	Paddle(float, float, float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
-	~Paddle() {};
+	~Paddle();
 
+	void Update();
 };

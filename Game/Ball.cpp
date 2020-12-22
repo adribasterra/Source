@@ -25,6 +25,6 @@ Ball::~Ball()
 //								Main func
 /*****************************************************************************/
 
-void Object::Update() {
+void Ball::Update() {
 	printf("Virtual override of Object update in Ball");
 }
