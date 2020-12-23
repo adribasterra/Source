@@ -34,6 +34,7 @@ public:
 	//Getters & setters
 	// es necesaria?
 	Object* GetObject(int index);
+	std::vector<Object>* GetObjectsInScene();
 	//void SetArraySize(int sizeObj);
 
 };

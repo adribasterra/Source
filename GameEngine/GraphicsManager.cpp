@@ -100,4 +100,16 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath) {
     return &texture;
 }
 
+void GraphicsManager::Render()
+{
+    for (int i = 0; i < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene()->size(); i++)
+    {
+        Object* obj = SceneManager::GetInstance().GetCurrentScene()->GetObject(i);
+
+        SDL_Rect size;
+        size.w = obj->GetWidth();
+        size.h = obj->GetHeight();
+        obj->GetSprite()->render(obj->GetX(), obj->GetY(),&size);
+    }
+}
 /*****************************************************************************/

@@ -31,7 +31,7 @@ public:
 	void ChangeScene(int);		//Pointer to next scene
 
 	//Getters & setters
-	Scene* GetCurrentScene(void);
+	Scene* GetCurrentScene();
 	void SetCurrentScene(Scene*);
 
 	Scene* Create();

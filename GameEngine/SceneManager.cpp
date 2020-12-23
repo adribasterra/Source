@@ -20,7 +20,7 @@ void SceneManager::ChangeScene(int id)
 //								Getters
 /*****************************************************************************/
 
-Scene* SceneManager::GetCurrentScene(void)
+Scene* SceneManager::GetCurrentScene()
 {
 	return currentScene;
 }

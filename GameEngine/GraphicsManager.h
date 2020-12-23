@@ -5,6 +5,7 @@
 #include "SDL_image.h"
 #include <Texture.h>
 #include <vector>
+#include "SceneManager.h"
 /*
  * Graphics Manager class
  */
@@ -50,5 +51,7 @@ public:
 	SDL_Window* GetWindow(void) { return mWindow; }
 
 	SDL_Renderer* GetRenderer(void) { return mRenderer; }
+
+	void Render();
 
 };

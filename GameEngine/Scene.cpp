@@ -53,6 +53,11 @@ Object* Scene::GetObject(int index)
 	return NULL;
 }
 
+std::vector<Object>* Scene::GetObjectsInScene()
+{
+	return &objects;
+}
+
 //								Setters
 /*****************************************************************************/
 
