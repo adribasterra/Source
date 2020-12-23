@@ -40,8 +40,8 @@ Scene* SceneManager::Create() {
 
 	Scene* scene = new Scene();
 
-	////Add it to the scenes vector
-	//scenes.push_back(*scene);
+	//Add it to the scenes vector
+	scenes.push_back(*scene);
 	return scene;
 }
 

@@ -91,6 +91,12 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath) {
         return NULL;
     }
 
+    for (int i = 0; i < textures.size(); i++) {
+        if (textures[i].getTexture() == texture.getTexture()) {
+            texture.free();
+            return &textures[i];
+        }
+    }
     /**
     * RECORRER EL VECTOR PARA COMPARAR SI EXISTE con ese filepath
     * Si existe devolver la referencia y HACER UN FREE DE LA QUE SE HA CREADO
@@ -109,7 +115,7 @@ void GraphicsManager::Render()
         SDL_Rect size;
         size.w = obj->GetWidth();
         size.h = obj->GetHeight();
-        obj->GetSprite()->render(obj->GetX(), obj->GetY(),&size);
+        obj->GetSprite()->render(obj->GetX(), obj->GetY(), &size);
     }
 }
 /*****************************************************************************/
