@@ -93,8 +93,8 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath) {
 
     for (int i = 0; i < textures.size(); i++) {
         if (textures[i].getTexture() == texture.getTexture()) {
-            texture.free();
             return &textures[i];
+            texture.free();
         }
     }
     /**

@@ -1,6 +1,8 @@
 #include "PhysicsManager.h"
 
 
+
+
 //								Main function
 /*****************************************************************************/
 
@@ -140,3 +142,32 @@ void PhysicsManager::addCircleCollider(float radius)
 }
 /*****************************************************************************/
 
+SDL_Rect* PhysicsManager::LoadCollider(SDL_Rect rectCol)
+{
+
+    for (int i = 0; i < rectColliders.size(); i++)
+    {
+        if (rectColliders[i].w == rectCol.w && rectColliders[i].h == rectCol.h)
+        {
+            return &rectColliders[i];
+        }
+    }
+    rectColliders.push_back(rectCol);
+    return &rectCol;
+
+}
+
+float* PhysicsManager::LoadCollider(float circleCol)
+{
+
+    for (int i = 0; i < circleColliders.size(); i++)
+    {
+        if (circleColliders[i] == circleCol)
+        {
+            return &circleColliders[i];
+        }
+    }
+    circleColliders.push_back(circleCol);
+    return &circleCol;
+
+}

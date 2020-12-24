@@ -24,8 +24,8 @@ std::string paddleTexturePath = "../../Media/paddle.bmp";
 std::string ballTexturePath = "../../Media/ball.bmp";
 
 //Global colliders
-float ballCollider = 10;
-SDL_Rect paddleCollider = { 0, 0, 20, 60 };
+float ballColliderInit = 10;
+SDL_Rect paddleColliderInit = { 0, 0, 20, 60 };
 
 #pragma region Dot declarations
 
@@ -251,21 +251,21 @@ int main( int argc, char* args[] )
 			//Create stuff (objects) in that scene
 			//...
 
-			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO 
+			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO */
 
 				LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
-				SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleCollider);
+				SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleColliderInit);
 				Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
 				Paddle* rightPaddle = new Paddle(10, 10, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
 				scene->AddObject(leftPaddle);
 				scene->AddObject(rightPaddle);
 
 				LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
-				float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballCollider);
+				float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballColliderInit);
 				Ball* ball = new Ball(0, 0, 20, 20, 0, ballTexture, ballCollider);						//Ball
 				scene->AddObject(ball);
 
-			*/
+			
 
 			bool quit = false;
 			while (!quit)

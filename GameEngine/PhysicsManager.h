@@ -30,9 +30,12 @@ private:
 	/*****************************************************************************/
 public:
 
+
 	bool CheckCollisions(Object* obj1, Object* obj2);
 	void addRectCollider(SDL_Rect);
 	void addRectCollider(float, float);
 	void addCircleCollider(float);
+	SDL_Rect* LoadCollider(SDL_Rect);
+	float* LoadCollider(float);
 
 };

@@ -68,7 +68,7 @@ std::vector<Object>* Scene::GetObjectsInScene()
 
 //								Objects
 /*****************************************************************************/
-
+/*
 void Scene::CreateObject()
 {
 	Object* obj = new Object();
@@ -98,6 +98,13 @@ void Scene::CreateObject(float x, float y, float width, float height, float rota
 	Object* obj = new Object(x, y, width, height, rotation, texture, radius);
 	objects.push_back(*obj);
 }
+*/
+
+void Scene::AddObject(Object* obj)
+{
+	objects.push_back(*obj);
+}
+
 
 void Scene::DeleteObject(Object* obj)
 {

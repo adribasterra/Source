@@ -28,6 +28,7 @@ public:
 	void CreateObject(float, float, float, float, float, LTexture*, SDL_Rect*);
 	void CreateObject(float, float, float, float, float, LTexture*, float*);
 
+	void AddObject(Object*);
 	void DeleteObject(Object*);
 	void Clear();
 
