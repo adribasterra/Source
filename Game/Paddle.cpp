@@ -3,18 +3,18 @@
 //							Constructors
 /*****************************************************************************/
 
-Paddle::Paddle(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle)
+Paddle::Paddle(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
 {
-	Object::Object(x, y, width, height, rotation, texture, rectangle);
-	
-	//this->x = x;
-	//this->y = y;
-	//this->width = width;
-	//this->height = height;
-	//this->rotation = rotation;
-	//this->sprite = texture;
-	//this->collider = rectangle;
-	//colliderType = colliderTypes::rect;
+	//__super::Object(x, y, width, height, rotation, texture, rectangle);
+
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+	this->rotation = rotation;
+	this->sprite = texture;
+	this->collider = rectangle;
+	colliderType = colliderTypes::rect;
 }
 
 Paddle::~Paddle()

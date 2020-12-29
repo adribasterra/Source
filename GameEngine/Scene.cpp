@@ -13,12 +13,12 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-	free(&numObjects);
-	for (int i = 0; i < objects.size(); i++)
-	{
-		delete(&objects[i]);
-	}
-	objects.clear();
+	//free(&numObjects);
+	//for (int i = 0; i < objects.size(); i++)
+	//{
+	//	//delete(&objects[i]);
+	//}
+	//objects.clear();
 
 }
 

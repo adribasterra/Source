@@ -59,7 +59,7 @@ void SceneManager::Delete(Scene* scene)
 			sceneToDelete = NULL;
 		}
 	}
-	
+	printf("Scene has deleted");
 }
 
 /*****************************************************************************/

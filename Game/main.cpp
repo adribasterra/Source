@@ -20,8 +20,8 @@ and may not be redistributed without written permission.*/
 #include "TimeManager.h"
 
 //Global texture names
-std::string paddleTexturePath = "../../Media/paddle.bmp";
-std::string ballTexturePath = "../../Media/ball.bmp";
+std::string paddleTexturePath = "./../../Media/dot.bmp";
+std::string ballTexturePath = "./../../Media/dot.bmp";
 
 //Global colliders
 float ballColliderInit = 10;
@@ -248,15 +248,12 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			//Create stuff (objects) in that scene
-			//...
-
 			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO */
 
 				LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
 				SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleColliderInit);
 				Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
-				Paddle* rightPaddle = new Paddle(10, 10, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
+				Paddle* rightPaddle = new Paddle(30, 30, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
 				scene->AddObject(leftPaddle);
 				scene->AddObject(rightPaddle);
 
@@ -266,82 +263,44 @@ int main( int argc, char* args[] )
 				scene->AddObject(ball);
 
 			
-
 			bool quit = false;
+
+			//Event handler
+			SDL_Event eventHandler;
+
 			while (!quit)
 			{
+				//Handle events on queue
+				while (SDL_PollEvent(&eventHandler) != 0)
+				{
+					//User closes the window
+					if (eventHandler.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
 				TimeManager::GetInstance().Update();
-				printf("\n DT: %d", TimeManager::GetInstance().GetDeltaTime());
+
+				InputManager::GetInstance().Update();
+				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
+
+				}
+
+				//Clear screen
+				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
+
+				//Render objects
+				GraphicsManager::GetInstance().Render();
+
+				//Update screen
+				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());
 			}
 
 			//Delete scene
 			SceneManager::GetInstance().Delete(scene);
 		}
 	}
-
-#pragma region Dot game
-
-	//Start up SDL and create window
-	if( !GraphicsManager::GetInstance().Init() )
-	{
-		printf( "Failed to initialize!\n" );
-	}
-	else
-	{
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{	
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//The dot that will be moving around on the screen
-			Dot dot;
-
-			//While application is running
-			while( !quit )
-			{
-
-				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
-				{
-					//User requests quit
-					if( e.type == SDL_QUIT )
-					{
-						quit = true;
-					}
-
-					//Handle input for the dot
-					dot.handleEvent( e );
-				}
-
-				InputManager::GetInstance().Update();
-				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP) ) {
-					
-				}
-				//Move the dot
-				dot.move();
-
-				//Clear screen
-				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
-
-				//Render objects
-				dot.render();
-
-				//Update screen
-				SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());
-			}
-		}
-	}
-
-#pragma endregion
 
 	//Free resources and close SDL
 	close();
@@ -350,3 +309,68 @@ int main( int argc, char* args[] )
 
 	return 0;
 }
+
+//#pragma region Dot game
+//
+////Start up SDL and create window
+//if (!GraphicsManager::GetInstance().Init())
+//{
+//	printf("Failed to initialize!\n");
+//}
+//else
+//{
+//	//Load media
+//	if (!loadMedia())
+//	{
+//		printf("Failed to load media!\n");
+//	}
+//	else
+//	{
+//		//Main loop flag
+//		bool quit = false;
+//
+//		//Event handler
+//		SDL_Event e;
+//
+//		//The dot that will be moving around on the screen
+//		Dot dot;
+//
+//		//While application is running
+//		while (!quit)
+//		{
+//
+//			//Handle events on queue
+//			while (SDL_PollEvent(&e) != 0)
+//			{
+//				//User requests quit
+//				if (e.type == SDL_QUIT)
+//				{
+//					quit = true;
+//				}
+//
+//				//Handle input for the dot
+//				dot.handleEvent(e);
+//			}
+//
+//			InputManager::GetInstance().Update();
+//			if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
+//
+//			}
+//			//Move the dot
+//			dot.move();
+//
+//			//Clear screen
+//			SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+//			SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
+//
+//			//Render objects
+//			dot.render();
+//
+//			//Update screen
+//			SDL_RenderPresent(GraphicsManager::GetInstance().GetRenderer());
+//		}
+//	}
+//}
+//
+//#pragma endregion
+//

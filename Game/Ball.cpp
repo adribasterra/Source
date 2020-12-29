@@ -5,16 +5,16 @@
 
 Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
 {
-	Object::Object(x, y, width, height, rotation, texture, radius);
+	//Object::Object(x, y, width, height, rotation, texture, radius);
 
-	//this->x = x;
-	//this->y = y;
-	//this->width = width;
-	//this->height = height;
-	//this->rotation = rotation;
-	//this->sprite = texture;
-	//this->circleCollider = radius;
-	//colliderType = colliderTypes::circle;
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+	this->rotation = rotation;
+	this->sprite = texture;
+	this->circleCollider = radius;
+	colliderType = colliderTypes::circle;
 }
 
 Ball::~Ball()

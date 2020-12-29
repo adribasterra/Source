@@ -9,17 +9,13 @@
 /*
  * Graphics Manager class
  */
-class GraphicsManager :public Singleton<GraphicsManager>
+class GraphicsManager : public Singleton<GraphicsManager>
 {
 	/*****************************************************************************/
 	friend class Singleton<GraphicsManager>;
 	/*****************************************************************************/
 
 public:
-
-	/**
-	* FALTA EL VECTOR DE TEXTURAS
-	*/
 
 	//Screen dimension constants
 	static const int SCREEN_WIDTH = 640;

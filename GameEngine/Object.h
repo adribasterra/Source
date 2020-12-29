@@ -5,7 +5,7 @@
  */
 class Object {
 
-private:
+protected:
 
 	float x;
 	float y;
