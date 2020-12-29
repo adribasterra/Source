@@ -4,7 +4,7 @@
 /*
  * Ball object class, extends Object
  */
-class Ball : Object {
+class Ball : public Object {
 
 private:
 

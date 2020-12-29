@@ -4,7 +4,7 @@
 /*
  * Paddle object class, extends Object
  */
-class Paddle : Object {
+class Paddle : public Object {
 
 private:
 
