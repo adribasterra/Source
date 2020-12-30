@@ -280,7 +280,6 @@ int main( int argc, char* args[] )
 					}
 				}
 				TimeManager::GetInstance().Update();
-				printf("Hay");
 
 				InputManager::GetInstance().Update();
 				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
