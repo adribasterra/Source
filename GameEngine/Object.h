@@ -12,7 +12,7 @@ protected:
 	float width;
 	float height;
 	float rotation;
-	LTexture* sprite;
+	LTexture* texture;
 	SDL_Rect* collider;
 	float* circleCollider;
 	int colliderType;
@@ -44,7 +44,7 @@ public:
 	float GetWidth();
 	float GetHeight();
 	float GetRotation();
-	LTexture* GetSprite();
+	LTexture* GetTexture();
 	SDL_Rect* GetCollider();
 	float* GetRadius();
 	int GetTypeCollision();

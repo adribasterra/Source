@@ -7,8 +7,15 @@
 
 Object::Object()
 {
-	x = 0;
-	y = 0;
+	this->x = 0;
+	this->y = 0;
+	this->width = NULL;
+	this->height = NULL;
+	this->texture = NULL;
+	this->rotation = NULL;
+	this->collider = NULL;
+	this->circleCollider = NULL;
+	this->texture = NULL;
 	colliderType = colliderTypes::none;
 }
 
@@ -16,6 +23,13 @@ Object::Object(float x, float y)
 {
 	this->x = x;
 	this->y = y;
+	this->width = NULL;
+	this->height = NULL;
+	this->texture = NULL;
+	this->rotation = NULL;
+	this->collider = NULL;
+	this->circleCollider = NULL;
+	this->texture = NULL;
 	colliderType = colliderTypes::none;
 }
 
@@ -25,9 +39,10 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->y = y;
 	this->width = width;
 	this->height = height;
-	this->sprite = texture;
+	this->texture = texture;
 	this->rotation = rotation;
-	this->sprite = texture;
+	this->circleCollider = NULL;
+	this->texture = texture;
 	colliderType = colliderTypes::none;
 }
 
@@ -38,8 +53,9 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
-	this->sprite = texture;
+	this->texture = texture;
 	this->collider = rectangle;
+	this->circleCollider = NULL;
 	colliderType = colliderTypes::rect;
 }
 
@@ -50,7 +66,8 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
-	this->sprite = texture;
+	this->texture = texture;
+	this->collider = NULL;
 	this->circleCollider = radius;
 	colliderType = colliderTypes::circle;
 }
@@ -97,9 +114,9 @@ float Object::GetRotation()
 {
 	return rotation;
 }
-LTexture* Object::GetSprite()
+LTexture* Object::GetTexture()
 {
-	return sprite;
+	return texture;
 }
 SDL_Rect* Object::GetCollider()
 {
@@ -137,7 +154,7 @@ void Object::SetRotation(float rotationAux)
 }
 void Object::SetSprite(LTexture textureAux)
 {
-	sprite = &textureAux;
+	texture = &textureAux;
 }
 void Object::SetCollider(SDL_Rect colliderAux) {
 	collider = &colliderAux;

@@ -12,7 +12,7 @@ Paddle::Paddle(float x, float y, float width, float height, float rotation, LTex
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
-	this->sprite = texture;
+	this->texture = texture;
 	this->collider = rectangle;
 	colliderType = colliderTypes::rect;
 }

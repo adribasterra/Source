@@ -12,7 +12,7 @@ Ball::Ball(float x, float y, float width, float height, float rotation, LTexture
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
-	this->sprite = texture;
+	this->texture = texture;
 	this->circleCollider = radius;
 	colliderType = colliderTypes::circle;
 }

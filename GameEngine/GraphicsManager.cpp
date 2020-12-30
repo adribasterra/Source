@@ -109,10 +109,10 @@ void GraphicsManager::Render()
     {
         Object* obj = SceneManager::GetInstance().GetCurrentScene()->GetObject(i);
 
-        //SDL_Rect size;
-        //size.w = obj->GetWidth();
-        //size.h = obj->GetHeight();
-        obj->GetSprite()->render(obj->GetX(), obj->GetY());
+        SDL_Rect size;
+        size.w = obj->GetWidth();
+        size.h = obj->GetHeight();
+        obj->GetTexture()->render(obj->GetX(), obj->GetY(), &size);
     }
 }
 /*****************************************************************************/
