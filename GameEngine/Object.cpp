@@ -41,6 +41,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->height = height;
 	this->texture = texture;
 	this->rotation = rotation;
+	this->collider = NULL;
 	this->circleCollider = NULL;
 	this->texture = texture;
 	colliderType = colliderTypes::none;

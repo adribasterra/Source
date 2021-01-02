@@ -248,19 +248,21 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			/*  PLANTEAMIENTO CONSTRUCCIÓN OBJETO */
+			/* CONSTRUCCIÓN DE OBJETOS */
 
-				LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
-				SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleColliderInit);
-				Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
-				Paddle* rightPaddle = new Paddle(30, 30, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
-				scene->AddObject(leftPaddle);
-				scene->AddObject(rightPaddle);
+			LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
+			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(paddleColliderInit);
+			Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
+			Paddle* rightPaddle = new Paddle(30, 30, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
+			scene->AddObject(leftPaddle);
+			scene->AddObject(rightPaddle);
 
-				LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
-				float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballColliderInit);
-				Ball* ball = new Ball(0, 0, 20, 20, 0, ballTexture, ballCollider);						//Ball
-				scene->AddObject(ball);
+			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
+			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballColliderInit);
+			Ball* ball = new Ball(10, 10, 20, 20, 0, ballTexture, ballCollider);						//Ball
+			scene->AddObject(ball);
+
+			/* ----------------------- */
 
 			
 			bool quit = false;

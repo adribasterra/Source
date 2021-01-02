@@ -7,7 +7,7 @@
 Scene::Scene()
 {
 	//Initialize
-	numObjects = 10;
+	numObjects = 0;
 	objects = std::vector<Object>(numObjects);
 }
 
@@ -28,7 +28,7 @@ Scene::~Scene()
 void Scene::Update()
 {
 	//The “Update” function inside the Object Manager will probably be calling the “Update” function inside every Object.
-	for (int i = 0; i < numObjects; i++)
+	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i].Update();
 	}
@@ -57,6 +57,8 @@ std::vector<Object>* Scene::GetObjectsInScene()
 {
 	return &objects;
 }
+
+#pragma region Commented
 
 //								Setters
 /*****************************************************************************/
@@ -100,9 +102,12 @@ void Scene::CreateObject(float x, float y, float width, float height, float rota
 }
 */
 
+#pragma endregion
+
 void Scene::AddObject(Object* obj)
 {
 	objects.push_back(*obj);
+	numObjects++;
 }
 
 
@@ -125,7 +130,7 @@ void Scene::DeleteObject(Object* obj)
 
 void Scene::Clear()
 {
-	for (int i = 0; i < numObjects; i++)
+	for (int i = 0; i < objects.size(); i++)
 	{
 		if (&objects[i] != NULL)
 		{
