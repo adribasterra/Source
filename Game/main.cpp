@@ -259,7 +259,7 @@ int main( int argc, char* args[] )
 
 			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
 			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballColliderInit);
-			Ball* ball = new Ball(10, 10, 20, 20, 0, ballTexture, ballCollider);						//Ball
+			Ball* ball = new Ball(10, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
 			scene->AddObject(ball);
 
 			/* ----------------------- */
