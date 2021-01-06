@@ -22,19 +22,19 @@ private:
 	PhysicsManager() {};
 	~PhysicsManager() {};
 
+	bool CategorizeCollisions(Object* obj1, Object* obj2);
 	bool RectCollisions(Object* obj1, Object* obj2);
 	bool CircleCollisions(Object* obj1, Object* obj2);
 	bool MixCollisions(Object* obj1, Object* obj2);
-	double distanceSquared(int x1, int y1, int x2, int y2);
+	double DistanceSquared(int x1, int y1, int x2, int y2);
 
 	/*****************************************************************************/
 public:
 
-
-	bool CheckCollisions(Object* obj1, Object* obj2);
-	void addRectCollider(SDL_Rect);
-	void addRectCollider(float, float);
-	void addCircleCollider(float);
+	void CheckCollisions();
+	void AddRectCollider(SDL_Rect);
+	void AddRectCollider(float, float);
+	void AddCircleCollider(float);
 	SDL_Rect* LoadCollider(SDL_Rect);
 	float* LoadCollider(float);
 

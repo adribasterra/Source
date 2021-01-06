@@ -1,12 +1,27 @@
 #include "PhysicsManager.h"
-
-
-
+#include "SceneManager.h"
 
 //								Main function
 /*****************************************************************************/
 
-bool PhysicsManager::CheckCollisions(Object* obj1, Object* obj2)
+void PhysicsManager::CheckCollisions()
+{
+    for (int i = 0; i < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene()->size(); i++)
+    {
+        Object* obj = SceneManager::GetInstance().GetCurrentScene()->GetObject(i);
+
+        for (int j = i; j < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene()->size(); j++)
+        {
+            Object* obj2 = SceneManager::GetInstance().GetCurrentScene()->GetObject(j);
+            CategorizeCollisions(obj, obj2);
+        }
+    }
+}
+
+//								Collisions
+/*****************************************************************************/
+
+bool PhysicsManager::CategorizeCollisions(Object* obj1, Object* obj2)
 {
     if (obj1->GetTypeCollision() == colliderTypes::rect && obj2->GetTypeCollision() == colliderTypes::rect)
     {
@@ -25,9 +40,6 @@ bool PhysicsManager::CheckCollisions(Object* obj1, Object* obj2)
         return MixCollisions(obj2, obj1);
     }
 }
-
-//								Collisions
-/*****************************************************************************/
 
 bool PhysicsManager::RectCollisions(Object* obj1, Object* obj2)
 {
@@ -65,7 +77,7 @@ bool PhysicsManager::CircleCollisions(Object* obj1, Object* obj2)
     totalRadiusSquared = totalRadiusSquared * totalRadiusSquared;
 
     //If the distance between the centers of the circles is less than the sum of their radii
-    if (distanceSquared(obj1->GetX(), obj1->GetY(), obj2->GetX(), obj2->GetY()) < (totalRadiusSquared))
+    if (DistanceSquared(obj1->GetX(), obj1->GetY(), obj2->GetX(), obj2->GetY()) < (totalRadiusSquared))
     {
         return true;    //The circles have collided
     }
@@ -110,7 +122,7 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
 
     //If the closest point is inside the circle
     double radius = (double)*(obj1->GetRadius()) * *(obj1->GetRadius());
-    if (distanceSquared(obj1->GetX(), obj1->GetY(), pointX, pointY) < radius)
+    if (DistanceSquared(obj1->GetX(), obj1->GetY(), pointX, pointY) < radius)
     {
         return true;    //This box and the circle have collided
     }
@@ -118,25 +130,25 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
     return false;
 }
 
-double PhysicsManager::distanceSquared(int x1, int y1, int x2, int y2)
+double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
 {
     double deltaX = (double)x2 - x1;
     double deltaY = (double)y2 - y1;
     double distance = deltaX * deltaX + deltaY * deltaY;
     return distance;
 }
-void PhysicsManager::addRectCollider(SDL_Rect col)
+void PhysicsManager::AddRectCollider(SDL_Rect col)
 {
     rectColliders.push_back(col);
 }
-void PhysicsManager::addRectCollider(float width, float height)
+void PhysicsManager::AddRectCollider(float width, float height)
 {
     SDL_Rect* col = new SDL_Rect();
     col->w = width;
     col->h = height;
     rectColliders.push_back(*col);
 }
-void PhysicsManager::addCircleCollider(float radius)
+void PhysicsManager::AddCircleCollider(float radius)
 {
     circleColliders.push_back(radius);
 }
