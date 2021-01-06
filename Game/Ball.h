@@ -8,7 +8,7 @@ class Ball : public Object {
 
 private:
 
-	int mVelX, mVelY;	// Velocity 
+	int velX, velY;	// Velocity
 
 public:
 
@@ -24,7 +24,4 @@ public:
 
 	void Update();
 
-	void HandleEvent(SDL_Event&);
-
-	void Move();
 };

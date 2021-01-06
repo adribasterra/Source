@@ -280,7 +280,7 @@ int main( int argc, char* args[] )
 					{
 						quit = true;
 					}
-					ball->HandleEvent(eventHandler);
+					leftPaddle->HandleEvent(eventHandler);
 				}
 				TimeManager::GetInstance().Update();
 
@@ -289,7 +289,7 @@ int main( int argc, char* args[] )
 
 				}
 
-				ball->Move();
+				leftPaddle->Move();
 
 				//Clear screen
 				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
