@@ -280,6 +280,7 @@ int main( int argc, char* args[] )
 					{
 						quit = true;
 					}
+					ball->HandleEvent(eventHandler);
 				}
 				TimeManager::GetInstance().Update();
 
@@ -287,6 +288,8 @@ int main( int argc, char* args[] )
 				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
 
 				}
+
+				ball->Move();
 
 				//Clear screen
 				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
