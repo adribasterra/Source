@@ -3,8 +3,7 @@
 
 SceneManager::SceneManager()
 {
-	numScenes = 0;
-	scenes = std::vector<Scene>(numScenes);
+	scenes = std::vector<Scene>();
 	currentScene = NULL;
 }
 
@@ -24,9 +23,10 @@ void SceneManager::SetCurrentScene(Scene* scene)
 	//Check if that scene exists
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		//if (&scenes[i] == scene)
+		if (&scenes[i] == scene)
 		{
 			//Set scene as current
+			printf("Exist");
 			currentScene = scene;
 			return;
 		}
@@ -43,7 +43,6 @@ Scene* SceneManager::Create() {
 
 	//Add it to the scenes vector
 	scenes.push_back(*scene);
-	numScenes++;
 	return scene;
 }
 

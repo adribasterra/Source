@@ -17,7 +17,6 @@ private:
 
 	std::vector<Scene> scenes;		// Scenes
 	Scene* currentScene;			// Scene to renderize
-	int numScenes;
 
 	// Private constructor to avoid more than one instance
 	SceneManager();

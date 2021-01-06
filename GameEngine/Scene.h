@@ -9,7 +9,6 @@ class Scene {
 
 private:
 
-	int numObjects;
 	std::vector<Object> objects;
 	/*****************************************************************************/
 public:

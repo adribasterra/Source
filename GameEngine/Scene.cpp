@@ -7,19 +7,16 @@
 Scene::Scene()
 {
 	//Initialize
-	numObjects = 0;
-	objects = std::vector<Object>(numObjects);
+	objects = std::vector<Object>();
 }
 
 Scene::~Scene()
 {
-	//free(&numObjects);
 	for (int i = 0; i < objects.size(); i++)
 	{
 		delete(&objects[i]);
 	}
 	objects.clear();
-	numObjects = 0;
 }
 
 //								Main function
@@ -100,7 +97,6 @@ void Scene::CreateObject(float x, float y, float width, float height, float rota
 void Scene::AddObject(Object* obj)
 {
 	objects.push_back(*obj);
-	numObjects++;
 }
 
 
@@ -128,7 +124,6 @@ void Scene::Clear()
 		if (&objects[i] != NULL)
 		{
 			delete(&objects[i]);
-			numObjects--;
 		}
 	}
 }
