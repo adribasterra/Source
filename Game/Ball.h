@@ -22,6 +22,7 @@ public:
 	//Deallocate memory
 	~Ball();
 
+
 	void Update();
 
 };

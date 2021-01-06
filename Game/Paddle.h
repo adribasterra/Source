@@ -34,5 +34,6 @@ public:
 
 	void HandleEvent(SDL_Event&);
 
+
 	void Move();
 };
