@@ -291,6 +291,7 @@ int main( int argc, char* args[] )
 				}
 
 				leftPaddle->Move();
+				rightPaddle->Move();
 
 				//Clear screen
 				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
