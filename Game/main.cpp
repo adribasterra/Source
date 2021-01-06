@@ -264,7 +264,6 @@ int main( int argc, char* args[] )
 
 			/* ----------------------- */
 
-			
 			bool quit = false;
 
 			//Event handler
@@ -281,10 +280,12 @@ int main( int argc, char* args[] )
 						quit = true;
 					}
 					leftPaddle->HandleEvent(eventHandler);
+					rightPaddle->HandleEvent(eventHandler);
 				}
-				TimeManager::GetInstance().Update();
 
+				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
+
 				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
 
 				}

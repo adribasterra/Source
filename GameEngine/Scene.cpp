@@ -14,12 +14,11 @@ Scene::Scene()
 Scene::~Scene()
 {
 	//free(&numObjects);
-	//for (int i = 0; i < objects.size(); i++)
-	//{
-	//	//delete(&objects[i]);
-	//}
-	//objects.clear();
-
+	for (int i = 0; i < objects.size(); i++)
+	{
+		delete(&objects[i]);
+	}
+	objects.clear();
 }
 
 //								Main function
@@ -39,13 +38,6 @@ void Scene::Update()
 
 Object* Scene::GetObject(int index)
 {
-	/*for (int i = 0; i < numObjects; i++)
-	{
-		if (objects[i] == searchingObj)
-		{
-			return objects[i];
-		}
-	}*/
 	if (index < objects.size())
 	{
 		return &objects[index];
@@ -134,7 +126,7 @@ void Scene::Clear()
 	{
 		if (&objects[i] != NULL)
 		{
-			//objects[i] = NULL;
+			delete(&objects[i]);
 			numObjects--;
 		}
 	}

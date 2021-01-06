@@ -5,8 +5,7 @@
 
 Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
 {
-	//Object::Object(x, y, width, height, rotation, texture, radius);
-
+	//Inherited from Object
 	this->x = x;
 	this->y = y;
 	this->width = width;
@@ -15,6 +14,10 @@ Ball::Ball(float x, float y, float width, float height, float rotation, LTexture
 	this->texture = texture;
 	this->circleCollider = radius;
 	colliderType = colliderTypes::circle;
+	
+	//Own
+	velX = 0;
+	velY = 0;
 }
 
 Ball::~Ball()

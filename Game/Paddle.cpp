@@ -7,8 +7,7 @@
 
 Paddle::Paddle(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
 {
-	//__super::Object(x, y, width, height, rotation, texture, rectangle);
-
+	//Inherited from Object
 	this->x = x;
 	this->y = y;
 	this->width = width;
@@ -17,6 +16,10 @@ Paddle::Paddle(float x, float y, float width, float height, float rotation, LTex
 	this->texture = texture;
 	this->collider = rectangle;
 	colliderType = colliderTypes::rect;
+
+	//Own
+	velX = 0;
+	velY = 0;
 }
 
 Paddle::~Paddle()
@@ -39,10 +42,10 @@ void Paddle::HandleEvent(SDL_Event& e)
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
-		case SDLK_UP: velY -= PADDLE_VEL; break;
-		case SDLK_DOWN: velY += PADDLE_VEL; break;
-		case SDLK_LEFT: velX -= PADDLE_VEL; break;
-		case SDLK_RIGHT: velX += PADDLE_VEL; break;
+			case SDLK_UP: velY -= PADDLE_VEL; break;
+			case SDLK_DOWN: velY += PADDLE_VEL; break;
+			case SDLK_LEFT: velX -= PADDLE_VEL; break;
+			case SDLK_RIGHT: velX += PADDLE_VEL; break;
 		}
 	}
 	//If a key was released
@@ -51,10 +54,10 @@ void Paddle::HandleEvent(SDL_Event& e)
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
-		case SDLK_UP: velY += PADDLE_VEL; break;
-		case SDLK_DOWN: velY -= PADDLE_VEL; break;
-		case SDLK_LEFT: velX += PADDLE_VEL; break;
-		case SDLK_RIGHT: velX -= PADDLE_VEL; break;
+			case SDLK_UP: velY += PADDLE_VEL; break;
+			case SDLK_DOWN: velY -= PADDLE_VEL; break;
+			case SDLK_LEFT: velX += PADDLE_VEL; break;
+			case SDLK_RIGHT: velX -= PADDLE_VEL; break;
 		}
 	}
 }
@@ -70,27 +73,27 @@ void Paddle::Move()
 	if (InputManager::GetInstance().GetKey(ControlKeys::down)) {
 		velY += PADDLE_VEL;
 	}
-	//if (InputManager::GetInstance().GetKey(ControlKeys::left)) {
+	//if (InputManager::GetInstance().GetKey(ControlKeys::left)) {		// Commented as it does not need horizontal movement
 	//	velX -= PADDLE_VEL;
 	//}
 	//if (InputManager::GetInstance().GetKey(ControlKeys::right)) {
 	//	velX += PADDLE_VEL;
 	//}
 
-	//Move the dot left or right
+	//Move the paddle left or right
 	x += velX;
 
-	//If the dot went too far to the left or right
+	//If the paddle went too far to the left or right
 	if ((x < 0) || (x + this->texture->getWidth() > GraphicsManager::SCREEN_WIDTH))
 	{
 		//Move back
 		x -= velX;
 	}
 
-	//Move the dot up or down
+	//Move the paddle up or down
 	y += velY;
 
-	//If the dot went too far up or down
+	//If the paddle went too far up or down
 	if ((y < 0) || (y + this->texture->getHeight() > GraphicsManager::SCREEN_HEIGHT))
 	{
 		//Move back

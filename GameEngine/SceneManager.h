@@ -15,11 +15,9 @@ class SceneManager : public Singleton<SceneManager>
 
 private:
 
-	// Scenes
-	std::vector<Scene> scenes;
-	Scene* currentScene;
-	int numberOfScenes;
-	//Object* CreatedObject;
+	std::vector<Scene> scenes;		// Scenes
+	Scene* currentScene;			// Scene to renderize
+	int numScenes;
 
 	// Private constructor to avoid more than one instance
 	SceneManager();
@@ -28,13 +26,11 @@ private:
 	/*****************************************************************************/
 public:
 
-	void ChangeScene(int);		//Pointer to next scene
-
 	//Getters & setters
 	Scene* GetCurrentScene();
-	void SetCurrentScene(Scene*);
+	void SetCurrentScene(Scene*);	//Changes renderized scene
 
 	Scene* Create();
-	void Delete(Scene*);		//Don't know if necessary or not
+	void Delete(Scene*);			//Don't know if necessary or not, destructor??
 
 };
