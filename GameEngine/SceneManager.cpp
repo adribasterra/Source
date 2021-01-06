@@ -26,7 +26,6 @@ void SceneManager::SetCurrentScene(Scene* scene)
 		//if (&scenes[i] == scene)
 		{
 			//Set scene as current
-			printf("Exist");
 			currentScene = scene;
 			return;
 		}
