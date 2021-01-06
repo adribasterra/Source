@@ -34,6 +34,11 @@ void Paddle::Update() {
 	printf("Virtual override of Object update in Paddle");
 }
 
+void Paddle::SetControls(SDL_Scancode up, SDL_Scancode down) {
+	upKey = up;
+	downKey = down;
+}
+
 void Paddle::HandleEvent(SDL_Event& e)
 {
 	//If a key was pressed
@@ -67,10 +72,10 @@ void Paddle::Move()
 	velX = 0;
 	velY = 0;
 
-	if (InputManager::GetInstance().GetKey(ControlKeys::up)) {
+	if (InputManager::GetInstance().GetKey(upKey)) {
 		velY -= PADDLE_VEL;
 	}
-	if (InputManager::GetInstance().GetKey(ControlKeys::down)) {
+	if (InputManager::GetInstance().GetKey(downKey)) {
 		velY += PADDLE_VEL;
 	}
 	//if (InputManager::GetInstance().GetKey(ControlKeys::left)) {		// Commented as it does not need horizontal movement

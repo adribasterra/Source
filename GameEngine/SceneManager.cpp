@@ -23,7 +23,7 @@ void SceneManager::SetCurrentScene(Scene* scene)
 	//Check if that scene exists
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		if (&scenes[i] == scene)
+		//if (&scenes[i] == scene)
 		{
 			//Set scene as current
 			printf("Exist");

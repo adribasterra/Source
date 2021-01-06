@@ -10,13 +10,9 @@ private:
 
 	int velX, velY;	// Velocity
 
-	enum ControlKeys : int
-	{
-		up = SDL_SCANCODE_UP,
-		down = SDL_SCANCODE_DOWN,
-		//left = SDL_SCANCODE_LEFT,
-		//right = SDL_SCANCODE_RIGHT
-	};
+	//Controls
+	SDL_Scancode upKey;
+	SDL_Scancode downKey;
 
 public:
 
@@ -31,7 +27,7 @@ public:
 	~Paddle();
 
 	void Update();
-
+	void SetControls(SDL_Scancode, SDL_Scancode);
 	void HandleEvent(SDL_Event&);
 
 	void Move();

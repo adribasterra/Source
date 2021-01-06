@@ -257,6 +257,10 @@ int main( int argc, char* args[] )
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
 
+			//Set controls to paddles
+			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
+			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
+
 			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
 			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(ballColliderInit);
 			Ball* ball = new Ball(10, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
