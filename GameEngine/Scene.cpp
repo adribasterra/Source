@@ -19,6 +19,7 @@ Scene::~Scene()
 		delete(&objects[i]);
 	}
 	objects.clear();
+	numObjects = 0;
 }
 
 //								Main function
@@ -26,7 +27,7 @@ Scene::~Scene()
 
 void Scene::Update()
 {
-	//The “Update” function inside the Object Manager will probably be calling the “Update” function inside every Object.
+	//Update of all Scene's objects
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i].Update();

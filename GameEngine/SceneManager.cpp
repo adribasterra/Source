@@ -22,7 +22,7 @@ Scene* SceneManager::GetCurrentScene()
 void SceneManager::SetCurrentScene(Scene* scene)
 {
 	//Check if that scene exists
-	//for (int i = 0; i < scenes.size(); i++)
+	for (int i = 0; i < scenes.size(); i++)
 	{
 		//if (&scenes[i] == scene)
 		{
@@ -50,13 +50,28 @@ Scene* SceneManager::Create() {
 
 void SceneManager::Delete(Scene* scene)
 {
+	//Handle currentScene
+	if (&scene == &currentScene) {
+		if (scenes.size() > 0) {
+			*currentScene = scenes[0];
+		}
+		else {
+			currentScene = NULL;
+		}
+		printf("\n\nCurrent scene has been deleted.\n\n");
+	}
+
+	//Check if scene exists
 	for (int i = 0; i < scenes.size(); i++)
 	{
 		//if (&scenes[i] == scene)
 		{
+			//Delete scene
 			std::swap(scenes[i], scenes[scenes.size() - 1]);
-			delete(&scenes[scenes.size() - 1]);
+			Scene* sceneToDelete = &scenes[scenes.size() - 1];
 			scenes.pop_back();
+			delete(sceneToDelete);
+			sceneToDelete = NULL;
 			printf("Scene has deleted successfully");
 		}
 	}
