@@ -27,6 +27,9 @@ GraphicsManager::~GraphicsManager(void)
 
 bool GraphicsManager::Init(void)
 {
+    textures = std::vector<LTexture>();
+    textures.reserve(10);
+
     //Initialization flag
     bool success = true;
 
@@ -84,23 +87,21 @@ void GraphicsManager::Update(void)
 
 }
 
-LTexture* GraphicsManager::LoadTexture(std::string filePath) {
-
-    LTexture texture;
-    if (!texture.loadFromFile(filePath)) {
+LTexture* GraphicsManager::LoadTexture(std::string filePath)
+{
+    LTexture* texture = new LTexture();
+    if (!texture->loadFromFile(filePath)) {
         return NULL;
     }
 
     for (int i = 0; i < textures.size(); i++) {
-        if (textures[i].getTexture() == texture.getTexture()) {
+        if (textures[i].getTexture() == texture->getTexture()) {    // TODO: Compare filepath stored in LTexture class
             return &textures[i];
-            texture.free();
         }
     }
 
-    textures.push_back(texture);
+    textures.push_back(*texture);
     return &textures[textures.size() - 1];
-    //return &texture;
 }
 
 void GraphicsManager::Render()
