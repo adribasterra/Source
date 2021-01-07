@@ -4,6 +4,15 @@
 //								Constructors
 /*****************************************************************************/
 
+GraphicsManager::GraphicsManager()
+{
+    mWindow = NULL;
+    mRenderer = NULL;
+
+    textures = std::vector<LTexture*>();
+    textures.reserve(10);
+}
+
 GraphicsManager::~GraphicsManager(void)
 {
     /**
@@ -27,9 +36,6 @@ GraphicsManager::~GraphicsManager(void)
 
 bool GraphicsManager::Init(void)
 {
-    textures = std::vector<LTexture>();
-    textures.reserve(10);
-
     //Initialization flag
     bool success = true;
 
@@ -89,19 +95,26 @@ void GraphicsManager::Update(void)
 
 LTexture* GraphicsManager::LoadTexture(std::string filePath)
 {
-    LTexture* texture = new LTexture();
-    if (!texture->loadFromFile(filePath)) {
-        return NULL;
-    }
-
+    //Check if it exists
     for (int i = 0; i < textures.size(); i++) {
-        if (textures[i].getTexture() == texture->getTexture()) {    // TODO: Compare filepath stored in LTexture class
-            return &textures[i];
+        if (textures[i]->getFilePath() == filePath) {
+            return textures[i];
         }
     }
 
-    textures.push_back(*texture);
-    return &textures[textures.size() - 1];
+    //If not, create it
+    LTexture* texture = new LTexture();
+    texture->setFilePath(filePath);
+
+    if (texture->loadFromFile(filePath)) {
+        textures.push_back(texture);
+        return textures[textures.size() - 1];
+    }
+    else {
+        printf("\n\nUnable to load texture from file.\n\n");
+        return NULL;
+    }
+
 }
 
 void GraphicsManager::Render()

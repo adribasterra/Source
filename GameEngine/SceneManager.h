@@ -15,7 +15,7 @@ class SceneManager : public Singleton<SceneManager>
 
 private:
 
-	std::vector<Scene> scenes;		// Scenes
+	std::vector<Scene*> scenes;		// Scenes
 	Scene* currentScene;			// Scene to renderize
 
 	// Private constructor to avoid more than one instance

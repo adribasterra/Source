@@ -15,8 +15,8 @@ class PhysicsManager : public Singleton<PhysicsManager>
 
 private:
 
-	std::vector<SDL_Rect> rectColliders;
-	std::vector<float> circleColliders;
+	std::vector<SDL_Rect*> rectColliders;
+	std::vector<float*> circleColliders;
 	// vECTOR DE RADIOS
 	// Private constructor to avoid more than one instance
 	PhysicsManager() {};
@@ -32,10 +32,10 @@ private:
 public:
 
 	void CheckCollisions();
-	void AddRectCollider(SDL_Rect);
-	void AddRectCollider(float, float);
-	void AddCircleCollider(float);
-	SDL_Rect* LoadCollider(SDL_Rect);
-	float* LoadCollider(float);
+	//void AddCircleCollider(float*);
+	//void AddRectCollider(SDL_Rect*);
+	//void AddRectCollider(float, float);
+	SDL_Rect* LoadCollider(SDL_Rect*);
+	float* LoadCollider(float*);
 
 };

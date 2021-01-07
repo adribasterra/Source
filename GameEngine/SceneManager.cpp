@@ -3,7 +3,8 @@
 
 SceneManager::SceneManager()
 {
-	scenes = std::vector<Scene>();
+	scenes = std::vector<Scene*>();
+	scenes.reserve(10);
 	currentScene = NULL;
 }
 
@@ -23,7 +24,7 @@ void SceneManager::SetCurrentScene(Scene* scene)
 	//Check if that scene exists
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		//if (&scenes[i] == scene)
+		if (scenes[i] == scene)
 		{
 			//Set scene as current
 			currentScene = scene;
@@ -41,7 +42,7 @@ Scene* SceneManager::Create() {
 	Scene* scene = new Scene();
 
 	//Add it to the scenes vector
-	scenes.push_back(*scene);
+	scenes.push_back(scene);
 	return scene;
 }
 
@@ -49,9 +50,9 @@ Scene* SceneManager::Create() {
 void SceneManager::Delete(Scene* scene)
 {
 	//Handle currentScene
-	if (&scene == &currentScene) {
+	if (scene == currentScene) {
 		if (scenes.size() > 0) {
-			*currentScene = scenes[0];
+			currentScene = scenes[0];
 		}
 		else {
 			currentScene = NULL;
@@ -62,12 +63,14 @@ void SceneManager::Delete(Scene* scene)
 	//Check if scene exists
 	for (int i = 0; i < scenes.size(); i++)
 	{
-		//if (&scenes[i] == scene)
+		if (scenes[i] == scene)
 		{
-			//Delete scene
+			//Swap with last position to remove it from vector
 			std::swap(scenes[i], scenes[scenes.size() - 1]);
-			Scene* sceneToDelete = &scenes[scenes.size() - 1];
+			Scene* sceneToDelete = scenes[scenes.size() - 1];
 			scenes.pop_back();
+
+			//Delete scene
 			delete(sceneToDelete);
 			sceneToDelete = NULL;
 			printf("Scene has deleted successfully");

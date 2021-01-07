@@ -137,49 +137,56 @@ double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
     double distance = deltaX * deltaX + deltaY * deltaY;
     return distance;
 }
-void PhysicsManager::AddRectCollider(SDL_Rect col)
-{
-    rectColliders.push_back(col);
-}
-void PhysicsManager::AddRectCollider(float width, float height)
-{
-    SDL_Rect* col = new SDL_Rect();
-    col->w = width;
-    col->h = height;
-    rectColliders.push_back(*col);
-}
-void PhysicsManager::AddCircleCollider(float radius)
-{
-    circleColliders.push_back(radius);
-}
+
+/*****************************************************************************/
+#pragma region Unused
+
+//void PhysicsManager::AddRectCollider(SDL_Rect* col)
+//{
+//    rectColliders.push_back(col);
+//}
+//void PhysicsManager::AddRectCollider(float width, float height)
+//{
+//    SDL_Rect* col = new SDL_Rect();
+//    col->w = width;
+//    col->h = height;
+//    rectColliders.push_back(col);
+//}
+//void PhysicsManager::AddCircleCollider(float* radius)
+//{
+//    circleColliders.push_back(radius);
+//}
+#pragma endregion
 /*****************************************************************************/
 
-SDL_Rect* PhysicsManager::LoadCollider(SDL_Rect rectCol)
+SDL_Rect* PhysicsManager::LoadCollider(SDL_Rect* rectCol)
 {
-
+    //Check if exists
     for (int i = 0; i < rectColliders.size(); i++)
     {
-        if (rectColliders[i].w == rectCol.w && rectColliders[i].h == rectCol.h)
+        if (rectColliders[i] == rectCol)
         {
-            return &rectColliders[i];
+            return rectColliders[i];
         }
     }
+    //If not, add it to vector
     rectColliders.push_back(rectCol);
-    return &rectCol;
+    return rectCol;
 
 }
 
-float* PhysicsManager::LoadCollider(float circleCol)
+float* PhysicsManager::LoadCollider(float* circleCol)
 {
-
+    //Check if exists
     for (int i = 0; i < circleColliders.size(); i++)
     {
         if (circleColliders[i] == circleCol)
         {
-            return &circleColliders[i];
+            return circleColliders[i];
         }
     }
+    //If not, add it to vector
     circleColliders.push_back(circleCol);
-    return &circleCol;
+    return circleCol;
 
 }

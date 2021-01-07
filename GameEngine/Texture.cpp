@@ -129,8 +129,14 @@ int LTexture::getHeight()
     return mHeight;
 }
 
-SDL_Texture* LTexture::getTexture() {
+SDL_Texture* LTexture::getTexture()
+{
     return mTexture;
+}
+
+std::string LTexture::getFilePath()
+{
+    return filePath;
 }
 
 //								Setters
@@ -154,6 +160,11 @@ void LTexture::setAlpha(Uint8 alpha)
 {
     //Modulate texture alpha
     SDL_SetTextureAlphaMod(mTexture, alpha);
+}
+
+void LTexture::setFilePath(std::string filePath)
+{
+    this->filePath = filePath;
 }
 
 //								Main function

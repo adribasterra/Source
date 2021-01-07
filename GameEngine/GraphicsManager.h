@@ -24,15 +24,15 @@ public:
 	/*****************************************************************************/
 private:
 	//The window we'll be rendering to
-	SDL_Window* mWindow = NULL;
+	SDL_Window* mWindow;
 
 	//The window renderer
-	SDL_Renderer* mRenderer = NULL;
+	SDL_Renderer* mRenderer;
 
-	std::vector<LTexture> textures;	//Guardar vector de punteros o devolver índices del vector
+	std::vector<LTexture*> textures;	//Guardar vector de punteros o devolver índices del vector
 
 	// Private constructor to avoid more than one instance
-	GraphicsManager() {};	//INICIALIZAR LAS COSAS
+	GraphicsManager();
 	~GraphicsManager();
 
 	/*****************************************************************************/
