@@ -119,14 +119,17 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath)
 
 void GraphicsManager::Render()
 {
-    for (int i = 0; i < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene()->size(); i++)
+    for (int i = 0; i < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene().size(); i++)
     {
         Object* obj = SceneManager::GetInstance().GetCurrentScene()->GetObject(i);
 
-        SDL_Rect size;
-        size.w = obj->GetWidth();
-        size.h = obj->GetHeight();
-        obj->GetTexture()->render(obj->GetX(), obj->GetY(), &size);
+        SDL_Rect* size = new SDL_Rect();
+        size->w = obj->GetWidth();
+        size->h = obj->GetHeight();
+        obj->GetTexture()->render(obj->GetX(), obj->GetY(), size);
+        delete(size);
+        size = NULL;
+        
     }
 }
 /*****************************************************************************/

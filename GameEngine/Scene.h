@@ -9,7 +9,7 @@ class Scene {
 
 private:
 
-	std::vector<Object> objects;
+	std::vector<Object*> objects;
 	/*****************************************************************************/
 public:
 
@@ -34,7 +34,7 @@ public:
 	//Getters & setters
 	// es necesaria?
 	Object* GetObject(int index);
-	std::vector<Object>* GetObjectsInScene();
+	std::vector<Object*> GetObjectsInScene();
 	//void SetArraySize(int sizeObj);
 
 };

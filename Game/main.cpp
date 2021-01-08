@@ -98,7 +98,6 @@ int main( int argc, char* args[] )
 			Paddle* rightPaddle = new Paddle(30, 30, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
-
 			//Set controls to paddles
 			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
 			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
@@ -137,7 +136,7 @@ int main( int argc, char* args[] )
 				}
 
 				leftPaddle->Move();
-				//rightPaddle->Move();
+				rightPaddle->Move();
 
 				//Clear screen
 				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
