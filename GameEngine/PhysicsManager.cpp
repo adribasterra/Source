@@ -1,6 +1,8 @@
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 
+#pragma region Main function
+
 //								Main function
 /*****************************************************************************/
 
@@ -13,10 +15,16 @@ void PhysicsManager::CheckCollisions()
         for (int j = i; j < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene().size(); j++)
         {
             Object* obj2 = SceneManager::GetInstance().GetCurrentScene()->GetObject(j);
-            CategorizeCollisions(obj, obj2);
+            if (CategorizeCollisions(obj, obj2)) {
+                obj->OnCollisionEnter(obj2);
+                obj2->OnCollisionEnter(obj);
+            }
         }
     }
 }
+#pragma endregion
+
+#pragma region Collision calculation
 
 //								Collisions
 /*****************************************************************************/
@@ -138,6 +146,8 @@ double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
     return distance;
 }
 
+#pragma endregion
+
 /*****************************************************************************/
 #pragma region Unused
 
@@ -158,6 +168,8 @@ double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
 //}
 #pragma endregion
 /*****************************************************************************/
+
+#pragma region Load Colliders
 
 SDL_Rect* PhysicsManager::LoadCollider(SDL_Rect* rectCol)
 {
@@ -188,5 +200,7 @@ float* PhysicsManager::LoadCollider(float* circleCol)
     //If not, add it to vector
     circleColliders.push_back(circleCol);
     return circleCol;
-
 }
+#pragma endregion
+
+/*****************************************************************************/

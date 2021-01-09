@@ -17,7 +17,7 @@ private:
 
 	std::vector<SDL_Rect*> rectColliders;
 	std::vector<float*> circleColliders;
-	// vECTOR DE RADIOS
+
 	// Private constructor to avoid more than one instance
 	PhysicsManager() {};
 	~PhysicsManager() {};

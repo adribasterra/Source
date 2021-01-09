@@ -17,6 +17,7 @@ Object::Object()
 	this->circleCollider = NULL;
 	this->texture = NULL;
 	colliderType = colliderTypes::none;
+	tag = "";
 }
 
 Object::Object(float x, float y)
@@ -31,6 +32,7 @@ Object::Object(float x, float y)
 	this->circleCollider = NULL;
 	this->texture = NULL;
 	colliderType = colliderTypes::none;
+	tag = "";
 }
 
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture)
@@ -45,9 +47,10 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->circleCollider = NULL;
 	this->texture = texture;
 	colliderType = colliderTypes::none;
+	tag = "";
 }
 
-Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle)
+Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle, std::string tag)
 {
 	this->x = x;
 	this->y = y;
@@ -58,9 +61,10 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->collider = rectangle;
 	this->circleCollider = NULL;
 	colliderType = colliderTypes::rect;
+	this->tag = tag;
 }
 
-Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
+Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius, std::string tag)
 {
 	this->x = x;
 	this->y = y;
@@ -71,6 +75,7 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	this->collider = NULL;
 	this->circleCollider = radius;
 	colliderType = colliderTypes::circle;
+	this->tag = tag;
 }
 Object::~Object()
 {
@@ -131,6 +136,10 @@ float* Object::GetRadius()
 {
 	return circleCollider;
 }
+std::string Object::GetTag()
+{
+	return tag;
+}
 
 #pragma endregion
 
@@ -157,8 +166,14 @@ void Object::SetSprite(LTexture textureAux)
 {
 	texture = &textureAux;
 }
-void Object::SetCollider(SDL_Rect colliderAux) {
+void Object::SetCollider(SDL_Rect colliderAux)
+{
 	collider = &colliderAux;
+}
+
+void Object::SetTag(std::string tag)
+{
+	this->tag = tag;
 }
 
 /*****************************************************************************/

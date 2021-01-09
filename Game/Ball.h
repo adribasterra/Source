@@ -24,4 +24,5 @@ public:
 
 	void Update();
 
+	void OnCollisionEnter(Object*);
 };

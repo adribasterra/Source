@@ -16,6 +16,7 @@ protected:
 	SDL_Rect* collider;
 	float* circleCollider;
 	int colliderType;
+	std::string tag;
 
 	/*****************************************************************************/
 public:
@@ -24,13 +25,15 @@ public:
 	Object();
 	Object(float, float);
 	Object(float, float, float, float, float, LTexture*);
-	Object(float, float, float, float, float, LTexture*, SDL_Rect*);
-	Object(float, float, float, float, float, LTexture*, float*);
+	Object(float, float, float, float, float, LTexture*, SDL_Rect*, std::string);
+	Object(float, float, float, float, float, LTexture*, float*, std::string);
 
 	//Deallocate memory
 	~Object();
 
 	virtual void Update();
+
+	virtual void OnCollisionEnter(Object* other) {};
 
 	//Getters & setters (encapsulation)
 	void SetPosition(float, float);
@@ -38,6 +41,7 @@ public:
 	void SetRotation(float);
 	void SetSprite(LTexture);
 	void SetCollider(SDL_Rect);
+	void SetTag(std::string);
 
 	float GetX();
 	float GetY();
@@ -48,6 +52,7 @@ public:
 	SDL_Rect* GetCollider();
 	float* GetRadius();
 	int GetTypeCollision();
+	std::string GetTag();
 
 };
 

@@ -28,6 +28,14 @@ Ball::~Ball()
 //								Main func
 /*****************************************************************************/
 
-void Ball::Update() {
+void Ball::Update()
+{
 	printf("Virtual override of Object update in Ball");
+}
+
+void Ball::OnCollisionEnter(Object* other)
+{
+	if (other->tag == "tag") {
+		//Do something
+	}
 }
