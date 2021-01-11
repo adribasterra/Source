@@ -94,8 +94,8 @@ int main( int argc, char* args[] )
 
 			LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
 			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(&paddleColliderInit);
-			Paddle* leftPaddle = new Paddle(0, 0, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
-			Paddle* rightPaddle = new Paddle(30, 30, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
+			Paddle* leftPaddle = new Paddle(20, 20, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
+			Paddle* rightPaddle = new Paddle(400, 20, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
 			//Set controls to paddles

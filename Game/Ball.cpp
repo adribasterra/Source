@@ -35,7 +35,8 @@ void Ball::Update()
 
 void Ball::OnCollisionEnter(Object* other)
 {
-	if (other->tag == "tag") {
+	//if (other->tag == "tag")
+	{
 		//Do something
 	}
 }
