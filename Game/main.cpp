@@ -104,8 +104,9 @@ int main( int argc, char* args[] )
 
 			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
 			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(&ballColliderInit);
-			Ball* ball = new Ball(10, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
+			Ball* ball = new Ball(100, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
 			scene->AddObject(ball);
+			printf("%s", ball->GetTag());
 
 			/* ----------------------- */
 
@@ -131,11 +132,11 @@ int main( int argc, char* args[] )
 				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
 
-				scene->Update(TimeManager::GetInstance().GetDeltaTime());
+				scene->Update(TimeManager::GetInstance().GetDeltaTime()/1000);
 
 				leftPaddle->Move();
 				rightPaddle->Move();
-
+				PhysicsManager::GetInstance().CheckCollisions();
 				//Clear screen
 				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());

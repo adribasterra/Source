@@ -15,7 +15,7 @@ private:
 public:
 
 	//Maximum axis velocity of the ball
-	static const int BALL_VEL = 10;
+	static const int BALL_VEL = 1;
 
 	//Constructors
 	Ball() {};

@@ -15,6 +15,7 @@ Paddle::Paddle(float x, float y, float width, float height, float rotation, LTex
 	this->rotation = rotation;
 	this->texture = texture;
 	this->collider = rectangle;
+	this->tag = "Paddle";
 	colliderType = colliderTypes::rect;
 
 	//Own
@@ -31,7 +32,6 @@ Paddle::~Paddle()
 /*****************************************************************************/
 
 void Paddle::Update() {
-	printf("Virtual override of Object update in Paddle");
 }
 
 void Paddle::SetControls(SDL_Scancode up, SDL_Scancode down) {

@@ -90,7 +90,6 @@ Object::~Object()
 /*****************************************************************************/
 
 void Object::Update(float dt) {
-	printf("I'm updating\n");
 }
 
 #pragma endregion

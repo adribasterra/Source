@@ -12,9 +12,10 @@ void PhysicsManager::CheckCollisions()
     {
         Object* obj = SceneManager::GetInstance().GetCurrentScene()->GetObject(i);
 
-        for (int j = i; j < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene().size(); j++)
+        for (int j = i+1; j < SceneManager::GetInstance().GetCurrentScene()->GetObjectsInScene().size(); j++)
         {
             Object* obj2 = SceneManager::GetInstance().GetCurrentScene()->GetObject(j);
+
             if (CategorizeCollisions(obj, obj2)) {
                 obj->OnCollisionEnter(obj2);
                 obj2->OnCollisionEnter(obj);
