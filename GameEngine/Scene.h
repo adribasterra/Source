@@ -19,7 +19,7 @@ public:
 	//Deallocate memory
 	~Scene();
 
-	void Update();
+	void Update(float dt);
 
 	void CreateObject();
 	void CreateObject(float, float);

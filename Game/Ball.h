@@ -1,6 +1,8 @@
 #pragma once
 #include <Texture.h>
 #include "Object.h"
+#include "GraphicsManager.h"
+#include "GameManager.h"
 /*
  * Ball object class, extends Object
  */
@@ -22,7 +24,7 @@ public:
 	//Deallocate memory
 	~Ball();
 
-	void Update();
+	void Update(float);
 
 	void OnCollisionEnter(Object*);
 };

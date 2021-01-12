@@ -31,7 +31,7 @@ public:
 	//Deallocate memory
 	~Object();
 
-	virtual void Update();
+	virtual void Update(float dt);
 
 	virtual void OnCollisionEnter(Object* other) {};
 

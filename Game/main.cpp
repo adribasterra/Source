@@ -18,12 +18,13 @@
 #include "TimeManager.h"
 
 //Global texture names
-std::string paddleTexturePath = "./../../Media/dot.bmp";
+std::string leftPaddleTexturePath = "./../../Media/dot.bmp" /*"./../../Media/leftPaddle100.png"*/;
+std::string rightPaddleTexturePath = "./../../Media/dot.bmp" /*"./../../Media/rightPaddle100.png"*/;
 std::string ballTexturePath = "./../../Media/dot.bmp";
 
 //Global colliders
 float ballColliderInit = 10;
-SDL_Rect paddleColliderInit = { 0, 0, 20, 60 };
+SDL_Rect paddleColliderInit = { 0, 0, 25, 100 };
 
 bool Init(){
 	//Init phase
@@ -47,7 +48,7 @@ bool LoadTextures()
 	//PADDLES
 	bool success = true;
 	LTexture paddleTexture;
-	if (!paddleTexture.loadFromFile(paddleTexturePath)) success = false;
+	if (!paddleTexture.loadFromFile(leftPaddleTexturePath)) success = false;
 	//Add it to the graphicsManager
 
 	//BALL
@@ -87,17 +88,16 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			//Debug
-			if (scene == SceneManager::GetInstance().GetCurrentScene()) printf("YAYY");
-
 			/* CONSTRUCCIÓN DE OBJETOS */
 
-			LTexture* paddleTexture = GraphicsManager::GetInstance().LoadTexture(paddleTexturePath);
+			LTexture* leftPaddleTexture = GraphicsManager::GetInstance().LoadTexture(leftPaddleTexturePath);
+			LTexture* rightPaddleTexture = GraphicsManager::GetInstance().LoadTexture(rightPaddleTexturePath);
 			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(&paddleColliderInit);
-			Paddle* leftPaddle = new Paddle(20, 20, 20, 20, 0, paddleTexture, paddleCollider);		//Left paddle
-			Paddle* rightPaddle = new Paddle(400, 20, 20, 20, 0, paddleTexture, paddleCollider);		//Right paddle
+			Paddle* leftPaddle = new Paddle(20, 20, 20, 20, 0, leftPaddleTexture, paddleCollider);		//Left paddle
+			Paddle* rightPaddle = new Paddle(400, 20, 20, 20, 0, rightPaddleTexture, paddleCollider);	//Right paddle
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
+
 			//Set controls to paddles
 			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
 			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
@@ -131,9 +131,7 @@ int main( int argc, char* args[] )
 				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
 
-				if (InputManager::GetInstance().GetKey(SDL_SCANCODE_UP)) {
-
-				}
+				scene->Update(TimeManager::GetInstance().GetDeltaTime());
 
 				leftPaddle->Move();
 				rightPaddle->Move();

@@ -89,7 +89,7 @@ Object::~Object()
 //								Main func
 /*****************************************************************************/
 
-void Object::Update() {
+void Object::Update(float dt) {
 	printf("I'm updating\n");
 }
 

@@ -28,13 +28,31 @@ Ball::~Ball()
 //								Main func
 /*****************************************************************************/
 
-void Ball::Update()
+void Ball::Update(float dt)
 {
 	printf("Virtual override of Object update in Ball");
+	this->x += velX * dt;
+	this->y += velY * dt;
+
+	//If ball reaches screen width limits, point
+	if (x >= GraphicsManager::GetInstance().SCREEN_WIDTH) {
+		velX = -BALL_VEL;
+		//Destroy that ball and create a new one
+		//Score to left
+	}
+	else if (x - *circleCollider < 0) {
+		velX = BALL_VEL;
+		//Destroy that ball and create a new one
+		//Score to left
+	}
 }
 
 void Ball::OnCollisionEnter(Object* other)
 {
+	//if (collisionFrom == ColFrom::C_LEFT)	velX = BALL_VEL;
+	//if (collisionFrom == ColFrom::C_RIGHT)	velX = -BALL_VEL;
+	//if (collisionFrom == ColFrom::C_TOP)	velY = BALL_VEL;
+	//if (collisionFrom == ColFrom::C_BOTTOM) velY = -BALL_VEL;
 	//if (other->tag == "tag")
 	{
 		//Do something

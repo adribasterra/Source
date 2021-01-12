@@ -23,12 +23,12 @@ Scene::~Scene()
 //								Main function
 /*****************************************************************************/
 
-void Scene::Update()
+void Scene::Update(float dt)
 {
 	//Update of all Scene's objects
 	for (int i = 0; i < objects.size(); i++)
 	{
-		objects[i]->Update();
+		objects[i]->Update(dt);
 	}
 }
 
