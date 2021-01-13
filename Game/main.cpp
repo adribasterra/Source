@@ -18,13 +18,13 @@
 #include "TimeManager.h"
 
 //Global texture names
-std::string leftPaddleTexturePath = "./../../Media/dot.bmp" /*"./../../Media/leftPaddle100.png"*/;
-std::string rightPaddleTexturePath = "./../../Media/dot.bmp" /*"./../../Media/rightPaddle100.png"*/;
+std::string leftPaddleTexturePath = "./../../Media/leftPaddle125.png";
+std::string rightPaddleTexturePath = "./../../Media/rightPaddle125.png";
 std::string ballTexturePath = "./../../Media/dot.bmp";
 
 //Global colliders
 float ballColliderInit = 10;
-SDL_Rect paddleColliderInit = { 0, 0, 25, 100 };
+SDL_Rect paddleColliderInit = { 0, 0, 25, 125 };
 
 bool Init(){
 	//Init phase
@@ -93,8 +93,8 @@ int main( int argc, char* args[] )
 			LTexture* leftPaddleTexture = GraphicsManager::GetInstance().LoadTexture(leftPaddleTexturePath);
 			LTexture* rightPaddleTexture = GraphicsManager::GetInstance().LoadTexture(rightPaddleTexturePath);
 			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(&paddleColliderInit);
-			Paddle* leftPaddle = new Paddle(20, 20, 20, 20, 0, leftPaddleTexture, paddleCollider);		//Left paddle
-			Paddle* rightPaddle = new Paddle(400, 20, 20, 20, 0, rightPaddleTexture, paddleCollider);	//Right paddle
+			Paddle* leftPaddle = new Paddle(20, 25, 25, 125, 0, leftPaddleTexture, paddleCollider);		//Left paddle
+			Paddle* rightPaddle = new Paddle(400, 20, 25, 125, 0, rightPaddleTexture, paddleCollider);	//Right paddle
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
 
@@ -106,7 +106,6 @@ int main( int argc, char* args[] )
 			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(&ballColliderInit);
 			Ball* ball = new Ball(100, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
 			scene->AddObject(ball);
-			printf("%s", ball->GetTag());
 
 			/* ----------------------- */
 

@@ -11,6 +11,7 @@ class Ball : public Object {
 private:
 
 	int velX, velY;	// Velocity
+	void ResetPosition();
 
 public:
 

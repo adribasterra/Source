@@ -102,36 +102,37 @@ bool PhysicsManager::MixCollisions(Object* obj1, Object* obj2)
     float pointX, pointY;
 
     //Find closest X offset
-    if (obj1->GetX() < obj2->GetX())
+    if (obj1->GetX() + obj1->GetWidth() / 2 < obj2->GetX())
     {
-        pointX = obj2->GetCollider()->x;
+        pointX = obj2->GetX();
     }
-    else if (obj1->GetX() > obj2->GetX() + obj2->GetCollider()->w)
+    else if (obj1->GetX() + obj1->GetWidth() / 2 > obj2->GetX() + obj2->GetCollider()->w)
     {
         pointX = obj2->GetX() + obj2->GetCollider()->w;
     }
     else
     {
-        pointX = obj1->GetX();
+        pointX = obj1->GetX() + obj1->GetWidth() / 2;
     }
 
     //Find closest Y offset
-    if (obj1->GetY() < obj2->GetY())
+    if (obj1->GetY() + obj1->GetHeight() / 2 < obj2->GetY())
     {
         pointY = obj2->GetY();
     }
-    else if (obj1->GetY() > obj2->GetY() + obj2->GetCollider()->h)
+    else if (obj1->GetY() + obj1->GetHeight() / 2 > obj2->GetY() + obj2->GetCollider()->h)
     {
         pointY = obj2->GetY() + obj2->GetCollider()->h;
     }
     else
     {
-        pointY = obj1->GetY();
+        pointY = obj1->GetY() + obj1->GetHeight() / 2;
     }
 
     //If the closest point is inside the circle
-    double radius = (double)*(obj1->GetRadius()) * *(obj1->GetRadius());
-    if (DistanceSquared(obj1->GetX(), obj1->GetY(), pointX, pointY) < radius)
+    //double radius = (double)*(obj1->GetRadius()) * *(obj1->GetRadius());
+    double radius = (double)*(obj1->GetRadius());
+    if (DistanceSquared(obj1->GetX()+obj1->GetWidth()/2, obj1->GetY()+obj1->GetHeight()/2, pointX, pointY) <= radius)
     {
         return true;    //This box and the circle have collided
     }
@@ -144,7 +145,7 @@ double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
     double deltaX = (double)x2 - x1;
     double deltaY = (double)y2 - y1;
     double distance = deltaX * deltaX + deltaY * deltaY;
-    return distance;
+    return sqrt(distance);
 }
 
 #pragma endregion
