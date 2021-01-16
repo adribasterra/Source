@@ -26,9 +26,9 @@ public:
 	//Deallocate memory
 	~Paddle();
 
-	void Update();
+	void Update(float);
 	void SetControls(SDL_Scancode, SDL_Scancode);
 	void HandleEvent(SDL_Event&);
 
-	void Move();
+	//void Move();
 };

@@ -92,7 +92,7 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			Music backgroundSound = Music();
+			/*Music backgroundSound = Music();
 			backgroundSound.LoadFromFile("./../../Media/Sound/explosion.mp3");
 			backgroundSound.Play();
 
@@ -145,8 +145,8 @@ int main( int argc, char* args[] )
 				scene->Update(TimeManager::GetInstance().GetDeltaTime()/1000);
 
 				//Move objects
-				leftPaddle->Move();
-				rightPaddle->Move();
+				//leftPaddle->Move();
+				//rightPaddle->Move();
 
 				//Check collisions
 				PhysicsManager::GetInstance().CheckCollisions();
