@@ -29,7 +29,7 @@ private:
 	//The window renderer
 	SDL_Renderer* mRenderer;
 
-	std::vector<LTexture*> textures;	//Guardar vector de punteros o devolver índices del vector
+	std::vector<LTexture*> textures;
 
 	// Private constructor to avoid more than one instance
 	GraphicsManager();

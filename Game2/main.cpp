@@ -1,4 +1,3 @@
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
@@ -6,10 +5,10 @@
 
 #include "Texture.h"
 #include "Scene.h"
-#include "Object.h"
-#include "Paddle.h"
-#include "Ball.h"
+//Extension headers
 #include "Music.h"
+//Include objects from game2
+// ...
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
@@ -18,19 +17,16 @@
 #include "TimeManager.h"
 
 /*
- * Pong game
+ * Shoot 'em up game
  */
 
 //Global texture names
-std::string leftPaddleTexturePath = "./../../Media/leftPaddle125.png";
-std::string rightPaddleTexturePath = "./../../Media/rightPaddle125.png";
-std::string ballTexturePath = "./../../Media/dot.bmp";
+
 
 //Global colliders
-float ballColliderInit = 10;
-SDL_Rect paddleColliderInit = { 0, 0, 25, 125 };
 
-bool Init(){
+
+bool Init() {
 	//Init phase
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
@@ -52,12 +48,12 @@ bool LoadTextures()
 	//PADDLES
 	bool success = true;
 	LTexture paddleTexture;
-	if (!paddleTexture.loadFromFile(leftPaddleTexturePath)) success = false;
+	if (!/*paddleTexture.loadFromFile(leftPaddleTexturePath)*/false) success = false;
 	//Add it to the graphicsManager
 
 	//BALL
 	LTexture ballTexture;
-	if (!ballTexture.loadFromFile(ballTexturePath)) success = false;
+	if (!/*ballTexture.loadFromFile(ballTexturePath)*/false) success = false;
 	//Add it to the graphicsManager
 
 	return success;
@@ -83,7 +79,7 @@ void Destroy() {
 //									MAIN
 /*****************************************************************************/
 
-int main( int argc, char* args[] )
+int main(int argc, char* args[])
 {
 	if (Init()) {
 		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
@@ -92,29 +88,11 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			Music backgroundSound = Music();
-			backgroundSound.LoadFromFile("./../../Media/Sound/explosion.mp3");
-			backgroundSound.Play();
-
-
 			/* OBJECT CONSTRUCTION AND CREATION */
-			
-			LTexture* leftPaddleTexture = GraphicsManager::GetInstance().LoadTexture(leftPaddleTexturePath);
-			LTexture* rightPaddleTexture = GraphicsManager::GetInstance().LoadTexture(rightPaddleTexturePath);
-			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(&paddleColliderInit);
-			Paddle* leftPaddle = new Paddle(20, 25, 25, 125, 0, leftPaddleTexture, paddleCollider);		//Left paddle
-			Paddle* rightPaddle = new Paddle(400, 20, 25, 125, 0, rightPaddleTexture, paddleCollider);	//Right paddle
-			scene->AddObject(leftPaddle);
-			scene->AddObject(rightPaddle);
 
-			//Set controls to paddles
-			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
-			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
-
-			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
-			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(&ballColliderInit);
-			Ball* ball = new Ball(100, 10, 20, 20, 0, ballTexture, ballCollider);					//Ball
-			scene->AddObject(ball);
+			//Create textures, colliders and objects
+			//Add objects to scene
+			// ...
 
 			/* -------------------------------- */
 
@@ -133,20 +111,17 @@ int main( int argc, char* args[] )
 					{
 						quit = true;
 					}
-					//Handle players' events
-					leftPaddle->HandleEvent(eventHandler);
-					rightPaddle->HandleEvent(eventHandler);
+					//Add event handler from player
+					// ...
 				}
 
 				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
 
-				//Update scene
-				scene->Update(TimeManager::GetInstance().GetDeltaTime()/1000);
+				scene->Update(TimeManager::GetInstance().GetDeltaTime() / 1000);
 
 				//Move objects
-				leftPaddle->Move();
-				rightPaddle->Move();
+				// ...
 
 				//Check collisions
 				PhysicsManager::GetInstance().CheckCollisions();
@@ -166,7 +141,7 @@ int main( int argc, char* args[] )
 			SceneManager::GetInstance().Delete(scene);
 		}
 	}
-	
+
 	Destroy();
 
 	return 0;
