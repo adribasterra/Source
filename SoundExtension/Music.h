@@ -17,7 +17,7 @@ public:
 	//Getters
 	std::string GetPath();
 
-	bool LoadFromFile(std::string);
+	Music* LoadFromFile(std::string);
 
 	void Play();
 	void Pause();

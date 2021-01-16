@@ -24,11 +24,11 @@ private:
 	std::vector<Music*> musics;
 	std::vector<Sound*> sounds;
 
-	std::string type;
-
 	// Private constructor to avoid more than one instance
 	AudioManager();
 	~AudioManager();
+
+	void AddAudio(std::string, int);
 
 	/*****************************************************************************/
 public:

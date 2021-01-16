@@ -15,7 +15,7 @@ public:
 
 	std::string GetPath();
 
-	bool LoadFromFile(std::string path);
+	Sound* LoadFromFile(std::string path);
 
 	void Play();
 

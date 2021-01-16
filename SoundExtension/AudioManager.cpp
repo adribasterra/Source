@@ -29,6 +29,20 @@ AudioManager::~AudioManager(void)
 //								Main functions
 /*****************************************************************************/
 
-
+void AudioManager::AddAudio(std::string path, int type)
+{
+    if (type == AudioTypes::music) {
+        //Load music
+        Music* music = new Music();
+        music = music->LoadFromFile(path);
+        musics.push_back(music);
+    }
+    else if(type == AudioTypes::sound) {
+        //Load sound
+        Sound* sound = new Sound();
+        sound = sound->LoadFromFile(path);
+        sounds.push_back(sound);
+    }
+}
 
 /*****************************************************************************/

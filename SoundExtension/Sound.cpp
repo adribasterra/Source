@@ -24,17 +24,16 @@ std::string Sound::GetPath()
 //							Main functions
 /*****************************************************************************/
 
-bool Sound::LoadFromFile(std::string path)
+Sound* Sound::LoadFromFile(std::string path)
 {
     //Load sound
     gSound = Mix_LoadWAV(path.c_str());
     if (gSound == NULL)
     {
         printf("Failed to load %s sound effect! SDL_mixer Error: %s\n", path.c_str(), Mix_GetError());
-        return false;
     }
     this->path = path;
-    return true;
+    return this;
 }
 
 void Sound::Play()
