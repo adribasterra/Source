@@ -1,3 +1,4 @@
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
@@ -5,26 +6,28 @@
 
 #include "Texture.h"
 #include "Scene.h"
-//Extension headers
-#include "Music.h"
-//Include objects from game2
-// ...
+#include "Object.h"
+#include "SpaceShip.h"
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 #include "TimeManager.h"
+#include "AudioManager.h"
 
 /*
- * Shoot 'em up game
+ * Shoot'em up game
  */
 
-//Global texture names
-
+ //Global texture names
+std::string spaceShipTexturePath = "./../../Media/dot.bmp";
 
 //Global colliders
+SDL_Rect spaceShipColliderInit = { 0, 0, 50, 50 };
 
+//Global audio sources
+std::string soundPath = "./../../Media/Sound/explosion.mp3";
 
 bool Init() {
 	//Init phase
@@ -33,6 +36,7 @@ bool Init() {
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
+	AudioManager::CreateSingleton();
 
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
@@ -45,15 +49,10 @@ bool Init() {
 
 bool LoadTextures()
 {
-	//PADDLES
+	//SPACESHIP
 	bool success = true;
 	LTexture paddleTexture;
-	if (!/*paddleTexture.loadFromFile(leftPaddleTexturePath)*/false) success = false;
-	//Add it to the graphicsManager
-
-	//BALL
-	LTexture ballTexture;
-	if (!/*ballTexture.loadFromFile(ballTexturePath)*/false) success = false;
+	if (!paddleTexture.loadFromFile(spaceShipTexturePath)) success = false;
 	//Add it to the graphicsManager
 
 	return success;
@@ -69,6 +68,7 @@ bool LoadColliders()
 void Destroy() {
 
 	//Destroy phase
+	AudioManager::DestroySingleton();
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
@@ -88,11 +88,16 @@ int main(int argc, char* args[])
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
+			AudioManager::GetInstance().AddAudio(soundPath, 1);
+			AudioManager::GetInstance().PlayAudio(soundPath);
+
 			/* OBJECT CONSTRUCTION AND CREATION */
 
-			//Create textures, colliders and objects
-			//Add objects to scene
-			// ...
+			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
+			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
+			SpaceShip* player = new SpaceShip(20, 25, 25, 125, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
+
+			scene->AddObject(player);
 
 			/* -------------------------------- */
 
@@ -111,17 +116,19 @@ int main(int argc, char* args[])
 					{
 						quit = true;
 					}
-					//Add event handler from player
-					// ...
+					//Handle players' events
+					player->HandleEvent(eventHandler);
 				}
 
 				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
 
+				//Update scene
 				scene->Update(TimeManager::GetInstance().GetDeltaTime() / 1000);
 
 				//Move objects
-				// ...
+				//leftPaddle->Move();
+				//rightPaddle->Move();
 
 				//Check collisions
 				PhysicsManager::GetInstance().CheckCollisions();

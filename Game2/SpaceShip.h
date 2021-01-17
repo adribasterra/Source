@@ -3,29 +3,28 @@
 #include "Object.h"
 #include "GraphicsManager.h"
 
-/*
- * Ball object class, extends Object
- */
-class Ball : public Object {
-
+class SpaceShip : public Object
+{
 private:
 
 	int velX, velY;	// Velocity
 	void ResetPosition();
+	void Shoot();
 
 public:
 
 	//Maximum axis velocity of the ball
-	static const int BALL_VEL = 1;
+	static const int SPACESHIP_VEL = 5;
 
 	//Constructors
-	Ball() {};
-	Ball(float, float, float, float, float, LTexture*, float*);
+	SpaceShip() {};
+	SpaceShip(float, float, float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
-	~Ball();
+	~SpaceShip();
 
 	void Update(float);
-
+	void HandleEvent(SDL_Event&);
 	void OnCollisionEnter(Object*);
 };
+
