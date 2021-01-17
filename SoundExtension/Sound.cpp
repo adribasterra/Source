@@ -31,6 +31,7 @@ Sound* Sound::LoadFromFile(std::string path)
     if (gSound == NULL)
     {
         printf("Failed to load %s sound effect! SDL_mixer Error: %s\n", path.c_str(), Mix_GetError());
+        return NULL;
     }
     this->path = path;
     return this;

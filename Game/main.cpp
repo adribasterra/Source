@@ -9,13 +9,13 @@
 #include "Object.h"
 #include "Paddle.h"
 #include "Ball.h"
-#include "Music.h"
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 #include "TimeManager.h"
+#include "AudioManager.h"
 
 /*
  * Pong game
@@ -30,6 +30,9 @@ std::string ballTexturePath = "./../../Media/dot.bmp";
 float ballColliderInit = 10;
 SDL_Rect paddleColliderInit = { 0, 0, 25, 125 };
 
+//Global audio sources
+std::string soundPath = "./../../Media/Sound/explosion.mp3";
+
 bool Init(){
 	//Init phase
 	TimeManager::CreateSingleton();
@@ -37,6 +40,7 @@ bool Init(){
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
+	AudioManager::CreateSingleton();
 
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
@@ -73,6 +77,7 @@ bool LoadColliders()
 void Destroy() {
 
 	//Destroy phase
+	AudioManager::DestroySingleton();
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
@@ -92,10 +97,8 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			/*Music backgroundSound = Music();
-			backgroundSound.LoadFromFile("./../../Media/Sound/explosion.mp3");
-			backgroundSound.Play();
-
+			AudioManager::GetInstance().AddAudio(soundPath, 1);
+			AudioManager::GetInstance().PlayAudio(soundPath);
 
 			/* OBJECT CONSTRUCTION AND CREATION */
 			

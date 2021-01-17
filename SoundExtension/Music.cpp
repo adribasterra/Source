@@ -31,6 +31,7 @@ Music* Music::LoadFromFile(std::string path)
     if (gMusic == NULL)
     {
         printf("Failed to load %s music! SDL_mixer Error: %s\n", path.c_str(), Mix_GetError());
+        return NULL;
     }
     this->path = path;
     return this;

@@ -15,11 +15,11 @@ public:
 
 	std::string GetPath();
 
-	Sound* LoadFromFile(std::string path);
-
-	void Play();
 
 private:
 	std::string path;
+
+	Sound* LoadFromFile(std::string path);
+	void Play();
 };
 

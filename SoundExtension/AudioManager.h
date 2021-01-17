@@ -1,7 +1,6 @@
 #pragma once
 #include "Singleton.h"
 #include "SDL.h"
-#include <Texture.h>
 #include <vector>
 #include "Music.h"
 #include "Sound.h"
@@ -28,15 +27,16 @@ private:
 	AudioManager();
 	~AudioManager();
 
-	void AddAudio(std::string, int);
-
 	/*****************************************************************************/
 public:
 
+	void AddAudio(std::string, int);
+	void PlayAudio(std::string);
+	void PauseMusic(std::string);
+	void StopMusic(std::string);
 };
 
 enum AudioTypes : int {		//Unscoped enum
-	none = 0,
-	music = 1,
-	sound = 2
+	music = 0,
+	sound = 1
 };
