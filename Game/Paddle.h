@@ -11,8 +11,7 @@ private:
 	int velX, velY;	// Velocity
 
 	//Controls
-	SDL_Scancode upKey;
-	SDL_Scancode downKey;
+	SDL_Scancode upKey, downKey;
 
 public:
 
