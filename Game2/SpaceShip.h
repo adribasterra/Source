@@ -1,7 +1,6 @@
 #pragma once
 #include <Texture.h>
 #include "Object.h"
-#include "GraphicsManager.h"
 
 class SpaceShip : public Object
 {

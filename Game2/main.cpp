@@ -14,7 +14,7 @@
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 #include "TimeManager.h"
-#include "AudioManager.h"
+//#include "AudioManager.h"
 
 /*
  * Shoot'em up game
@@ -36,7 +36,7 @@ bool Init() {
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
-	AudioManager::CreateSingleton();
+	//AudioManager::CreateSingleton();
 
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
@@ -68,7 +68,7 @@ bool LoadColliders()
 void Destroy() {
 
 	//Destroy phase
-	AudioManager::DestroySingleton();
+	//AudioManager::DestroySingleton();
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
@@ -88,8 +88,8 @@ int main(int argc, char* args[])
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			AudioManager::GetInstance().AddAudio(soundPath, 1);
-			AudioManager::GetInstance().PlayAudio(soundPath);
+			//AudioManager::GetInstance().AddAudio(soundPath, 1);
+			//AudioManager::GetInstance().PlayAudio(soundPath);
 
 			/* OBJECT CONSTRUCTION AND CREATION */
 
