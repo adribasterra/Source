@@ -5,6 +5,12 @@
 //							Constructors
 /*****************************************************************************/
 
+SpaceShip::SpaceShip()
+{
+	this->velX = 0;
+	this->velY = 0;
+}
+
 SpaceShip::SpaceShip(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
 {
 	//Inherited from Object

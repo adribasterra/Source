@@ -33,7 +33,7 @@ public:
 
 	virtual void Update(float dt);
 
-	virtual void HandleEvent(SDL_Event&);
+	virtual void HandleEvent(SDL_Event&) {};
 
 	virtual void OnCollisionEnter(Object* other) {};
 

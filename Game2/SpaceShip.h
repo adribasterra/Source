@@ -7,8 +7,8 @@ class SpaceShip : public Object
 private:
 
 	int velX, velY;	// Velocity
-	void ResetPosition();
-	void Shoot();
+	void ResetPosition() {};
+	void Shoot() {};
 
 public:
 
@@ -16,7 +16,7 @@ public:
 	static const int SPACESHIP_VEL = 5;
 
 	//Constructors
-	SpaceShip() {};
+	SpaceShip();
 	SpaceShip(float, float, float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
@@ -24,6 +24,6 @@ public:
 
 	void Update(float);
 	void HandleEvent(SDL_Event&);
-	void OnCollisionEnter(Object*);
+	void OnCollisionEnter(Object*) {};
 };
 
