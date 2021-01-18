@@ -39,7 +39,14 @@ void AudioManager::AddAudio(std::string path, int type)
             return;
         }
         music = music->LoadFromFile(path);
-        musics.push_back(music);
+        if (music == NULL)
+        {
+            printf("Music is null, not added to the vector");
+        }
+        else
+        {
+            musics.push_back(music);
+        }
     }
     else if(type == AudioTypes::sound) {
         //Load sound
@@ -49,7 +56,14 @@ void AudioManager::AddAudio(std::string path, int type)
             return;
         }
         sound = sound->LoadFromFile(path);
-        sounds.push_back(sound);
+        if (sound == NULL)
+        {
+            printf("Sound is null, not added to the vector");
+        }
+        else
+        {
+            sounds.push_back(sound);
+        }
     }
 }
 

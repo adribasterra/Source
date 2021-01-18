@@ -42,10 +42,10 @@ void SpaceShip::Update(float dt) {
 	velY = 0;
 
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_S)) {
-		velY -= SPACESHIP_VEL;
+		velY += SPACESHIP_VEL;
 	}
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_W)) {
-		velY += SPACESHIP_VEL;
+		velY -= SPACESHIP_VEL;
 	}
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_A)) {		// Commented as it does not need horizontal movement
 		velX -= SPACESHIP_VEL;

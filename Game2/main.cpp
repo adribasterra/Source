@@ -51,8 +51,8 @@ bool LoadTextures()
 {
 	//SPACESHIP
 	bool success = true;
-	LTexture paddleTexture;
-	if (!paddleTexture.loadFromFile(spaceShipTexturePath)) success = false;
+	LTexture SpaceShipTexture;
+	if (!SpaceShipTexture.loadFromFile(spaceShipTexturePath)) success = false;
 	//Add it to the graphicsManager
 
 	return success;
@@ -88,14 +88,14 @@ int main(int argc, char* args[])
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
-			AudioManager::GetInstance().AddAudio(soundPath, 1);
+			AudioManager::GetInstance().AddAudio(soundPath, AudioTypes::sound);
 			AudioManager::GetInstance().PlayAudio(soundPath);
 
 			/* OBJECT CONSTRUCTION AND CREATION */
 
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
-			SpaceShip* player = new SpaceShip(20, 25, 25, 125, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
+			SpaceShip* player = new SpaceShip(20, 25, 25, 25, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
 
 			scene->AddObject(player);
 
