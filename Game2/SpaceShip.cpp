@@ -1,7 +1,7 @@
 #include "SpaceShip.h"
 #include "GraphicsManager.h"
 #include "InputManager.h"
-
+#include "Bullet.h"
 //							Constructors
 /*****************************************************************************/
 
@@ -40,7 +40,7 @@ SpaceShip::~SpaceShip()
 void SpaceShip::Update(float dt) {
 	velX = 0;
 	velY = 0;
-
+	timmer += dt;
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_S)) {
 		velY += SPACESHIP_VEL;
 	}
@@ -53,7 +53,10 @@ void SpaceShip::Update(float dt) {
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_D)) {
 		velX += SPACESHIP_VEL;
 	}
-
+	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_SPACE) && timmer>timeBetweenShoots) {
+		Shoot();
+		timmer = 0.0;
+	}
 	//Move the paddle left or right
 	x += velX;
 
@@ -73,6 +76,19 @@ void SpaceShip::Update(float dt) {
 		//Move back
 		y -= velY;
 	}
+}
+void SpaceShip::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rect* col)
+{
+	bulletHeight = h;
+	bulletWidth = w;
+	bulletTexture = texture;
+	bulletCollider = col;
+}
+
+void SpaceShip::Shoot()
+{
+	Bullet* bullet = new Bullet(x+width/2, y+bulletHeight, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider);
+	SceneManager::GetInstance().GetCurrentScene()->AddObject(bullet);
 }
 
 void SpaceShip::HandleEvent(SDL_Event& e)

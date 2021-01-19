@@ -7,8 +7,14 @@ class SpaceShip : public Object
 private:
 
 	int velX, velY;	// Velocity
-	void ResetPosition() {};
-	void Shoot() {};
+	float timmer = 0.0;
+	float timeBetweenShoots = 1.0;
+	float bulletHeight;
+	float bulletWidth;
+	LTexture* bulletTexture;
+	SDL_Rect* bulletCollider;
+	void ResetPosition();
+	void Shoot();
 
 public:
 
@@ -22,6 +28,7 @@ public:
 	//Deallocate memory
 	~SpaceShip();
 
+	void setBulletAttributes(float,float,LTexture*,SDL_Rect*);
 	void Update(float);
 	void HandleEvent(SDL_Event&);
 	void OnCollisionEnter(Object*) {};

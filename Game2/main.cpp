@@ -96,7 +96,7 @@ int main(int argc, char* args[])
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
 			SpaceShip* player = new SpaceShip(20, 25, 25, 25, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
-
+			player->setBulletAttributes(10,10,spaceShipTexture,spaceShipCollider);
 			scene->AddObject(player);
 
 			/* -------------------------------- */
