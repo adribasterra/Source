@@ -17,7 +17,7 @@
 #include "AudioManager.h"
 
 /*
- * Shoot'em up game
+ * Shoot 'em up game
  */
 
  //Global texture names
@@ -27,7 +27,7 @@ std::string spaceShipTexturePath = "./../../Media/dot.bmp";
 SDL_Rect spaceShipColliderInit = { 0, 0, 50, 50 };
 
 //Global audio sources
-std::string soundPath = "./../../Media/Sound/explosion.mp3";
+std::string soundPath = "./../../Media/Sound/Explosion2.wav";
 
 bool Init() {
 	//Init phase

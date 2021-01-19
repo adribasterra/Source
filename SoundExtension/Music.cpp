@@ -10,7 +10,7 @@ Music::Music()
 
 Music::~Music()
 {
-    free(gMusic);
+    Mix_FreeMusic(gMusic);
 }
 
 //								Getters

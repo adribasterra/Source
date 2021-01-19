@@ -10,7 +10,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-    free(gSound);
+    Mix_FreeChunk(gSound);
 }
 
 //								Getters
