@@ -136,10 +136,12 @@ int main( int argc, char* args[] )
 				}
 
 				TimeManager::GetInstance().Update();
+				float dt = TimeManager::GetInstance().GetDeltaTime();
+				dt /= 1000;
 				InputManager::GetInstance().Update();
 
 				//Update scene
-				scene->Update(TimeManager::GetInstance().GetDeltaTime()/1000);
+				scene->Update(dt);
 
 				//Move objects
 				//leftPaddle->Move();
