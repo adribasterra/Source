@@ -2,8 +2,10 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
-
+#include "SDL_ttf.h"
+#include <stdio.h>
 #include <string>
+#include <cmath>
 
 /*
  * Texture wrapper class
@@ -58,4 +60,7 @@ private:
   //Image dimensions
   int mWidth;
   int mHeight;
+
+  //Globally used font
+  TTF_Font* gFont = NULL;
 };

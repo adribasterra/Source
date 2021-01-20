@@ -3,6 +3,7 @@
 #include "Singleton.h"
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 #include <Texture.h>
 #include <vector>
 #include "SceneManager.h"
@@ -45,7 +46,6 @@ public:
 	void Update(void);
 
 	SDL_Window* GetWindow(void) { return mWindow; }
-
 	SDL_Renderer* GetRenderer(void) { return mRenderer; }
 
 	void Render();

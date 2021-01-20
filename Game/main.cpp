@@ -55,12 +55,10 @@ bool LoadTextures()
 	bool success = true;
 	LTexture paddleTexture;
 	if (!paddleTexture.loadFromFile(leftPaddleTexturePath)) success = false;
-	//Add it to the graphicsManager
 
 	//BALL
 	LTexture ballTexture;
 	if (!ballTexture.loadFromFile(ballTexturePath)) success = false;
-	//Add it to the graphicsManager
 
 	return success;
 }
@@ -131,8 +129,9 @@ int main( int argc, char* args[] )
 						quit = true;
 					}
 					//Handle players' events
-					leftPaddle->HandleEvent(eventHandler);
-					rightPaddle->HandleEvent(eventHandler);
+					scene->HandleEvents(eventHandler);
+					//leftPaddle->HandleEvent(eventHandler);
+					//rightPaddle->HandleEvent(eventHandler);
 				}
 
 				TimeManager::GetInstance().Update();

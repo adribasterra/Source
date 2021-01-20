@@ -20,7 +20,7 @@ Scene::~Scene()
 	objects.clear();
 }
 
-//								Main function
+//								Main functions
 /*****************************************************************************/
 
 void Scene::Update(float dt)
@@ -29,6 +29,15 @@ void Scene::Update(float dt)
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Update(dt);
+	}
+}
+
+void Scene::HandleEvents(SDL_Event eventHandler)
+{
+	//Handle events of all Scene's objects
+	for (int i = 0; i < objects.size(); i++)
+	{
+		objects[i]->HandleEvent(eventHandler);
 	}
 }
 

@@ -1,4 +1,10 @@
 #include "GraphicsManager.h"
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <stdio.h>
+#include <string>
+#include <cmath>
 
 
 //								Constructors
@@ -27,6 +33,7 @@ GraphicsManager::~GraphicsManager(void)
     mRenderer = NULL;
 
     //Quit SDL subsystems
+    //TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }
@@ -80,6 +87,13 @@ bool GraphicsManager::Init(void)
                     printf("SDL_image could not initialize! SDL_image Error: %s\n", error);
                     success = false;
                 }
+
+                //Initialize SDL_ttf
+                //if (TTF_Init() == -1)
+                //{
+                //    printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+                //    success = false;
+                //}
             }
         }
     }

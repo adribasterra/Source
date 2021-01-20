@@ -1,7 +1,5 @@
 #include "Texture.h"
-
-#include <string>
-
+#include "SDL_ttf.h"
 #include "GraphicsManager.h"
 
 //								Constructors
@@ -16,6 +14,10 @@ LTexture::LTexture()
 
 LTexture::~LTexture()
 {
+    //Free global font
+    //TTF_CloseFont(gFont);
+    gFont = NULL;
+
     //Deallocate
     free();
 }
@@ -90,7 +92,7 @@ bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor
 
         //Get rid of old surface
         SDL_FreeSurface(textSurface);
-        }
+    }
     else
     {
         printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
