@@ -2,6 +2,7 @@
 #include <Texture.h>
 #include "Object.h"
 #include "GraphicsManager.h"
+#include "GameManager.h"
 
 /*
  * Ball object class, extends Object
@@ -11,6 +12,8 @@ class Ball : public Object {
 private:
 
 	int velX, velY;	// Velocity
+	std::string audioPath;
+	GameManager* gameManager;
 	void ResetPosition();
 
 public:
@@ -20,7 +23,7 @@ public:
 
 	//Constructors
 	Ball() {};
-	Ball(float, float, float, float, float, LTexture*, float*);
+	Ball(float, float, float, float, float, LTexture*, float*, std::string, GameManager*);
 
 	//Deallocate memory
 	~Ball();

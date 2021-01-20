@@ -44,15 +44,15 @@ void Spawner::Update(float dt) {
 		Enemy* enemy;
 		if (type<0.4)
 		{
-			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, 0);
+			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::normal);
 		}
 		else if (type < 0.8)
 		{
-			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, 1);
+			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::zigzag);
 		}
 		else
 		{
-			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, 2);
+			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::shooting);
 			
 		}
 		enemy->setBulletAttributes(bulletWidth,bulletHeight,bulletTexture,bulletCollider);

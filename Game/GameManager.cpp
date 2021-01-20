@@ -1,12 +1,14 @@
 #include "GameManager.h"
-
+#include "AudioManager.h"
 //							Constructors
 /*****************************************************************************/
 
-GameManager::GameManager()
+GameManager::GameManager(std::string left, std::string right)
 {
 	leftPlayerPoints = 0;
 	rightPlayerPoints = 0;
+	audioPathLeft = left;
+	audioPathRight = right;
 }
 
 GameManager::~GameManager()
@@ -20,10 +22,13 @@ GameManager::~GameManager()
 void GameManager::AddPointLeft()
 {
 	leftPlayerPoints++;
+	AudioManager::GetInstance().PlayAudio(audioPathLeft);
+
 }
 void GameManager::AddPointRight()
 {
 	rightPlayerPoints++;
+	AudioManager::GetInstance().PlayAudio(audioPathRight);
 }
 
 int GameManager::GetLeftPlayerPoints()

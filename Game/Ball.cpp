@@ -1,9 +1,9 @@
 #include "Ball.h"
-
+#include "AudioManager.h"
 //							Constructors
 /*****************************************************************************/
 
-Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius)
+Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius, std::string audioPath, GameManager* gameManager)
 {
 	//Inherited from Object
 	this->x = x;
@@ -15,7 +15,8 @@ Ball::Ball(float x, float y, float width, float height, float rotation, LTexture
 	this->circleCollider = radius;
 	this->tag = "Ball";
 	colliderType = colliderTypes::circle;
-	
+	this->audioPath = audioPath;
+	this->gameManager = gameManager;
 	//Own
 	velX = BALL_VEL;
 	velY = BALL_VEL;
@@ -39,12 +40,14 @@ void Ball::Update(float dt)
 	if (x+width>= GraphicsManager::GetInstance().SCREEN_WIDTH) {
 		ResetPosition();
 		//Destroy that ball and create a new one
-		//Score to left
+		//Score to right
+		gameManager->AddPointRight();
 	}
 	else if (x <= 0) {
 		ResetPosition();
 		//Destroy that ball and create a new one
 		//Score to left
+		gameManager->AddPointLeft();
 	}
 	if (y + height >= GraphicsManager::GetInstance().SCREEN_HEIGHT)
 	{
@@ -62,6 +65,7 @@ void Ball::OnCollisionEnter(Object* other)
 	if (other->GetTag() == "Paddle")
 	{
 		velX *= -1;
+		AudioManager::GetInstance().PlayAudio(audioPath);
 	}
 	//if (collisionFrom == ColFrom::C_LEFT)	velX = BALL_VEL;
 	//if (collisionFrom == ColFrom::C_RIGHT)	velX = -BALL_VEL;

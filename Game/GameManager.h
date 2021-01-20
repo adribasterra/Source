@@ -13,13 +13,14 @@ private:
 
 	int leftPlayerPoints;
 	int rightPlayerPoints;
-
+	std::string audioPathLeft;
+	std::string audioPathRight;
 	//LTexture gTextTexture;
 
 public:
 
 	//Constructors
-	GameManager();
+	GameManager(std::string, std::string);
 	~GameManager();
 	
 	void AddPointLeft();

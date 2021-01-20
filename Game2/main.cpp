@@ -93,7 +93,7 @@ void Destroy() {
 int main(int argc, char* args[])
 {
 	if (Init()) {
-		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
+		if (LoadTextures() && LoadColliders()) {	//Once Managers can load stuff
 
 			srand((unsigned)time(NULL));
 			//Create scene and set it as current
