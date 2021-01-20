@@ -7,6 +7,7 @@ class Enemy : public Object
 private:
 
 	int velX, velY;	// Velocity
+	int type;
 	void ResetPosition() {};
 
 public:
@@ -16,7 +17,7 @@ public:
 
 	//Constructors
 	Enemy();
-	Enemy(float, float, float, float, float, LTexture*, SDL_Rect*);
+	Enemy(float, float, float, float, float, LTexture*, SDL_Rect*,int);
 
 	//Deallocate memory
 	~Enemy();
@@ -25,3 +26,8 @@ public:
 	void OnCollisionEnter(Object*) {};
 };
 
+enum enemyType : int {	//Unscoped enum
+	normal = 0,
+	zigzag = 1,
+	shooting = 2
+};

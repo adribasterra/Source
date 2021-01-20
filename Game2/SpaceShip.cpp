@@ -88,7 +88,7 @@ void SpaceShip::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rec
 
 void SpaceShip::Shoot()
 {
-	Bullet* bullet = new Bullet(x+width/2, y+bulletHeight, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider);
+	Bullet* bullet = new Bullet(x+width/2-bulletWidth/2, y, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider);
 	SceneManager::GetInstance().GetCurrentScene()->AddObject(bullet);
 }
 

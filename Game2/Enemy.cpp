@@ -10,7 +10,7 @@ Enemy::Enemy()
 	this->velY = 0;
 }
 
-Enemy::Enemy(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
+Enemy::Enemy(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle, int type)
 {
 	//Inherited from Object
 	this->x = x;
@@ -22,6 +22,7 @@ Enemy::Enemy(float x, float y, float width, float height, float rotation, LTextu
 	this->collider = rectangle;
 	this->tag = "Bullet";
 	colliderType = colliderTypes::rect;
+	this->type = type;
 
 }
 
@@ -35,7 +36,11 @@ Enemy::~Enemy()
 
 void Enemy::Update(float dt) {
 	//Move the paddle up or down
-	y += ENEMY_VEL;
+	if (type == enemyType::normal)
+	{
+		y += ENEMY_VEL;
+	}
+
 	if (y + texture->getHeight() > GraphicsManager::SCREEN_HEIGHT)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);

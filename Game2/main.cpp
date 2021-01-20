@@ -24,6 +24,7 @@
 std::string spaceShipTexturePath = "./../../Media/spaceship.png";
 std::string bulletTexturePath = "./../../Media/shot.png";
 std::string enemyTexturePath = "./../../Media/enemy.png";
+std::string bckTexturePath = "./../../Media/backgroundShootemUp.png";
 //Global colliders
 SDL_Rect spaceShipColliderInit = { 0, 0, 50, 50 };
 
@@ -60,6 +61,9 @@ bool LoadTextures()
 
 	LTexture BulletTexture;
 	if (!BulletTexture.loadFromFile(bulletTexturePath)) success = false;
+
+	LTexture BckTexture;
+	if (!BckTexture.loadFromFile(bckTexturePath)) success = false;
 	//Add it to the graphicsManager
 
 	return success;
@@ -133,8 +137,12 @@ int main(int argc, char* args[])
 				TimeManager::GetInstance().Update();
 				InputManager::GetInstance().Update();
 
+				//Calculate delta time in seconds
+				float dt = TimeManager::GetInstance().GetDeltaTime();
+				dt /= 1000;
+
 				//Update scene
-				scene->Update(TimeManager::GetInstance().GetDeltaTime() / 1000);
+				scene->Update(dt);
 
 				//Move objects
 				//leftPaddle->Move();
@@ -144,8 +152,15 @@ int main(int argc, char* args[])
 				PhysicsManager::GetInstance().CheckCollisions();
 
 				//Clear screen
-				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_Texture* texture = IMG_LoadTexture(GraphicsManager::GetInstance().GetRenderer(), bckTexturePath.c_str());
+				SDL_Rect texture_rect;
+				texture_rect.x = 0;
+				texture_rect.y = 0;
+				texture_rect.w = GraphicsManager::SCREEN_WIDTH;
+				texture_rect.h = GraphicsManager::SCREEN_HEIGHT;
+
 				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
+				SDL_RenderCopy(GraphicsManager::GetInstance().GetRenderer(), texture, NULL, &texture_rect);
 
 				//Render objects
 				GraphicsManager::GetInstance().Render();
