@@ -1,8 +1,19 @@
 #include "TimeManager.h"
 
+//								Constructors
+/*****************************************************************************/
+
 TimeManager::TimeManager()
 {
+	time = 0;
+	lastTimeRendered = 0;
+	currentTime = 0;
+	deltaTime = 0;
+
 	gameOver = false;
+
+	numFrames = 0;
+	avgFPS = 0;
 }
 
 //								Main function
@@ -36,9 +47,9 @@ int TimeManager::GetDeltaTime()
 	return deltaTime;
 }
 
-void TimeManager::GameOver()
+void TimeManager::SetGameOver(bool gameOver)
 {
-	this->gameOver = true;
+	this->gameOver = gameOver;
 }
 
 /*****************************************************************************/

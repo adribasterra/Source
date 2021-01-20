@@ -36,6 +36,6 @@ public:
 
 	int GetDeltaTime();
 
-	void GameOver();
+	void SetGameOver(bool);
 
 };
