@@ -10,7 +10,7 @@ Bullet::Bullet()
 	this->velY = 0;
 }
 
-Bullet::Bullet(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
+Bullet::Bullet(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle, int direction)
 {
 	//Inherited from Object
 	this->x = x;
@@ -22,7 +22,14 @@ Bullet::Bullet(float x, float y, float width, float height, float rotation, LTex
 	this->collider = rectangle;
 	this->tag = "Bullet";
 	colliderType = colliderTypes::rect;
-
+	if (direction > 0)
+	{
+		velY = BULLET_VEL;
+	}
+	else
+	{
+		velY = -BULLET_VEL;
+	}
 }
 
 Bullet::~Bullet()
@@ -35,8 +42,8 @@ Bullet::~Bullet()
 
 void Bullet::Update(float dt) {
 	//Move the paddle up or down
-	y -= BULLET_VEL;
-	if (y+height < 0 || y + this->texture->getHeight() > GraphicsManager::SCREEN_HEIGHT)
+	y -= velY;
+	if (y+height < 0 || y + height > GraphicsManager::SCREEN_HEIGHT)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
 	}

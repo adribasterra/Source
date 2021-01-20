@@ -62,7 +62,7 @@ void SpaceShip::Update(float dt) {
 	x += velX;
 
 	//If the paddle went too far to the left or right
-	if ((x < 0) || (x + this->texture->getWidth() > GraphicsManager::SCREEN_WIDTH))
+	if ((x+width/2 < 0) || (x + width/2 > GraphicsManager::SCREEN_WIDTH))
 	{
 		//Move back
 		x -= velX;
@@ -70,9 +70,8 @@ void SpaceShip::Update(float dt) {
 
 	//Move the paddle up or down
 	y += velY;
-
 	//If the paddle went too far up or down
-	if ((y < 0) || (y + this->texture->getHeight() > GraphicsManager::SCREEN_HEIGHT))
+	if ((y < 0) || (y + height > GraphicsManager::SCREEN_HEIGHT))
 	{
 		//Move back
 		y -= velY;
@@ -88,7 +87,7 @@ void SpaceShip::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rec
 
 void SpaceShip::Shoot()
 {
-	Bullet* bullet = new Bullet(x+width/2-bulletWidth/2, y, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider);
+	Bullet* bullet = new Bullet(x+width/2-bulletWidth/2, y, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider,1);
 	SceneManager::GetInstance().GetCurrentScene()->AddObject(bullet);
 }
 

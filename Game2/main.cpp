@@ -3,11 +3,13 @@
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include <time.h>
 
 #include "Texture.h"
 #include "Scene.h"
 #include "Object.h"
 #include "SpaceShip.h"
+#include "Spawner.h"
 
 #include "GraphicsManager.h"
 #include "InputManager.h"
@@ -26,8 +28,9 @@ std::string bulletTexturePath = "./../../Media/shot.png";
 std::string enemyTexturePath = "./../../Media/enemy.png";
 std::string bckTexturePath = "./../../Media/backgroundShootemUp.png";
 //Global colliders
-SDL_Rect spaceShipColliderInit = { 0, 0, 50, 50 };
-
+SDL_Rect spaceShipColliderInit = { 0, 0, 100, 100 };
+SDL_Rect enemyColliderInit = { 0, 0, 63, 68 };
+SDL_Rect bulletColliderInit = { 0, 0, 30, 30 };
 //Global audio sources
 std::string soundPath = "./../../Media/Sound/Explosion2.wav";
 
@@ -95,6 +98,7 @@ int main(int argc, char* args[])
 	if (Init()) {
 		if (LoadTextures && LoadColliders) {	//Once Managers can load stuff
 
+			srand((unsigned)time(NULL));
 			//Create scene and set it as current
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
@@ -106,13 +110,20 @@ int main(int argc, char* args[])
 
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
-			SpaceShip* player = new SpaceShip(20, 25, 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
+			SpaceShip* player = new SpaceShip(GraphicsManager::SCREEN_WIDTH/2-50, GraphicsManager::SCREEN_HEIGHT - 100 , 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
 
 			LTexture* bulletTexture = GraphicsManager::GetInstance().LoadTexture(bulletTexturePath);
+			SDL_Rect* bulletCollider = PhysicsManager::GetInstance().LoadCollider(&bulletColliderInit);
 
-			player->setBulletAttributes(30,30,bulletTexture,spaceShipCollider);
+			player->setBulletAttributes(30,30,bulletTexture,bulletCollider);
 			scene->AddObject(player);
 
+			LTexture* enemyTexture = GraphicsManager::GetInstance().LoadTexture(enemyTexturePath);
+			SDL_Rect* enemyCollider = PhysicsManager::GetInstance().LoadCollider(&enemyColliderInit);
+			Spawner* enemySpawner = new Spawner(63, 68, 1.5, enemyTexture, enemyCollider);
+			enemySpawner->setBulletAttributes(30, 30, bulletTexture, bulletCollider);
+
+			scene->AddObject(enemySpawner);
 			/* -------------------------------- */
 
 			bool quit = false;

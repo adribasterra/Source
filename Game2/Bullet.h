@@ -16,7 +16,7 @@ public:
 
 	//Constructors
 	Bullet();
-	Bullet(float, float, float, float, float, LTexture*, SDL_Rect*);
+	Bullet(float, float, float, float, float, LTexture*, SDL_Rect*, int);
 
 	//Deallocate memory
 	~Bullet();

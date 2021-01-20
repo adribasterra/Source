@@ -18,7 +18,10 @@ void PhysicsManager::CheckCollisions()
 
             if (CategorizeCollisions(obj, obj2)) {
                 obj->OnCollisionEnter(obj2);
-                obj2->OnCollisionEnter(obj);
+                if (SceneManager::GetInstance().GetCurrentScene()->GetObject(j) != NULL)
+                {
+                    obj2->OnCollisionEnter(obj);
+                }
             }
         }
     }
