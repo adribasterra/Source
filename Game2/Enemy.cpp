@@ -50,12 +50,12 @@ void Enemy::Update(float dt) {
 	//Move the paddle up or down
 	if (type == enemyType::normal)
 	{
-		y += ENEMY_VEL;
+		y += ENEMY_VEL * dt;
 	}
 	else if (type == enemyType::zigzag)
 	{
-		y += ENEMY_VEL;
-		x += velX;
+		y += ENEMY_VEL *dt;
+		x += velX * dt;
 		if (x + width > GraphicsManager::SCREEN_WIDTH || x < 0)
 		{
 			velX *= -1;
@@ -65,7 +65,7 @@ void Enemy::Update(float dt) {
 	{
 		if (y < 0)
 		{
-			y += ENEMY_VEL;
+			y += ENEMY_VEL * dt;
 		}
 		timmer += dt;
 		if (timmer > timeBetweenShoots)
@@ -93,7 +93,7 @@ void Enemy::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rect* c
 
 void Enemy::OnCollisionEnter(Object* other)
 {
-	if (other->GetTag() == "Bullet")
+	if (other->GetTag() == "Bullet" && ((Bullet*)other)->getVelY() > 0)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(other);
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);

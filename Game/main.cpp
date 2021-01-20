@@ -21,9 +21,10 @@
  */
 
 //Global texture names
-std::string leftPaddleTexturePath = "./../../Media/leftPaddle125.png";
-std::string rightPaddleTexturePath = "./../../Media/rightPaddle125.png";
-std::string ballTexturePath = "./../../Media/dot.bmp";
+std::string leftPaddleTexturePath = "./../../Media/leftPaddle-black.png";
+std::string rightPaddleTexturePath = "./../../Media/rightPaddle-black.png";
+std::string ballTexturePath = "./../../Media/dot.png";
+std::string bckTexturePath = "./../../Media/backgroundPong.jpg";
 
 //Global colliders
 float ballColliderInit = 10;
@@ -57,6 +58,10 @@ bool LoadTextures()
 	//BALL
 	LTexture ballTexture;
 	if (!ballTexture.loadFromFile(ballTexturePath)) success = false;
+
+	//BACKGROUND
+	LTexture bckTexture;
+	if (!bckTexture.loadFromFile(bckTexturePath)) success = false;
 
 	return success;
 }
@@ -95,8 +100,8 @@ int main( int argc, char* args[] )
 			LTexture* leftPaddleTexture = GraphicsManager::GetInstance().LoadTexture(leftPaddleTexturePath);
 			LTexture* rightPaddleTexture = GraphicsManager::GetInstance().LoadTexture(rightPaddleTexturePath);
 			SDL_Rect* paddleCollider = PhysicsManager::GetInstance().LoadCollider(&paddleColliderInit);
-			Paddle* leftPaddle = new Paddle(20, 25, 25, 125, 0, leftPaddleTexture, paddleCollider);		//Left paddle
-			Paddle* rightPaddle = new Paddle(400, 20, 25, 125, 0, rightPaddleTexture, paddleCollider);	//Right paddle
+			Paddle* leftPaddle = new Paddle(20, GraphicsManager::SCREEN_HEIGHT / 2 - 125 / 2, 25, 125, 0, leftPaddleTexture, paddleCollider);		//Left paddle
+			Paddle* rightPaddle = new Paddle(GraphicsManager::SCREEN_WIDTH - 45, GraphicsManager::SCREEN_HEIGHT / 2 - 125 / 2, 25, 125, 0, rightPaddleTexture, paddleCollider);	//Right paddle
 			scene->AddObject(leftPaddle);
 			scene->AddObject(rightPaddle);
 
@@ -150,9 +155,17 @@ int main( int argc, char* args[] )
 				PhysicsManager::GetInstance().CheckCollisions();
 
 				//Clear screen
-				SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
+				SDL_Texture* texture = IMG_LoadTexture(GraphicsManager::GetInstance().GetRenderer(), bckTexturePath.c_str());
+				SDL_Rect texture_rect;
+				texture_rect.x = 0;
+				texture_rect.y = 0;
+				texture_rect.w = GraphicsManager::SCREEN_WIDTH;
+				texture_rect.h = GraphicsManager::SCREEN_HEIGHT;
 
+				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());
+				SDL_RenderCopy(GraphicsManager::GetInstance().GetRenderer(), texture, NULL, &texture_rect);
+				/*SDL_SetRenderDrawColor(GraphicsManager::GetInstance().GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_RenderClear(GraphicsManager::GetInstance().GetRenderer());*/
 				//Render objects
 				GraphicsManager::GetInstance().Render();
 

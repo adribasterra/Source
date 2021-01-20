@@ -6,13 +6,13 @@ class Bullet : public Object
 {
 private:
 
-	int velX, velY;	// Velocity
+	float velX, velY;	// Velocity
 	void ResetPosition() {};
 
 public:
 
 	//Maximum axis velocity of the ball
-	static const int BULLET_VEL = 10;
+	static const int BULLET_VEL = 400;
 
 	//Constructors
 	Bullet();
@@ -21,6 +21,7 @@ public:
 	//Deallocate memory
 	~Bullet();
 
+	float getVelY();
 	void Update(float);
 	void OnCollisionEnter(Object*) {};
 };

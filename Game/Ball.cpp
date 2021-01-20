@@ -32,8 +32,8 @@ Ball::~Ball()
 
 void Ball::Update(float dt)
 {
-	x += velX;
-	y += velY;
+	x += velX * dt;
+	y += velY * dt;
 
 	//If ball reaches screen width limits, point
 	if (x+width>= GraphicsManager::GetInstance().SCREEN_WIDTH) {

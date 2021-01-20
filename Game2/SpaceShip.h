@@ -8,6 +8,7 @@ private:
 
 	int velX, velY;	// Velocity
 	float timmer = 0.0;
+	int life;
 	float timeBetweenShoots = 1.0;
 	float bulletHeight;
 	float bulletWidth;
@@ -19,7 +20,7 @@ private:
 public:
 
 	//Maximum axis velocity of the ball
-	static const int SPACESHIP_VEL = 5;
+	static const int SPACESHIP_VEL = 200;
 
 	//Constructors
 	SpaceShip();
@@ -31,6 +32,6 @@ public:
 	void setBulletAttributes(float,float,LTexture*,SDL_Rect*);
 	void Update(float);
 	void HandleEvent(SDL_Event&);
-	void OnCollisionEnter(Object*) {};
+	void OnCollisionEnter(Object*);
 };
 

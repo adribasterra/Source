@@ -1,5 +1,6 @@
 #include "SpaceShip.h"
 #include "GraphicsManager.h"
+#include "TimeManager.h"
 #include "InputManager.h"
 #include "Bullet.h"
 //							Constructors
@@ -27,6 +28,7 @@ SpaceShip::SpaceShip(float x, float y, float width, float height, float rotation
 	//Own
 	velX = 0;
 	velY = 0;
+	life = 3;
 }
 
 SpaceShip::~SpaceShip()
@@ -59,22 +61,30 @@ void SpaceShip::Update(float dt) {
 
 	}
 	//Move the paddle left or right
-	x += velX;
+	x += velX * dt;
 
 	//If the paddle went too far to the left or right
-	if ((x+width/2 < 0) || (x + width/2 > GraphicsManager::SCREEN_WIDTH))
+	if (x+width/2 < 0)
 	{
 		//Move back
-		x -= velX;
+		x += SPACESHIP_VEL * dt;
+	}
+	else if(x + width / 2 > GraphicsManager::SCREEN_WIDTH)
+	{
+		x -= SPACESHIP_VEL * dt;
 	}
 
 	//Move the paddle up or down
-	y += velY;
+	y += velY * dt;
 	//If the paddle went too far up or down
-	if ((y < 0) || (y + height > GraphicsManager::SCREEN_HEIGHT))
+	if (y < 0)
 	{
 		//Move back
-		y -= velY;
+		y += SPACESHIP_VEL * dt;
+	}
+	else if (y + height > GraphicsManager::SCREEN_HEIGHT)
+	{
+		y -= SPACESHIP_VEL * dt;
 	}
 }
 void SpaceShip::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rect* col)
@@ -99,10 +109,10 @@ void SpaceShip::HandleEvent(SDL_Event& e)
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
-		case SDLK_UP: velY -= SPACESHIP_VEL; break;
-		case SDLK_DOWN: velY += SPACESHIP_VEL; break;
-		case SDLK_LEFT: velX -= SPACESHIP_VEL; break;
-		case SDLK_RIGHT: velX += SPACESHIP_VEL; break;
+			case SDLK_UP: velY -= SPACESHIP_VEL; break;
+			case SDLK_DOWN: velY += SPACESHIP_VEL; break;
+			case SDLK_LEFT: velX -= SPACESHIP_VEL; break;
+			case SDLK_RIGHT: velX += SPACESHIP_VEL; break;
 		}
 	}
 	//If a key was released
@@ -111,10 +121,24 @@ void SpaceShip::HandleEvent(SDL_Event& e)
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
-		case SDLK_UP: velY += SPACESHIP_VEL; break;
-		case SDLK_DOWN: velY -= SPACESHIP_VEL; break;
-		case SDLK_LEFT: velX += SPACESHIP_VEL; break;
-		case SDLK_RIGHT: velX -= SPACESHIP_VEL; break;
+			case SDLK_UP: velY += SPACESHIP_VEL; break;
+			case SDLK_DOWN: velY -= SPACESHIP_VEL; break;
+			case SDLK_LEFT: velX += SPACESHIP_VEL; break;
+			case SDLK_RIGHT: velX -= SPACESHIP_VEL; break;
+		}
+	}
+}
+
+void SpaceShip::OnCollisionEnter(Object* other)
+{
+	if (other->GetTag() == "Enemy" || (other->GetTag() == "Bullet" && ((Bullet*)other)->getVelY() < 0))
+	{
+		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(other);
+		life--;
+		if (life <= 0)
+		{
+			SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
+			TimeManager::GetInstance().SetGameOver(true);
 		}
 	}
 }

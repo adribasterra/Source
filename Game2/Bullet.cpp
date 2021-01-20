@@ -42,7 +42,7 @@ Bullet::~Bullet()
 
 void Bullet::Update(float dt) {
 	//Move the paddle up or down
-	y -= velY;
+	y -= velY * dt;
 	if (y+height < 0 || y + height > GraphicsManager::SCREEN_HEIGHT)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
@@ -50,6 +50,10 @@ void Bullet::Update(float dt) {
 
 }
 
+float Bullet::getVelY()
+{
+	return velY;
+}
 
 
 

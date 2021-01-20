@@ -52,6 +52,17 @@ Object* Scene::GetObject(int index)
 	}
 	return NULL;
 }
+Object* Scene::GetObject(Object* obj)
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		if (objects[i] == obj)
+		{
+			return objects[i];
+		}
+	}
+	return NULL;
+}
 
 std::vector<Object*> Scene::GetObjectsInScene()
 {

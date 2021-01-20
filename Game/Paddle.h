@@ -16,7 +16,7 @@ private:
 public:
 
 	//Maximum axis velocity of the paddle
-	static const int PADDLE_VEL = 10;
+	static const int PADDLE_VEL = 200;
 	
 	//Constructors
 	Paddle() {};

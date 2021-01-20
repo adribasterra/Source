@@ -59,13 +59,17 @@ void Paddle::Update(float dt) {
 	}
 
 	//Move the paddle up or down
-	y += velY;
+	y += velY * dt;
 
 	//If the paddle went too far up or down
-	if ((y < 0) || (y + this->texture->getHeight() > GraphicsManager::SCREEN_HEIGHT))
+	if (y < 0)
 	{
 		//Move back
-		y -= velY;
+		y += PADDLE_VEL * dt;
+	}
+	else if (y + height > GraphicsManager::SCREEN_HEIGHT)
+	{
+		y -= PADDLE_VEL * dt;
 	}
 }
 

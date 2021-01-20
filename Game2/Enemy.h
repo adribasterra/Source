@@ -21,7 +21,7 @@ private:
 public:
 
 	//Maximum axis velocity of the ball
-	static const int ENEMY_VEL = 5;
+	static const int ENEMY_VEL = 150;
 
 	//Constructors
 	Enemy();
