@@ -30,7 +30,7 @@ private:
 	/*****************************************************************************/
 public:
 
-	void AddAudio(std::string, int);
+	bool AddAudio(std::string, int);
 	void PlayAudio(std::string);
 	void PauseMusic(std::string);
 	void StopMusic(std::string);

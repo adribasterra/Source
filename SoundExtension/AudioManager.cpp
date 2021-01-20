@@ -29,19 +29,21 @@ AudioManager::~AudioManager()
 //								Main functions
 /*****************************************************************************/
 
-void AudioManager::AddAudio(std::string path, int type)
+bool AudioManager::AddAudio(std::string path, int type)
 {
+    bool success = true;
     if (type == AudioTypes::music) {
         //Load music
         Music* music = new Music();
         if (music == NULL) {
             printf("Not able to load that audio source.");
-            return;
+            success = false;
         }
         music = music->LoadFromFile(path);
         if (music == NULL)
         {
             printf("Music is null, not added to the vector");
+            success = false;
         }
         else
         {
@@ -53,18 +55,20 @@ void AudioManager::AddAudio(std::string path, int type)
         Sound* sound = new Sound();
         if (sound == NULL) {
             printf("Not able to load that audio source.");
-            return;
+            success = false;
         }
         sound = sound->LoadFromFile(path);
         if (sound == NULL)
         {
             printf("Sound is null, not added to the vector");
+            success = false;
         }
         else
         {
             sounds.push_back(sound);
         }
     }
+    return success;
 }
 
 void AudioManager::PlayAudio(std::string path)
