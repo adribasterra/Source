@@ -31,6 +31,7 @@ std::string bckTexturePath = "./../../Media/backgroundPong.jpg";
 std::string ballSound = "./../../Media/Sound/low.wav";
 std::string leftPaddleSound = "./../../Media/Sound/high.wav";
 std::string rightPaddleSound = "./../../Media/Sound/scratch.wav";
+std::string backgroundMusic = "./../../Media/Sound/pongBckMusic.wav";
 //Global colliders
 float ballColliderInit = 10;
 SDL_Rect paddleColliderInit = { 0, 0, 25, 125 };
@@ -83,6 +84,8 @@ bool LoadAudios()
 	if (!AudioManager::GetInstance().AddAudio(rightPaddleSound, AudioTypes::sound)) success = false;
 
 	if (!AudioManager::GetInstance().AddAudio(leftPaddleSound, AudioTypes::sound)) success = false;
+	
+	if (!AudioManager::GetInstance().AddAudio(backgroundMusic, AudioTypes::music)) success = false;
 
 	return success;
 }
@@ -111,6 +114,7 @@ int main( int argc, char* args[] )
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
 
+			AudioManager::GetInstance().PlayAudio(backgroundMusic);
 
 			/* OBJECT CONSTRUCTION AND CREATION */
 			
