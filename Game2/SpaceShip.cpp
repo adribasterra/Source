@@ -56,6 +56,7 @@ void SpaceShip::Update(float dt) {
 	if (InputManager::GetInstance().GetKey(SDL_SCANCODE_SPACE) && timmer>timeBetweenShoots) {
 		Shoot();
 		timmer = 0.0;
+
 	}
 	//Move the paddle left or right
 	x += velX;

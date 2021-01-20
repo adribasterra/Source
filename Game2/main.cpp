@@ -21,8 +21,9 @@
  */
 
  //Global texture names
-std::string spaceShipTexturePath = "./../../Media/dot.bmp";
-
+std::string spaceShipTexturePath = "./../../Media/spaceship.png";
+std::string bulletTexturePath = "./../../Media/shot.png";
+std::string enemyTexturePath = "./../../Media/enemy.png";
 //Global colliders
 SDL_Rect spaceShipColliderInit = { 0, 0, 50, 50 };
 
@@ -53,6 +54,12 @@ bool LoadTextures()
 	bool success = true;
 	LTexture SpaceShipTexture;
 	if (!SpaceShipTexture.loadFromFile(spaceShipTexturePath)) success = false;
+
+	LTexture EnemyTexture;
+	if (!EnemyTexture.loadFromFile(enemyTexturePath)) success = false;
+
+	LTexture BulletTexture;
+	if (!BulletTexture.loadFromFile(bulletTexturePath)) success = false;
 	//Add it to the graphicsManager
 
 	return success;
@@ -95,8 +102,11 @@ int main(int argc, char* args[])
 
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
-			SpaceShip* player = new SpaceShip(20, 25, 25, 25, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
-			player->setBulletAttributes(10,10,spaceShipTexture,spaceShipCollider);
+			SpaceShip* player = new SpaceShip(20, 25, 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
+
+			LTexture* bulletTexture = GraphicsManager::GetInstance().LoadTexture(bulletTexturePath);
+
+			player->setBulletAttributes(30,30,bulletTexture,spaceShipCollider);
 			scene->AddObject(player);
 
 			/* -------------------------------- */

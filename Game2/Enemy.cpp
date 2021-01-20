@@ -1,16 +1,16 @@
+#include "Enemy.h"
 #include "GraphicsManager.h"
 #include "InputManager.h"
-#include "Bullet.h"
 //							Constructors
 /*****************************************************************************/
 
-Bullet::Bullet()
+Enemy::Enemy()
 {
 	this->velX = 0;
 	this->velY = 0;
 }
 
-Bullet::Bullet(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
+Enemy::Enemy(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle) : Object()
 {
 	//Inherited from Object
 	this->x = x;
@@ -25,7 +25,7 @@ Bullet::Bullet(float x, float y, float width, float height, float rotation, LTex
 
 }
 
-Bullet::~Bullet()
+Enemy::~Enemy()
 {
 	Object::~Object();
 }
@@ -33,10 +33,10 @@ Bullet::~Bullet()
 //								Main func
 /*****************************************************************************/
 
-void Bullet::Update(float dt) {
+void Enemy::Update(float dt) {
 	//Move the paddle up or down
-	y -= BULLET_VEL;
-	if (y+height < 0 || y + this->texture->getHeight() > GraphicsManager::SCREEN_HEIGHT)
+	y += ENEMY_VEL;
+	if (y + texture->getHeight() > GraphicsManager::SCREEN_HEIGHT)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
 	}
