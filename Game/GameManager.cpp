@@ -3,12 +3,10 @@
 //							Constructors
 /*****************************************************************************/
 
-GameManager::GameManager(std::string left, std::string right)
+GameManager::GameManager()
 {
 	leftPlayerPoints = 0;
 	rightPlayerPoints = 0;
-	audioPathLeft = left;
-	audioPathRight = right;
 }
 
 GameManager::~GameManager()
@@ -46,4 +44,10 @@ void GameManager::SetText(std::string text, SDL_Color textColor)
 	{
 		printf("Failed to render text texture!\n");
 	}
+}
+
+void GameManager::AddAudios(std::string left, std::string right)
+{
+	audioPathLeft = left;
+	audioPathRight = right;
 }

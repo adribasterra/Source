@@ -2,12 +2,17 @@
 #include "SDL_image.h"
 #include <string>
 #include <GraphicsManager.h>
+#include "Singleton.h"
 
 #pragma once
 /*
  * Game Manager class
  */
-class GameManager {
+class GameManager : public Singleton<GameManager>
+{
+	/*****************************************************************************/
+	friend class Singleton<GameManager>;
+	/*****************************************************************************/
 
 private:
 
@@ -20,11 +25,13 @@ private:
 public:
 
 	//Constructors
-	GameManager(std::string, std::string);
+	GameManager();
 	~GameManager();
 	
 	void AddPointLeft();
 	void AddPointRight();
+
+	void AddAudios(std::string, std::string);
 
 	int GetLeftPlayerPoints();
 	int GetRightPlayerPoints();

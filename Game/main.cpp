@@ -44,6 +44,7 @@ bool Init(){
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 	AudioManager::CreateSingleton();
+	GameManager::CreateSingleton();
 
 	//Initialize Managers
 	if (!GraphicsManager::GetInstance().Init())
@@ -89,6 +90,7 @@ bool LoadAudios()
 void Destroy() {
 
 	//Destroy phase
+	GameManager::DestroySingleton();
 	AudioManager::DestroySingleton();
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
@@ -125,12 +127,12 @@ int main( int argc, char* args[] )
 			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
 			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
 
-			GameManager* gameManager = new GameManager(leftPaddleSound, rightPaddleSound);
+			GameManager::GetInstance().AddAudios(leftPaddleSound, rightPaddleSound);
 
 
 			LTexture* ballTexture = GraphicsManager::GetInstance().LoadTexture(ballTexturePath);
 			float* ballCollider = PhysicsManager::GetInstance().LoadCollider(&ballColliderInit);
-			Ball* ball = new Ball(100, 10, 20, 20, 0, ballTexture, ballCollider, ballSound, gameManager);					//Ball
+			Ball* ball = new Ball(100, 10, 20, 20, 0, ballTexture, ballCollider, ballSound);					//Ball
 			scene->AddObject(ball);
 
 			/* -------------------------------- */

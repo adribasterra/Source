@@ -14,10 +14,6 @@ class AudioManager : public Singleton<AudioManager>
 	friend class Singleton<AudioManager>;
 	/*****************************************************************************/
 
-public:
-
-
-	/*****************************************************************************/
 private:
 	
 	std::vector<Music*> musics;

@@ -3,7 +3,7 @@
 //							Constructors
 /*****************************************************************************/
 
-Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius, std::string audioPath, GameManager* gameManager)
+Ball::Ball(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius, std::string audioPath)
 {
 	//Inherited from Object
 	this->x = x;
@@ -16,7 +16,6 @@ Ball::Ball(float x, float y, float width, float height, float rotation, LTexture
 	this->tag = "Ball";
 	colliderType = colliderTypes::circle;
 	this->audioPath = audioPath;
-	this->gameManager = gameManager;
 	//Own
 	velX = BALL_VEL;
 	velY = BALL_VEL;
@@ -41,13 +40,13 @@ void Ball::Update(float dt)
 		ResetPosition();
 		//Destroy that ball and create a new one
 		//Score to right
-		gameManager->AddPointRight();
+		GameManager::GetInstance().AddPointRight();
 	}
 	else if (x <= 0) {
 		ResetPosition();
 		//Destroy that ball and create a new one
 		//Score to left
-		gameManager->AddPointLeft();
+		GameManager::GetInstance().AddPointLeft();
 	}
 	if (y + height >= GraphicsManager::GetInstance().SCREEN_HEIGHT)
 	{
