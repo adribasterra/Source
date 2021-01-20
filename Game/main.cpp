@@ -29,8 +29,6 @@ std::string ballTexturePath = "./../../Media/dot.bmp";
 float ballColliderInit = 10;
 SDL_Rect paddleColliderInit = { 0, 0, 25, 125 };
 
-//Global audio sources
-std::string soundPath = "./../../Media/Sound/explosion.mp3";
 
 bool Init(){
 	//Init phase

@@ -20,11 +20,13 @@ private:
 	int currentTime;
 	int deltaTime;		//In miliseconds
 
+	bool gameOver;
+
 	int numFrames;
 	float avgFPS;
 
 	// Private constructor to avoid more than one instance
-	TimeManager() {};
+	TimeManager();
 	~TimeManager() {};
 
 	/*****************************************************************************/
@@ -33,5 +35,7 @@ public:
 	void Update(void);
 
 	int GetDeltaTime();
+
+	void GameOver();
 
 };
