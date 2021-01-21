@@ -9,10 +9,9 @@
 class SpaceShip : public Object
 {
 
-private:
+protected:
 
 	int velX, velY;		//Velocity
-	int lives;
 
 	float timer;
 	float timeBetweenShoots;
@@ -22,13 +21,10 @@ private:
 	LTexture* bulletTexture;
 	SDL_Rect* bulletCollider;
 
-	void Shoot();
+	void Shoot(int);
 
 	/*****************************************************************************/
 public:
-
-	//Maximum axis velocity of the ball
-	static const int SPACESHIP_VEL = 200;
 
 	//Constructors
 	SpaceShip();
@@ -37,9 +33,9 @@ public:
 	//Deallocate memory
 	~SpaceShip() {};
 
-	void Update(float);
-	void HandleEvent(SDL_Event&);
-	void OnCollisionEnter(Object*);
+	virtual void Update(float) {};
+	virtual void HandleEvent(SDL_Event&) {};
+	virtual void OnCollisionEnter(Object*) {};
 
 	//Setters
 	void SetBulletAttributes(float, float, LTexture*, SDL_Rect*);

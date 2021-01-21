@@ -4,38 +4,33 @@
 #include "SpaceShip.h"
 
 /**
- * Enemy object class, extends SpaceShip
+ * Player object class, extends SpaceShip
  */
-class Enemy : public SpaceShip
+class Player : public SpaceShip
 {
 
 private:
 
-	int type;
+	int lives;
 
 	/*****************************************************************************/
 public:
 
 	//Maximum axis velocity of the ball
-	static const int ENEMY_VEL = 150;
+	static const int SPACESHIP_VEL = 200;
 
 	//Constructors
-	Enemy();
-	Enemy(float, float, float, float, float, LTexture*, SDL_Rect*, int);
+	Player();
+	Player(float, float, float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
-	~Enemy() {};
+	~Player() {};
 
 	void Update(float);
+	void HandleEvent(SDL_Event&);
 	void OnCollisionEnter(Object*);
 	//Setters
 	void SetBulletAttributes(float, float, LTexture*, SDL_Rect*);
 
 	/*****************************************************************************/
-};
-
-enum enemyType : int {	//Unscoped enum
-	normal = 0,
-	zigzag = 1,
-	shooting = 2
 };

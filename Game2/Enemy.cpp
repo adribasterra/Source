@@ -6,7 +6,6 @@
 //							Constructors
 /*****************************************************************************/
 #pragma region Constructors
-
 Enemy::Enemy()
 {
 	velX = 0;
@@ -56,11 +55,9 @@ Enemy::Enemy(float x, float y, float width, float height, float rotation, LTextu
 	bulletCollider = NULL;
 }
 #pragma endregion
-
 //							Main functions
 /*****************************************************************************/
 #pragma region Main functions
-
 void Enemy::Update(float dt)
 {
 	//Move enemy depending on type
@@ -86,7 +83,7 @@ void Enemy::Update(float dt)
 		timer += dt;
 		if (timer > timeBetweenShoots)
 		{
-			Shoot();
+			Shoot(-1);
 			timer = 0;
 		}
 	}
@@ -97,7 +94,6 @@ void Enemy::Update(float dt)
 	}
 }
 #pragma endregion
-
 //							Setters
 /*****************************************************************************/
 #pragma region Setters
@@ -110,7 +106,6 @@ void Enemy::SetBulletAttributes(float width, float height, LTexture* texture, SD
 	this->bulletCollider = collider;
 }
 #pragma endregion
-
 //							Others
 /*****************************************************************************/
 #pragma region Others
@@ -123,17 +118,5 @@ void Enemy::OnCollisionEnter(Object* other)
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
 	}
 }
-
-void Enemy::Shoot()
-{
-	//Calculate centered position
-	int centeredX = this->centeredX + this->width / 2 - bulletWidth / 2;
-	int centeredY = this->centeredY + this->height;
-	//Create bullet
-	Bullet* bullet = new Bullet(centeredX, centeredY, bulletWidth, bulletHeight, rotation, bulletTexture, bulletCollider, 1);
-	//Add it to the scene
-	SceneManager::GetInstance().GetCurrentScene()->AddObject(bullet);
-}
 #pragma endregion
-
 /*****************************************************************************/
