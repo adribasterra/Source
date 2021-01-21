@@ -48,11 +48,7 @@ SpaceShip::SpaceShip(float x, float y, float width, float height, float rotation
 	bulletCollider = NULL;
 }
 #pragma endregion
-//							Main functions
-/*****************************************************************************/
-#pragma region Main functions
 
-#pragma endregion
 //							Setters
 /*****************************************************************************/
 #pragma region Setters
@@ -65,6 +61,7 @@ void SpaceShip::SetBulletAttributes(float width, float height, LTexture* texture
 	this->bulletCollider = collider;
 }
 #pragma endregion
+
 //							Others
 /*****************************************************************************/
 #pragma region Others

@@ -56,6 +56,7 @@ Enemy::Enemy(float x, float y, float width, float height, float rotation, LTextu
 	bulletCollider = NULL;
 }
 #pragma endregion
+
 //							Main functions
 /*****************************************************************************/
 #pragma region Main functions
@@ -96,6 +97,7 @@ void Enemy::Update(float dt)
 	}
 }
 #pragma endregion
+
 //							Setters
 /*****************************************************************************/
 #pragma region Setters
@@ -108,6 +110,7 @@ void Enemy::SetBulletAttributes(float width, float height, LTexture* texture, SD
 	this->bulletCollider = collider;
 }
 #pragma endregion
+
 //							Others
 /*****************************************************************************/
 #pragma region Others
@@ -121,4 +124,5 @@ void Enemy::OnCollisionEnter(Object* other)
 	}
 }
 #pragma endregion
+
 /*****************************************************************************/

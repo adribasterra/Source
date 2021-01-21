@@ -2,6 +2,7 @@
 
 //								Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 AudioManager::AudioManager()
 {
@@ -31,9 +32,11 @@ AudioManager::~AudioManager()
     }
     sounds.clear();
 }
+#pragma endregion
 
 //								Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 bool AudioManager::AddAudio(std::string path, int type)
 {
@@ -76,6 +79,11 @@ bool AudioManager::AddAudio(std::string path, int type)
     }
     return success;
 }
+#pragma endregion
+
+//								Handle audios
+/*****************************************************************************/
+#pragma region Handle audios
 
 void AudioManager::PlayAudio(std::string path)
 {
@@ -128,5 +136,6 @@ void AudioManager::StopMusic(std::string path)
         printf("\nERROR. Invalid path.\n");
     }
 }
+#pragma endregion
 
 /*****************************************************************************/
