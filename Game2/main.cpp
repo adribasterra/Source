@@ -9,7 +9,7 @@
 #include "Texture.h"
 #include "Scene.h"
 #include "Object.h"
-#include "SpaceShip.h"
+#include "Player.h"
 #include "Spawner.h"
 
 #include "GraphicsManager.h"
@@ -118,6 +118,7 @@ int main(int argc, char* args[])
 	if (Init()) {
 		if (LoadTextures()) {	//Once Managers can load media
 
+			//Randomice time seed
 			srand((unsigned)time(NULL));
 
 			//Create scene and set it as current
@@ -128,7 +129,7 @@ int main(int argc, char* args[])
 
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
-			SpaceShip* player = new SpaceShip(GraphicsManager::SCREEN_WIDTH/2-50, GraphicsManager::SCREEN_HEIGHT - 100 , 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
+			SpaceShip* player = new Player(GraphicsManager::SCREEN_WIDTH/2-50, GraphicsManager::SCREEN_HEIGHT - 100 , 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
 
 			LTexture* bulletTexture = GraphicsManager::GetInstance().LoadTexture(bulletTexturePath);
 			SDL_Rect* bulletCollider = PhysicsManager::GetInstance().LoadCollider(&bulletColliderInit);
