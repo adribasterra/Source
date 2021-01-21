@@ -2,6 +2,7 @@
 
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 Sound::Sound()
 {
@@ -12,17 +13,21 @@ Sound::~Sound()
 {
     Mix_FreeChunk(gSound);
 }
+#pragma endregion
 
-//							  Getters
+//							Getters
 /*****************************************************************************/
+#pragma region Getters
 
 std::string Sound::GetPath()
 {
     return path;
 }
+#pragma endregion
 
 //							Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 Sound* Sound::LoadFromFile(std::string path)
 {
@@ -36,10 +41,16 @@ Sound* Sound::LoadFromFile(std::string path)
     this->path = path;
     return this;
 }
+#pragma endregion
+
+//							Handle audio
+/*****************************************************************************/
+#pragma region Handle audio
 
 void Sound::Play()
 {
     Mix_PlayChannel(-1, gSound, 0);
 }
+#pragma endregion
 
 /*****************************************************************************/

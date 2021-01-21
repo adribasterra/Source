@@ -3,7 +3,7 @@
 #include "Object.h"
 #include <vector>
 
-/*
+/**
  * Scene class
  */
 class Scene

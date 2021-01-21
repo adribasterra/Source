@@ -6,7 +6,7 @@
 #include "Music.h"
 #include "Sound.h"
 
-/*
+/**
  * Audio Manager class
  */
 class AudioManager : public Singleton<AudioManager>

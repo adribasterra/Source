@@ -5,7 +5,7 @@
 #include "Scene.h"
 #include <vector>
 
-/*
+/**
  * Scene Manager class
  */
 class SceneManager : public Singleton<SceneManager>

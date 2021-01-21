@@ -3,7 +3,7 @@
 #include "Singleton.h"
 #include "SDL.h"
 
-/*
+/**
  * Input Manager class
  */
 class InputManager : public Singleton<InputManager>

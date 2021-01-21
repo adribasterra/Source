@@ -8,7 +8,7 @@
 #include <vector>
 #include "SceneManager.h"
 
-/*
+/**
  * Graphics Manager class
  */
 

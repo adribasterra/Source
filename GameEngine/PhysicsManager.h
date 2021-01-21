@@ -5,7 +5,7 @@
 #include "Object.h"
 #include <vector>
 
-/*
+/**
  * Physics Manager class
  */
 class PhysicsManager : public Singleton<PhysicsManager>

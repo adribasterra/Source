@@ -2,7 +2,7 @@
 
 #include <Texture.h>
 
-/*
+/**
  * Game Object class
  */
 class Object {

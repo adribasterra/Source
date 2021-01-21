@@ -3,7 +3,7 @@
 // For asserts
 #include <string>
 
-/*
+/**
  * Class Singleton
  * Base class to create singletons controlling construction and destruction of singleton
  */

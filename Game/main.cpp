@@ -213,8 +213,6 @@ int main( int argc, char* args[] )
 					}
 					//Handle players' events
 					scene->HandleEvents(eventHandler);
-					//leftPaddle->HandleEvent(eventHandler);
-					//rightPaddle->HandleEvent(eventHandler);
 				}
 
 				TimeManager::GetInstance().Update();
@@ -226,10 +224,6 @@ int main( int argc, char* args[] )
 
 				//Update scene
 				scene->Update(dt);
-
-				//Move objects
-				//leftPaddle->Move();
-				//rightPaddle->Move();
 
 				//Check collisions
 				PhysicsManager::GetInstance().CheckCollisions();

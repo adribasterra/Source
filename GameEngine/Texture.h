@@ -7,7 +7,7 @@
 #include <string>
 #include <cmath>
 
-/*
+/**
  * Texture wrapper class
  */
 class LTexture

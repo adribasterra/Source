@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 
-/*
+/**
  * Time Manager class
  */
 class TimeManager : public Singleton<TimeManager>

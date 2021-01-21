@@ -2,6 +2,7 @@
 
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 Music::Music()
 {
@@ -12,17 +13,21 @@ Music::~Music()
 {
     Mix_FreeMusic(gMusic);
 }
+#pragma endregion
 
-//								Getters
+//							Getters
 /*****************************************************************************/
+#pragma region Getters
 
 std::string Music::GetPath()
 {
     return path;
 }
+#pragma endregion
 
 //							Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 Music* Music::LoadFromFile(std::string path)
 {
@@ -36,6 +41,11 @@ Music* Music::LoadFromFile(std::string path)
     this->path = path;
     return this;
 }
+#pragma endregion
+
+//							Handle audio
+/*****************************************************************************/
+#pragma region Handle audio
 
 void Music::Play()
 {
@@ -77,5 +87,6 @@ void Music::Stop()
     //Stop the music
     Mix_HaltMusic();
 }
+#pragma endregion
 
 /*****************************************************************************/

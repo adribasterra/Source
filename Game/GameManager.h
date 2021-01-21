@@ -6,7 +6,7 @@
 #include <GraphicsManager.h>
 #include "Singleton.h"
 
-/*
+/**
  * Game Manager class
  */
 class GameManager : public Singleton<GameManager>
