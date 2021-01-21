@@ -1,10 +1,14 @@
 #pragma once
+
 #include <Texture.h>
 #include "Object.h"
-/*
+
+/**
  * Paddle object class, extends Object
  */
-class Paddle : public Object {
+
+class Paddle : public Object
+{
 
 private:
 
@@ -13,13 +17,14 @@ private:
 	//Controls
 	SDL_Scancode upKey, downKey;
 
+	/*****************************************************************************/
 public:
 
 	//Maximum axis velocity of the paddle
 	static const int PADDLE_VEL = 200;
 	
 	//Constructors
-	Paddle() {};
+	Paddle();
 	Paddle(float, float, float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
@@ -29,5 +34,5 @@ public:
 	void SetControls(SDL_Scancode, SDL_Scancode);
 	void HandleEvent(SDL_Event&);
 
-	//void Move();
+	/*****************************************************************************/
 };

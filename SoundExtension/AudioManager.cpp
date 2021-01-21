@@ -42,13 +42,13 @@ bool AudioManager::AddAudio(std::string path, int type)
         //Load music
         Music* music = new Music();
         if (music == NULL) {
-            printf("Not able to load that audio source.");
+            printf("\nNot able to load that audio source.\n");
             success = false;
         }
         music = music->LoadFromFile(path);
         if (music == NULL)
         {
-            printf("Music is null, not added to the vector");
+            printf("\nMusic is null, not added to the vector.\n");
             success = false;
         }
         else
@@ -60,13 +60,13 @@ bool AudioManager::AddAudio(std::string path, int type)
         //Load sound
         Sound* sound = new Sound();
         if (sound == NULL) {
-            printf("Not able to load that audio source.");
+            printf("\nNot able to load that audio source.\n");
             success = false;
         }
         sound = sound->LoadFromFile(path);
         if (sound == NULL)
         {
-            printf("Sound is null, not added to the vector");
+            printf("\nSound is null, not added to the vector.\n");
             success = false;
         }
         else
@@ -83,6 +83,7 @@ void AudioManager::PlayAudio(std::string path)
     bool foundSound = false;
     for (int i = 0; i < musics.size(); i++) {
         if (musics[i]->GetPath() == path) {
+            //If found, play the music
             musics[i]->Play();
             foundMusic = true;
         }
@@ -90,12 +91,13 @@ void AudioManager::PlayAudio(std::string path)
     if (!foundMusic) {
         for (int i = 0; i < sounds.size(); i++) {
             if (sounds[i]->GetPath() == path) {
+                //If found, play the sound
                 sounds[i]->Play();
                 foundSound = true;
             }
         }
     }
-    if (!foundMusic && !foundSound) printf("ERROR. Invalid path.");
+    if (!foundMusic && !foundSound) printf("\nERROR. Invalid path.\n");
 }
 
 void AudioManager::PauseMusic(std::string path)
@@ -108,7 +110,7 @@ void AudioManager::PauseMusic(std::string path)
         }
     }
     if (!foundMusic) {
-        printf("ERROR. Invalid path.");
+        printf("\nERROR. Invalid path.\n");
     }
 }
 
@@ -117,12 +119,13 @@ void AudioManager::StopMusic(std::string path)
     bool foundMusic = false;
     for (int i = 0; i < musics.size(); i++) {
         if (musics[i]->GetPath() == path) {
+            //If found, stop the music
             musics[i]->Stop();
             foundMusic = true;
         }
     }
     if (!foundMusic) {
-        printf("ERROR. Invalid path.");
+        printf("\nERROR. Invalid path.\n");
     }
 }
 

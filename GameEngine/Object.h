@@ -1,5 +1,7 @@
 #pragma once
+
 #include <Texture.h>
+
 /*
  * Game Object class
  */
@@ -7,8 +9,8 @@ class Object {
 
 protected:
 
-	float x;
-	float y;
+	float centeredX;
+	float centeredY;
 	float width;
 	float height;
 	float rotation;
@@ -29,15 +31,14 @@ public:
 	Object(float, float, float, float, float, LTexture*, float*, std::string);
 
 	//Deallocate memory
-	~Object();
+	~Object() {};
 
-	virtual void Update(float dt);
-
+	//Overridden in game objects
+	virtual void Update(float dt) {};
 	virtual void HandleEvent(SDL_Event&) {};
-
 	virtual void OnCollisionEnter(Object* other) {};
 
-	//Getters & setters (encapsulation)
+	//Setters
 	void SetPosition(float, float);
 	void SetSize(float, float);
 	void SetRotation(float);
@@ -45,6 +46,7 @@ public:
 	void SetCollider(SDL_Rect);
 	void SetTag(std::string);
 
+	//Getters
 	float GetX();
 	float GetY();
 	float GetWidth();
@@ -56,9 +58,8 @@ public:
 	int GetTypeCollision();
 	std::string GetTag();
 
+	/*****************************************************************************/
 };
-
-/*****************************************************************************/
 
 enum colliderTypes : int {	//Unscoped enum
 	none = 0,

@@ -1,19 +1,25 @@
 #pragma once
+
 #include <Texture.h>
 #include "Object.h"
 
+/**
+ * Spawner object class, extends Object
+ */
 class Spawner : public Object
 {
+
 private:
 
-	float timmer = 0.0;
-	float timeUntileSpawn;
+	float timer;
+	float timeBetweenSpawns;
 
 	float bulletHeight;
 	float bulletWidth;
 	LTexture* bulletTexture;
 	SDL_Rect* bulletCollider;
 
+	/*****************************************************************************/
 public:
 
 	//Constructors
@@ -21,8 +27,12 @@ public:
 	Spawner(float, float, float, LTexture*, SDL_Rect*);
 
 	//Deallocate memory
-	~Spawner();
+	~Spawner() {};
 
-	void setBulletAttributes(float, float, LTexture*, SDL_Rect*);
 	void Update(float);
+
+	//Setters
+	void SetBulletAttributes(float, float, LTexture*, SDL_Rect*);
+
+	/*****************************************************************************/
 };

@@ -1,3 +1,4 @@
+#pragma region Includes
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -17,31 +18,40 @@
 #include "SceneManager.h"
 #include "TimeManager.h"
 
-/*
+#pragma endregion
+
+/**
  * Shoot 'em up game
  */
 
- //Global texture names
+#pragma region Attributes
+
+//Global texture paths
 std::string spaceShipTexturePath = "./../../Media/spaceship.png";
 std::string bulletTexturePath = "./../../Media/shot.png";
 std::string enemyTexturePath = "./../../Media/enemy.png";
-std::string bckTexturePath = "./../../Media/backgroundShootemUp.png";
-//Global colliders
+std::string backgroundTexturePath = "./../../Media/backgroundShootemUp.png";
+
+//Global collider values
 SDL_Rect spaceShipColliderInit = { 0, 0, 100, 100 };
 SDL_Rect enemyColliderInit = { 0, 0, 63, 68 };
 SDL_Rect bulletColliderInit = { 0, 0, 30, 30 };
-//Global audio sources
-std::string soundPath = "./../../Media/Sound/Explosion2.wav";
 
-bool Init() {
-	//Init phase
+#pragma endregion
+
+
+#pragma region Custom Methods
+
+bool Init()
+{
+	//Engine Managers
 	TimeManager::CreateSingleton();
 	InputManager::CreateSingleton();
 	SceneManager::CreateSingleton();
 	PhysicsManager::CreateSingleton();
 	GraphicsManager::CreateSingleton();
 
-	//Initialize Managers
+	//Initialize Graphics Manager
 	if (!GraphicsManager::GetInstance().Init())
 	{
 		printf("Failed to initialize Graphics Manager\n");
@@ -54,48 +64,62 @@ bool LoadTextures()
 {
 	//SPACESHIP
 	bool success = true;
-	LTexture SpaceShipTexture;
-	if (!SpaceShipTexture.loadFromFile(spaceShipTexturePath)) success = false;
+	LTexture spaceShipTexture;
+	if (!spaceShipTexture.loadFromFile(spaceShipTexturePath))
+	{
+		printf("Failed to load %s\n", spaceShipTexturePath.c_str());
+		success = false;
+	}
 
-	LTexture EnemyTexture;
-	if (!EnemyTexture.loadFromFile(enemyTexturePath)) success = false;
+	//ENEMY
+	LTexture enemyTexture;
+	if (!enemyTexture.loadFromFile(enemyTexturePath))
+	{
+		printf("Failed to load %s\n", enemyTexturePath.c_str());
+		success = false;
+	}
 
+	//BULLET
 	LTexture BulletTexture;
-	if (!BulletTexture.loadFromFile(bulletTexturePath)) success = false;
+	if (!BulletTexture.loadFromFile(bulletTexturePath))
+	{
+		printf("Failed to load %s\n", bulletTexturePath.c_str());
+		success = false;
+	}
 
-	LTexture BckTexture;
-	if (!BckTexture.loadFromFile(bckTexturePath)) success = false;
-	//Add it to the graphicsManager
+	//BACKGROUND
+	LTexture backgroundTexture;
+	if (!backgroundTexture.loadFromFile(backgroundTexturePath))
+	{
+		printf("Failed to load %s\n", backgroundTexturePath.c_str());
+		success = false;
+	}
 
 	return success;
 }
 
-bool LoadColliders()
+void Destroy()
 {
-	//Add them to physicsManager
-
-	return true;
-}
-
-void Destroy() {
-
-	//Destroy phase
+	//Engine Managers
 	GraphicsManager::DestroySingleton();
 	PhysicsManager::DestroySingleton();
 	SceneManager::DestroySingleton();
 	InputManager::DestroySingleton();
 	TimeManager::DestroySingleton();
 }
+#pragma endregion
 
 //									MAIN
 /*****************************************************************************/
+#pragma region Main method
 
 int main(int argc, char* args[])
 {
 	if (Init()) {
-		if (LoadTextures() && LoadColliders()) {	//Once Managers can load stuff
+		if (LoadTextures()) {	//Once Managers can load media
 
 			srand((unsigned)time(NULL));
+
 			//Create scene and set it as current
 			Scene* scene = SceneManager::GetInstance().Create();
 			SceneManager::GetInstance().SetCurrentScene(scene);
@@ -109,15 +133,16 @@ int main(int argc, char* args[])
 			LTexture* bulletTexture = GraphicsManager::GetInstance().LoadTexture(bulletTexturePath);
 			SDL_Rect* bulletCollider = PhysicsManager::GetInstance().LoadCollider(&bulletColliderInit);
 
-			player->setBulletAttributes(30,30,bulletTexture,bulletCollider);
+			player->SetBulletAttributes(30,30,bulletTexture,bulletCollider);
 			scene->AddObject(player);
 
 			LTexture* enemyTexture = GraphicsManager::GetInstance().LoadTexture(enemyTexturePath);
 			SDL_Rect* enemyCollider = PhysicsManager::GetInstance().LoadCollider(&enemyColliderInit);
 			Spawner* enemySpawner = new Spawner(63, 68, 1.5, enemyTexture, enemyCollider);
-			enemySpawner->setBulletAttributes(30, 30, bulletTexture, bulletCollider);
+			enemySpawner->SetBulletAttributes(30, 30, bulletTexture, bulletCollider);
 
 			scene->AddObject(enemySpawner);
+
 			/* -------------------------------- */
 
 			bool quit = false;
@@ -140,24 +165,21 @@ int main(int argc, char* args[])
 				}
 
 				TimeManager::GetInstance().Update();
-				InputManager::GetInstance().Update();
 
 				//Calculate delta time in seconds
 				float dt = TimeManager::GetInstance().GetDeltaTime();
 				dt /= 1000;
 
+				InputManager::GetInstance().Update();
+
 				//Update scene
 				scene->Update(dt);
-
-				//Move objects
-				//leftPaddle->Move();
-				//rightPaddle->Move();
 
 				//Check collisions
 				PhysicsManager::GetInstance().CheckCollisions();
 
-				//Clear screen
-				SDL_Texture* texture = IMG_LoadTexture(GraphicsManager::GetInstance().GetRenderer(), bckTexturePath.c_str());
+				//Clear screen with texture
+				SDL_Texture* texture = IMG_LoadTexture(GraphicsManager::GetInstance().GetRenderer(), backgroundTexturePath.c_str());
 				SDL_Rect texture_rect;
 				texture_rect.x = 0;
 				texture_rect.y = 0;
@@ -183,3 +205,6 @@ int main(int argc, char* args[])
 
 	return 0;
 }
+#pragma endregion
+
+/*****************************************************************************/

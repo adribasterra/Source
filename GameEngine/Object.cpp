@@ -1,14 +1,13 @@
 #include "Object.h"
 
-#pragma region Constructors
-
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 Object::Object()
 {
-	this->x = 0;
-	this->y = 0;
+	this->centeredX = 0;
+	this->centeredY = 0;
 	this->width = NULL;
 	this->height = NULL;
 	this->texture = NULL;
@@ -22,8 +21,8 @@ Object::Object()
 
 Object::Object(float x, float y)
 {
-	this->x = x;
-	this->y = y;
+	this->centeredX = x;
+	this->centeredY = y;
 	this->width = NULL;
 	this->height = NULL;
 	this->texture = NULL;
@@ -37,8 +36,8 @@ Object::Object(float x, float y)
 
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture)
 {
-	this->x = x;
-	this->y = y;
+	this->centeredX = x;
+	this->centeredY = y;
 	this->width = width;
 	this->height = height;
 	this->texture = texture;
@@ -52,8 +51,8 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle, std::string tag)
 {
-	this->x = x;
-	this->y = y;
+	this->centeredX = x;
+	this->centeredY = y;
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
@@ -66,8 +65,8 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 
 Object::Object(float x, float y, float width, float height, float rotation, LTexture* texture, float* radius, std::string tag)
 {
-	this->x = x;
-	this->y = y;
+	this->centeredX = x;
+	this->centeredY = y;
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
@@ -77,35 +76,19 @@ Object::Object(float x, float y, float width, float height, float rotation, LTex
 	colliderType = colliderTypes::circle;
 	this->tag = tag;
 }
-Object::~Object()
-{
-
-}
-
 #pragma endregion
-
-#pragma region Main function
-
-//								Main func
-/*****************************************************************************/
-
-void Object::Update(float dt) {
-}
-
-#pragma endregion
-
-#pragma region Getters
 
 //								Getters
 /*****************************************************************************/
+#pragma region Getters
 
 float Object::GetX()
 {
-	return x;
+	return centeredX;
 }
 float Object::GetY()
 {
-	return y;
+	return centeredY;
 }
 float Object::GetWidth()
 {
@@ -139,18 +122,16 @@ std::string Object::GetTag()
 {
 	return tag;
 }
-
 #pragma endregion
-
-#pragma region Setters
 
 //								Setters
 /*****************************************************************************/
+#pragma region Setters
 
 void Object::SetPosition(float xAux, float yAux)
 {
-	x = xAux;
-	y = yAux;
+	centeredX = xAux;
+	centeredY = yAux;
 }
 void Object::SetSize(float widthAux, float heightAux)
 {
@@ -174,7 +155,6 @@ void Object::SetTag(std::string tag)
 {
 	this->tag = tag;
 }
+#pragma endregion
 
 /*****************************************************************************/
-
-#pragma endregion

@@ -1,10 +1,11 @@
+#pragma once
+
 #include "SDL.h"
 #include "SDL_image.h"
 #include <string>
 #include <GraphicsManager.h>
 #include "Singleton.h"
 
-#pragma once
 /*
  * Game Manager class
  */
@@ -16,12 +17,17 @@ class GameManager : public Singleton<GameManager>
 
 private:
 
+	//Points
 	int leftPlayerPoints;
 	int rightPlayerPoints;
+
+	//Sounds
 	std::string audioPathLeft;
 	std::string audioPathRight;
+
 	//LTexture gTextTexture;
 
+	/*****************************************************************************/
 public:
 
 	//Constructors
@@ -33,8 +39,11 @@ public:
 
 	void AddAudios(std::string, std::string);
 
+	//Getters
 	int GetLeftPlayerPoints();
 	int GetRightPlayerPoints();
 
+	//Setters
 	void SetText(std::string, SDL_Color);
+	/*****************************************************************************/
 };

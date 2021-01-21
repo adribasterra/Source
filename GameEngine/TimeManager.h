@@ -34,8 +34,9 @@ public:
 
 	void Update(void);
 
+	//Getters & setters
 	int GetDeltaTime();
-
 	void SetGameOver(bool);
 
+	/*****************************************************************************/
 };

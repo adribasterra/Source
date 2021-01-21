@@ -5,17 +5,24 @@
 
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 Spawner::Spawner()
 {
-	timeUntileSpawn = 1.0;
+	timer = 0;
+	timeBetweenSpawns = 1;
+
+	bulletHeight = 0;
+	bulletWidth = 0;
+	bulletTexture = NULL;
+	bulletCollider = NULL;
 }
 
 Spawner::Spawner(float whidth, float height, float timeSpawn, LTexture* texture, SDL_Rect* rectangle) : Object()
 {
 	//Inherited from Object
-	this->x = 0;
-	this->y = 0;
+	this->centeredX = 0;
+	this->centeredY = 0;
 	this->width = whidth;
 	this->height = height;
 	this->rotation = 0;
@@ -23,54 +30,68 @@ Spawner::Spawner(float whidth, float height, float timeSpawn, LTexture* texture,
 	this->collider = rectangle;
 	this->tag = "Spawner";
 	colliderType = colliderTypes::rect;
-	timeUntileSpawn = timeSpawn;
-}
 
-Spawner::~Spawner()
-{
-	Object::~Object();
-}
+	timer = 0;
+	timeBetweenSpawns = timeSpawn;
 
-//								Main func
+	bulletHeight = 0;
+	bulletWidth = 0;
+	bulletTexture = NULL;
+	bulletCollider = NULL;
+}
+#pragma endregion
+
+//							Main function
 /*****************************************************************************/
+#pragma region Main function
 
-void Spawner::Update(float dt) {
-	//Move the paddle up or down
-	timmer += dt;
-	if (timmer >= timeUntileSpawn)
+void Spawner::Update(float dt)
+{
+	timer += dt;
+	if (timer >= timeBetweenSpawns)
 	{
+		//Calculate random enemy in random position
 		float type = (float)rand() / RAND_MAX;
-		float xAux = rand() % (GraphicsManager::SCREEN_WIDTH- (int)width);
+		float xAux = rand() % (GraphicsManager::SCREEN_WIDTH - (int)width);
 		Enemy* enemy;
-		if (type<0.4)
+
+		//40% chance of being normal
+		if (type < 0.4)
 		{
 			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::normal);
 		}
+		//40% chance of being zigzag
 		else if (type < 0.8)
 		{
 			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::zigzag);
 		}
+		//20% chance of being shooting
 		else
 		{
 			enemy = new Enemy(xAux, -height, width, height, rotation, texture, collider, enemyType::shooting);
-			
 		}
-		enemy->setBulletAttributes(bulletWidth,bulletHeight,bulletTexture,bulletCollider);
+		enemy->SetBulletAttributes(bulletWidth, bulletHeight, bulletTexture, bulletCollider);
 		SceneManager::GetInstance().GetCurrentScene()->AddObject(enemy);
-		timmer = 0.0;
+		timer = 0;
 	}
 
 }
+#pragma endregion
 
-void Spawner::setBulletAttributes(float w, float h, LTexture* texture, SDL_Rect* col)
+//							Setters
+/*****************************************************************************/
+#pragma region Setters
+
+void Spawner::SetBulletAttributes(float width, float height, LTexture* texture, SDL_Rect* collider)
 {
-	bulletHeight = h;
-	bulletWidth = w;
-	bulletTexture = texture;
-	bulletCollider = col;
+	this->bulletWidth = width;
+	this->bulletHeight = height;
+	this->bulletTexture = texture;
+	this->bulletCollider = collider;
 }
+#pragma endregion
 
-
+/*****************************************************************************/
 
 
 

@@ -4,6 +4,8 @@
 
 //								Constructors
 /*****************************************************************************/
+#pragma region Constructors
+
 LTexture::LTexture()
 {
     //Initialize
@@ -21,8 +23,11 @@ LTexture::~LTexture()
     //Deallocate
     free();
 }
+#pragma endregion
 
+//								Load data
 /*****************************************************************************/
+#pragma region Load data
 
 bool LTexture::loadFromFile(std::string path)
 {
@@ -102,8 +107,11 @@ bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor
     return mTexture != NULL;
 }
 #endif
+#pragma endregion
 
+//								Other
 /*****************************************************************************/
+#pragma region Other
 
 void LTexture::free()
 {
@@ -116,15 +124,16 @@ void LTexture::free()
         mHeight = 0;
     }
 }
+#pragma endregion
 
 //								Getters
 /*****************************************************************************/
+#pragma region Getters
 
 int LTexture::getWidth()
 {
     return mWidth;
 }
-
 
 int LTexture::getHeight()
 {
@@ -140,9 +149,11 @@ std::string LTexture::getFilePath()
 {
     return filePath;
 }
+#pragma endregion
 
 //								Setters
 /*****************************************************************************/
+#pragma region Setters
 
 void LTexture::setColor(Uint8 red, Uint8 green, Uint8 blue)
 {
@@ -150,13 +161,11 @@ void LTexture::setColor(Uint8 red, Uint8 green, Uint8 blue)
     SDL_SetTextureColorMod(mTexture, red, green, blue);
 }
 
-
 void LTexture::setBlendMode(SDL_BlendMode blending)
 {
     //Set blending function
     SDL_SetTextureBlendMode(mTexture, blending);
 }
-
 
 void LTexture::setAlpha(Uint8 alpha)
 {
@@ -168,9 +177,11 @@ void LTexture::setFilePath(std::string filePath)
 {
     this->filePath = filePath;
 }
+#pragma endregion
 
 //								Main function
 /*****************************************************************************/
+#pragma region Main function
 
 void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
@@ -186,5 +197,6 @@ void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
     //Render to screen
     SDL_RenderCopyEx(GraphicsManager::GetInstance().GetRenderer(), mTexture, clip, &renderQuad, angle, center, flip);
 }
+#pragma endregion
 
 /*****************************************************************************/

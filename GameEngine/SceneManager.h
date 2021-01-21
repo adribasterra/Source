@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include "Scene.h"
 #include <vector>
+
 /*
  * Scene Manager class
  */
@@ -15,21 +16,22 @@ class SceneManager : public Singleton<SceneManager>
 
 private:
 
-	std::vector<Scene*> scenes;		// Scenes
-	Scene* currentScene;			// Scene to renderize
+	std::vector<Scene*> scenes;		//Scenes
+	Scene* currentScene;			//Scene to renderize & update
 
-	// Private constructor to avoid more than one instance
+	//Private constructor to avoid more than one instance
 	SceneManager();
-	~SceneManager() {};
+	~SceneManager();
 
 	/*****************************************************************************/
 public:
 
+	Scene* Create();
+	void Delete(Scene*);
+
 	//Getters & setters
 	Scene* GetCurrentScene();
-	void SetCurrentScene(Scene*);	//Changes renderized scene
+	void SetCurrentScene(Scene*);	//Changes renderized & updated scene
 
-	Scene* Create();
-	void Delete(Scene*);			//Don't know if necessary or not, destructor??
-
+	/*****************************************************************************/
 };

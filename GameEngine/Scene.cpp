@@ -1,9 +1,11 @@
-#include "Scene.h"
 #include "SceneManager.h"
+#include "Scene.h"
 #include "Object.h"
 
 //								Constructors
 /*****************************************************************************/
+#pragma region Constructors
+
 Scene::Scene()
 {
 	//Initialize
@@ -13,19 +15,20 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-	for (int i = 0; i < objects.size(); i++)
-	{
-		delete(objects[i]);
-	}
+	//Delete objects
+	this->Clear();
+	//Clear vector
 	objects.clear();
 }
+#pragma endregion
 
 //								Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 void Scene::Update(float dt)
 {
-	//Update of all Scene's objects
+	//Update all Scene's objects
 	for (int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->Update(dt);
@@ -40,9 +43,11 @@ void Scene::HandleEvents(SDL_Event eventHandler)
 		objects[i]->HandleEvent(eventHandler);
 	}
 }
+#pragma endregion
 
 //								Getters
 /*****************************************************************************/
+#pragma region Getters
 
 Object* Scene::GetObject(int index)
 {
@@ -68,29 +73,41 @@ std::vector<Object*> Scene::GetObjectsInScene()
 {
 	return objects;
 }
+#pragma endregion
+
+//								Handle objects
+/*****************************************************************************/
+#pragma region Handle Objects
 
 void Scene::AddObject(Object* obj)
 {
 	objects.push_back(obj);
 }
 
-// TODOOOOOOO Revisar
 void Scene::DeleteObject(Object* obj)
 {
+	//Check if object exists
 	for (int i = 0; i < objects.size(); i++)
 	{
 		if (objects[i] == obj)
 		{
+			//Swap with last position
 			std::swap(objects[i], objects[objects.size() - 1]);
 			Object* objectToDelete = objects[objects.size() - 1];
+			//Remove it from vector
 			objects.pop_back();
+
+			//Delete object
 			delete(objectToDelete);
 			objectToDelete = NULL;
 		}
 	}
 }
+#pragma endregion
 
+//								Others
 /*****************************************************************************/
+#pragma region Others
 
 void Scene::Clear()
 {
@@ -102,3 +119,6 @@ void Scene::Clear()
 		}
 	}
 }
+#pragma endregion
+
+/*****************************************************************************/

@@ -30,26 +30,22 @@ public:
   //Deallocates texture
   void free();
 
-  //Set color modulation
-  void setColor(Uint8 red, Uint8 green, Uint8 blue);
+  //Setters
+  void setColor(Uint8 red, Uint8 green, Uint8 blue);	//Color modulation
+  void setBlendMode(SDL_BlendMode blending);			//Blending
+  void setAlpha(Uint8 alpha);							//Alpha modulation
+  void setFilePath(std::string filePath);				//File path
 
-  //Set blending
-  void setBlendMode(SDL_BlendMode blending);
-
-  //Set alpha modulation
-  void setAlpha(Uint8 alpha);
-
-  void setFilePath(std::string filePath);
-
-  //Renders texture at given point
-  void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
-
-  //Gets image dimensions
+  //Getters
   int getWidth();
   int getHeight();
   std::string getFilePath();
   SDL_Texture* getTexture();
 
+  //Renders texture at given point
+  void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+
+  /*****************************************************************************/
 private:
   //The actual hardware texture
   SDL_Texture* mTexture;
@@ -63,4 +59,6 @@ private:
 
   //Globally used font
   TTF_Font* gFont = NULL;
+
+  /*****************************************************************************/
 };

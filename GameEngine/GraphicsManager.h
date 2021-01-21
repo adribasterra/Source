@@ -7,9 +7,11 @@
 #include <Texture.h>
 #include <vector>
 #include "SceneManager.h"
+
 /*
  * Graphics Manager class
  */
+
 class GraphicsManager : public Singleton<GraphicsManager>
 {
 	/*****************************************************************************/
@@ -24,7 +26,7 @@ public:
 
 	/*****************************************************************************/
 private:
-	//The window we'll be rendering to
+	//The window to be rendering to
 	SDL_Window* mWindow;
 
 	//The window renderer
@@ -32,22 +34,22 @@ private:
 
 	std::vector<LTexture*> textures;
 
-	// Private constructor to avoid more than one instance
+	//Private constructor to avoid more than one instance
 	GraphicsManager();
 	~GraphicsManager();
 
 	/*****************************************************************************/
 public:
 
-	bool Init(void);
+	bool Init();
 
 	LTexture* LoadTexture(std::string);
 
-	void Update(void);
-
-	SDL_Window* GetWindow(void) { return mWindow; }
-	SDL_Renderer* GetRenderer(void) { return mRenderer; }
+	//Getters
+	SDL_Window* GetWindow();
+	SDL_Renderer* GetRenderer();
 
 	void Render();
 
+	/*****************************************************************************/
 };

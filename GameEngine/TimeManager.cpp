@@ -1,7 +1,8 @@
 #include "TimeManager.h"
 
-//								Constructors
+//								Constructor
 /*****************************************************************************/
+#pragma region Constructor
 
 TimeManager::TimeManager()
 {
@@ -15,16 +16,18 @@ TimeManager::TimeManager()
 	numFrames = 0;
 	avgFPS = 0;
 }
+#pragma endregion
 
 //								Main function
 /*****************************************************************************/
+#pragma region Main function
 
 void TimeManager::Update(void)
 {
 	if (!gameOver) {
-		//Set deltaTime depending on the last time rendered.
+		//Set deltaTime depending on the last time rendered
 		time += deltaTime;
-		currentTime = SDL_GetTicks(); //miliseconds
+		currentTime = SDL_GetTicks();	//In miliseconds
 		deltaTime = currentTime - lastTimeRendered;
 
 		//Calculate and correct fps
@@ -41,6 +44,11 @@ void TimeManager::Update(void)
 		deltaTime = 0;
 	}
 }
+#pragma endregion
+
+//								Getters & setters
+/*****************************************************************************/
+#pragma region Getters & setters
 
 int TimeManager::GetDeltaTime()
 {
@@ -51,5 +59,6 @@ void TimeManager::SetGameOver(bool gameOver)
 {
 	this->gameOver = gameOver;
 }
+#pragma endregion
 
 /*****************************************************************************/

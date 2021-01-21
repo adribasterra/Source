@@ -1,7 +1,9 @@
 #include "GameManager.h"
 #include "AudioManager.h"
+
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 GameManager::GameManager()
 {
@@ -13,9 +15,11 @@ GameManager::~GameManager()
 {
 	//gTextTexture.free();
 }
+#pragma endregion
 
-//							Main methods
+//							Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 void GameManager::AddPointLeft()
 {
@@ -28,15 +32,26 @@ void GameManager::AddPointRight()
 	rightPlayerPoints++;
 	AudioManager::GetInstance().PlayAudio(audioPathRight);
 }
+#pragma endregion
+
+//							Getters
+/*****************************************************************************/
+#pragma region Getters
 
 int GameManager::GetLeftPlayerPoints()
 {
 	return leftPlayerPoints;
 }
+
 int GameManager::GetRightPlayerPoints()
 {
 	return rightPlayerPoints;
 }
+#pragma endregion
+
+//							Setters
+/*****************************************************************************/
+#pragma region Setters
 
 void GameManager::SetText(std::string text, SDL_Color textColor)
 {
@@ -45,9 +60,17 @@ void GameManager::SetText(std::string text, SDL_Color textColor)
 		printf("Failed to render text texture!\n");
 	}
 }
+#pragma endregion
+
+//							Others
+/*****************************************************************************/
+#pragma region Others
 
 void GameManager::AddAudios(std::string left, std::string right)
 {
 	audioPathLeft = left;
 	audioPathRight = right;
 }
+#pragma endregion
+
+/*****************************************************************************/

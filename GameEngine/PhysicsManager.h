@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include "Object.h"
 #include <vector>
+
 /*
  * Physics Manager class
  */
@@ -19,9 +20,10 @@ private:
 	std::vector<float*> circleColliders;
 
 	// Private constructor to avoid more than one instance
-	PhysicsManager() {};
-	~PhysicsManager() {};
+	PhysicsManager();
+	~PhysicsManager();
 
+	//Calculate collisions
 	bool CategorizeCollisions(Object* obj1, Object* obj2);
 	bool RectCollisions(Object* obj1, Object* obj2);
 	bool CircleCollisions(Object* obj1, Object* obj2);
@@ -32,10 +34,9 @@ private:
 public:
 
 	void CheckCollisions();
-	//void AddCircleCollider(float*);
-	//void AddRectCollider(SDL_Rect*);
-	//void AddRectCollider(float, float);
+
 	SDL_Rect* LoadCollider(SDL_Rect*);
 	float* LoadCollider(float*);
 
+	/*****************************************************************************/
 };

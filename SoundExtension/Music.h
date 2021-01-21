@@ -1,7 +1,8 @@
 #pragma once
+
 #include <SDL_mixer.h>
-#include <stdio.h>
 #include <string>
+
 /*
  * Music Base class
  */
@@ -26,7 +27,6 @@ public:
 	/*****************************************************************************/
 private:
 	std::string path;
-
 
 	/*****************************************************************************/
 };

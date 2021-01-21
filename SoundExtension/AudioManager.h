@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Singleton.h"
 #include "SDL.h"
 #include <vector>
@@ -27,10 +28,13 @@ private:
 public:
 
 	bool AddAudio(std::string, int);
+
 	void PlayAudio(std::string);
 	void PauseMusic(std::string);
 	void StopMusic(std::string);
 };
+
+/*****************************************************************************/
 
 enum AudioTypes : int {		//Unscoped enum
 	music = 0,

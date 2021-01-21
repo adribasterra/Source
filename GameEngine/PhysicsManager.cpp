@@ -1,10 +1,30 @@
 #include "PhysicsManager.h"
 #include "SceneManager.h"
 
-#pragma region Main function
+//								Constructors
+/*****************************************************************************/
+#pragma region Constructors
+PhysicsManager::PhysicsManager()
+{
+    //Initialize vectors
+    rectColliders = std::vector<SDL_Rect*>();
+    rectColliders.reserve(10);
+
+    circleColliders = std::vector<float*>();
+    circleColliders.reserve(10);
+}
+
+PhysicsManager::~PhysicsManager()
+{
+    //Clear vectors
+    rectColliders.clear();
+    circleColliders.clear();
+}
+#pragma endregion
 
 //								Main function
 /*****************************************************************************/
+#pragma region Main function
 
 void PhysicsManager::CheckCollisions()
 {
@@ -16,9 +36,11 @@ void PhysicsManager::CheckCollisions()
         {
             Object* obj2 = SceneManager::GetInstance().GetCurrentScene()->GetObject(j);
 
-            if (CategorizeCollisions(obj, obj2)) {
+            if (CategorizeCollisions(obj, obj2))
+            {
                 obj->OnCollisionEnter(obj2);
-                if (SceneManager::GetInstance().GetCurrentScene()->GetObject(obj) != NULL && SceneManager::GetInstance().GetCurrentScene()->GetObject(obj2) != NULL)
+                if (SceneManager::GetInstance().GetCurrentScene()->GetObject(obj) != NULL &&
+                    SceneManager::GetInstance().GetCurrentScene()->GetObject(obj2) != NULL)
                 {
                     obj2->OnCollisionEnter(obj);
                 }
@@ -28,10 +50,9 @@ void PhysicsManager::CheckCollisions()
 }
 #pragma endregion
 
-#pragma region Collision calculation
-
-//								Collisions
+//								Collision calculation
 /*****************************************************************************/
+#pragma region Collision calculation
 
 bool PhysicsManager::CategorizeCollisions(Object* obj1, Object* obj2)
 {
@@ -153,27 +174,8 @@ double PhysicsManager::DistanceSquared(int x1, int y1, int x2, int y2)
 
 #pragma endregion
 
+//								Load colliders
 /*****************************************************************************/
-#pragma region Unused
-
-//void PhysicsManager::AddRectCollider(SDL_Rect* col)
-//{
-//    rectColliders.push_back(col);
-//}
-//void PhysicsManager::AddRectCollider(float width, float height)
-//{
-//    SDL_Rect* col = new SDL_Rect();
-//    col->w = width;
-//    col->h = height;
-//    rectColliders.push_back(col);
-//}
-//void PhysicsManager::AddCircleCollider(float* radius)
-//{
-//    circleColliders.push_back(radius);
-//}
-#pragma endregion
-/*****************************************************************************/
-
 #pragma region Load Colliders
 
 SDL_Rect* PhysicsManager::LoadCollider(SDL_Rect* rectCol)

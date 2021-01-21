@@ -1,14 +1,19 @@
 #pragma once
+
 #include <Texture.h>
 #include "Object.h"
 
+/**
+ * Bullet object class, extends Object
+ */
 class Bullet : public Object
 {
+
 private:
 
-	float velX, velY;	// Velocity
-	void ResetPosition() {};
+	float velX, velY;	//Velocity
 
+	/*****************************************************************************/
 public:
 
 	//Maximum axis velocity of the ball
@@ -19,10 +24,14 @@ public:
 	Bullet(float, float, float, float, float, LTexture*, SDL_Rect*, int);
 
 	//Deallocate memory
-	~Bullet();
+	~Bullet() {};
 
-	float getVelY();
 	void Update(float);
 	void OnCollisionEnter(Object*) {};
+
+	//Getters
+	float GetVelY();
+
+	/*****************************************************************************/
 };
 

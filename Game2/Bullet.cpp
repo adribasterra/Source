@@ -1,20 +1,22 @@
 #include "GraphicsManager.h"
 #include "InputManager.h"
 #include "Bullet.h"
+
 //							Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 Bullet::Bullet()
 {
-	this->velX = 0;
-	this->velY = 0;
+	velX = 0;
+	velY = 0;
 }
 
 Bullet::Bullet(float x, float y, float width, float height, float rotation, LTexture* texture, SDL_Rect* rectangle, int direction)
 {
 	//Inherited from Object
-	this->x = x;
-	this->y = y;
+	this->centeredX = x;
+	this->centeredY = y;
 	this->width = width;
 	this->height = height;
 	this->rotation = rotation;
@@ -22,39 +24,38 @@ Bullet::Bullet(float x, float y, float width, float height, float rotation, LTex
 	this->collider = rectangle;
 	this->tag = "Bullet";
 	colliderType = colliderTypes::rect;
-	if (direction > 0)
-	{
+
+	if (direction > 0){
 		velY = BULLET_VEL;
 	}
-	else
-	{
+	else{
 		velY = -BULLET_VEL;
 	}
 }
+#pragma endregion
 
-Bullet::~Bullet()
-{
-	Object::~Object();
-}
-
-//								Main func
+//							Main functions
 /*****************************************************************************/
+#pragma region Main functions
 
 void Bullet::Update(float dt) {
-	//Move the paddle up or down
-	y -= velY * dt;
-	if (y+height < 0 || y + height > GraphicsManager::SCREEN_HEIGHT)
+	//Move the bullet in Y axis
+	centeredY -= velY * dt;
+	if (centeredY + height < 0 || centeredY + height > GraphicsManager::SCREEN_HEIGHT)
 	{
 		SceneManager::GetInstance().GetCurrentScene()->DeleteObject(this);
 	}
-
 }
+#pragma endregion
 
-float Bullet::getVelY()
+//							Getters
+/*****************************************************************************/
+#pragma region Getters
+
+float Bullet::GetVelY()
 {
 	return velY;
 }
+#pragma endregion
 
-
-
-
+/*****************************************************************************/

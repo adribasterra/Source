@@ -2,13 +2,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <stdio.h>
 #include <string>
-#include <cmath>
-
 
 //								Constructors
 /*****************************************************************************/
+#pragma region Constructors
 
 GraphicsManager::GraphicsManager()
 {
@@ -19,13 +17,8 @@ GraphicsManager::GraphicsManager()
     textures.reserve(10);
 }
 
-GraphicsManager::~GraphicsManager(void)
+GraphicsManager::~GraphicsManager()
 {
-    /**
-    * Free whole vector &
-    * free textures with texture.free();
-    */
-
     //Destroy window	
     SDL_DestroyRenderer(mRenderer);
     SDL_DestroyWindow(mWindow);
@@ -37,11 +30,13 @@ GraphicsManager::~GraphicsManager(void)
     IMG_Quit();
     SDL_Quit();
 }
+#pragma endregion
 
-//								Main functions
+//								Initialize
 /*****************************************************************************/
+#pragma region Initialize
 
-bool GraphicsManager::Init(void)
+bool GraphicsManager::Init()
 {
     //Initialization flag
     bool success = true;
@@ -57,7 +52,7 @@ bool GraphicsManager::Init(void)
         //Set texture filtering to linear
         if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
         {
-            printf("Warning: Linear texture filtering not enabled!");
+            printf("Warning: Linear texture filtering not enabled!\n");
         }
 
         //Create window
@@ -100,12 +95,11 @@ bool GraphicsManager::Init(void)
 
     return success;
 }
+#pragma endregion
 
-
-void GraphicsManager::Update(void)
-{
-
-}
+//								Load data
+/*****************************************************************************/
+#pragma region Load data
 
 LTexture* GraphicsManager::LoadTexture(std::string filePath)
 {
@@ -128,8 +122,12 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath)
         printf("\n\nUnable to load texture from file.\n\n");
         return NULL;
     }
-
 }
+#pragma endregion
+
+//								Main function
+/*****************************************************************************/
+#pragma region Main function
 
 void GraphicsManager::Render()
 {
@@ -146,4 +144,21 @@ void GraphicsManager::Render()
         
     }
 }
+#pragma endregion
+
+//								Getters
+/*****************************************************************************/
+#pragma region Getters
+
+SDL_Window* GraphicsManager::GetWindow()
+{
+    return mWindow;
+}
+
+SDL_Renderer* GraphicsManager::GetRenderer()
+{
+    return mRenderer;
+}
+#pragma endregion
+
 /*****************************************************************************/

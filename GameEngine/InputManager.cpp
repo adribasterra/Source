@@ -1,25 +1,33 @@
 #include "InputManager.h"
 
-
-//								Main functions
+//								Constructor
 /*****************************************************************************/
+#pragma region Constructor
 
-void InputManager::Update(void)
+InputManager::InputManager()
+{
+	mCurrentKeyStates = 0;
+}
+#pragma endregion
+
+//								Main function
+/*****************************************************************************/
+#pragma region Main function
+
+void InputManager::Update()
 {
 	mCurrentKeyStates = SDL_GetKeyboardState(NULL);
 }
+#pragma endregion
 
 //								Getters
 /*****************************************************************************/
+#pragma region Getters
 
 bool InputManager::GetKey(int scanCode)
 {
 	return mCurrentKeyStates[scanCode] != 0;
 }
+#pragma endregion
 
 /*****************************************************************************/
-
-//SDL_SCANCODE_UP
-//SDL_SCANCODE_DOWN
-//SDL_SCANCODE_LEFT
-//SDL_SCANCODE_RIGHT
