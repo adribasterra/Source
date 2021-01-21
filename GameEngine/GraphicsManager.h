@@ -34,6 +34,7 @@ private:
 
 	std::vector<LTexture*> textures;
 
+
 	//Private constructor to avoid more than one instance
 	GraphicsManager();
 	~GraphicsManager();

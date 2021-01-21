@@ -123,6 +123,7 @@ LTexture* GraphicsManager::LoadTexture(std::string filePath)
         return NULL;
     }
 }
+
 #pragma endregion
 
 //								Main function
