@@ -36,7 +36,6 @@ std::string backgroundTexturePath = "./../../Media/backgroundShootemUp.png";
 SDL_Rect spaceShipColliderInit = { 0, 0, 100, 100 };
 SDL_Rect enemyColliderInit = { 0, 0, 63, 68 };
 SDL_Rect bulletColliderInit = { 0, 0, 30, 30 };
-
 #pragma endregion
 
 
@@ -127,16 +126,19 @@ int main(int argc, char* args[])
 
 			/* OBJECT CONSTRUCTION AND CREATION */
 
+			//PLAYER
 			LTexture* spaceShipTexture = GraphicsManager::GetInstance().LoadTexture(spaceShipTexturePath);
 			SDL_Rect* spaceShipCollider = PhysicsManager::GetInstance().LoadCollider(&spaceShipColliderInit);
 			SpaceShip* player = new Player(GraphicsManager::SCREEN_WIDTH/2-50, GraphicsManager::SCREEN_HEIGHT - 100 , 100, 100, 0, spaceShipTexture, spaceShipCollider);		//Left paddle
 
+			//BALL ATTRIBUTES
 			LTexture* bulletTexture = GraphicsManager::GetInstance().LoadTexture(bulletTexturePath);
 			SDL_Rect* bulletCollider = PhysicsManager::GetInstance().LoadCollider(&bulletColliderInit);
 
 			player->SetBulletAttributes(30,30,bulletTexture,bulletCollider);
 			scene->AddObject(player);
 
+			//SPAWNER
 			LTexture* enemyTexture = GraphicsManager::GetInstance().LoadTexture(enemyTexturePath);
 			SDL_Rect* enemyCollider = PhysicsManager::GetInstance().LoadCollider(&enemyColliderInit);
 			Spawner* enemySpawner = new Spawner(63, 68, 1.5, enemyTexture, enemyCollider);

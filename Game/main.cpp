@@ -24,7 +24,6 @@
 /**
  * Pong game
  */
-
 #pragma region Attributes
 
 //Global texture paths
@@ -153,7 +152,6 @@ void Destroy()
 }
 
 #pragma endregion
-
 //									MAIN
 /*****************************************************************************/
 #pragma region Main method
@@ -186,6 +184,7 @@ int main( int argc, char* args[] )
 			leftPaddle->SetControls(SDL_SCANCODE_W, SDL_SCANCODE_S);
 			rightPaddle->SetControls(SDL_SCANCODE_UP, SDL_SCANCODE_DOWN);
 
+			//Set paddles audio
 			GameManager::GetInstance().AddAudios(leftPaddleSoundPath, rightPaddleSoundPath);
 
 			//BALL

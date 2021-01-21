@@ -6,6 +6,7 @@
 //							Constructors
 /*****************************************************************************/
 #pragma region Constructors
+
 Player::Player()
 {
 	velX = 0;
@@ -138,6 +139,7 @@ void Player::HandleEvent(SDL_Event& e)
 //							Setters
 /*****************************************************************************/
 #pragma region Setters
+
 void Player::SetBulletAttributes(float width, float height, LTexture* texture, SDL_Rect* collider)
 {
 	this->bulletWidth = width;
@@ -149,6 +151,7 @@ void Player::SetBulletAttributes(float width, float height, LTexture* texture, S
 //							Others
 /*****************************************************************************/
 #pragma region Others
+
 void Player::OnCollisionEnter(Object* other)
 {
 	if (other->GetTag() == "Enemy" || (other->GetTag() == "Bullet" && ((Bullet*)other)->GetVelY() < 0))

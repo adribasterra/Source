@@ -7,6 +7,7 @@
 //							Constructors
 /*****************************************************************************/
 #pragma region Constructors
+
 SpaceShip::SpaceShip()
 {
 	velX = 0;
@@ -55,6 +56,7 @@ SpaceShip::SpaceShip(float x, float y, float width, float height, float rotation
 //							Setters
 /*****************************************************************************/
 #pragma region Setters
+
 void SpaceShip::SetBulletAttributes(float width, float height, LTexture* texture, SDL_Rect* collider)
 {
 	this->bulletWidth = width;
@@ -66,6 +68,7 @@ void SpaceShip::SetBulletAttributes(float width, float height, LTexture* texture
 //							Others
 /*****************************************************************************/
 #pragma region Others
+
 void SpaceShip::Shoot(int dir)
 {
 	//Calculate centered position

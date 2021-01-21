@@ -6,6 +6,7 @@
 //							Constructors
 /*****************************************************************************/
 #pragma region Constructors
+
 Enemy::Enemy()
 {
 	velX = 0;
@@ -58,6 +59,7 @@ Enemy::Enemy(float x, float y, float width, float height, float rotation, LTextu
 //							Main functions
 /*****************************************************************************/
 #pragma region Main functions
+
 void Enemy::Update(float dt)
 {
 	//Move enemy depending on type
